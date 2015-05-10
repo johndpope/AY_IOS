@@ -12,9 +12,10 @@ class ParseCoreService {
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
-    func createUser(email: String, password: String, first_name : String, last_name : String, birth : String, family_members: NSDictionary) {
+    func createUser(email: String, password: String, first_name : String, last_name : String, birth : NSDate, family_members: NSDictionary) {
         let params = NSMutableDictionary()
-        params.setObject(email, forKey: "User_Id" )
+        params.setObject(email, forKey: "Email" )
+        params.setObject(password, forKey: "Password" )
         params.setObject(first_name, forKey: "First_Name" )
         params.setObject(last_name, forKey: "Last_Name" )
         params.setObject(birth, forKey: "Birth_Date" )
@@ -30,11 +31,13 @@ class ParseCoreService {
         })
     }
     
-    func updateUser(first_name : String, last_name : String) {
+    func updateUser(first_name : String, last_name : String, birth: NSDate, family_members: NSDictionary) {
         let params = NSMutableDictionary()
         params.setObject(appDelegate.data_manager!.cur_user!.Object_Id, forKey: "objectId" )
         params.setObject(first_name, forKey: "First_Name" )
         params.setObject(last_name, forKey: "Last_Name" )
+        params.setObject(birth, forKey: "Birth_Date" )
+        params.setObject(family_members, forKey: "Fam_Members" )
         PFCloud.callFunctionInBackground("updateUser", withParameters: params as [NSObject : AnyObject], block: {
             (result: AnyObject?, error: NSError?) -> Void in
             if ( error == nil) {
@@ -50,35 +53,6 @@ class ParseCoreService {
         let params = NSMutableDictionary()
         params.setObject(appDelegate.data_manager!.cur_user!.Object_Id, forKey: "objectId" )
         PFCloud.callFunctionInBackground("deleteUser", withParameters: params as [NSObject : AnyObject], block: {
-            (result: AnyObject?, error: NSError?) -> Void in
-            if ( error == nil) {
-                NSLog("success: \(result) ")
-            }
-            else if (error != nil) {
-                NSLog("error: \(error!.userInfo)")
-            }
-        })
-    }
-    
-    func addFamily(member_list: [String]){
-        let params = NSMutableDictionary()
-        params.setObject(appDelegate.data_manager!.cur_user!.Object_Id, forKey: "objectId" )
-        params.setObject(member_list, forKey: "Fam_Members" )
-        PFCloud.callFunctionInBackground("addFamily", withParameters: params as [NSObject : AnyObject], block: {
-            (result: AnyObject?, error: NSError?) -> Void in
-            if ( error == nil) {
-                NSLog("success: \(result) ")
-            }
-            else if (error != nil) {
-                NSLog("error: \(error!.userInfo)")
-            }
-        })
-    }
-    
-    func getFamily(){
-        let params = NSMutableDictionary()
-        params.setObject(appDelegate.data_manager!.cur_user!.Object_Id, forKey: "objectId" )
-        PFCloud.callFunctionInBackground("getFamily", withParameters: params as [NSObject : AnyObject], block: {
             (result: AnyObject?, error: NSError?) -> Void in
             if ( error == nil) {
                 NSLog("success: \(result) ")
@@ -125,9 +99,9 @@ class ParseCoreService {
         })
     }
     
-    func updateEvent(target: String, title: String, start: NSDate, end: NSDate, alarm: NSDate, recur_end: NSDate, recur_int: NSDictionary, recur_days: Array<Int>){
+    func updateEvent(event_id: String, target: String, title: String, start: NSDate, end: NSDate, alarm: NSDate, recur_end: NSDate, recur_int: NSDictionary, recur_days: Array<Int>){
         let params = NSMutableDictionary()
-        params.setObject(appDelegate.data_manager!.cur_user!.Object_Id, forKey: "User_Id" )
+        params.setObject(event_id, forKey: "objectId" )
         params.setObject(target, forKey: "Target_Name" )
         params.setObject(title, forKey: "Title" )
         params.setObject(start, forKey: "Start_Time" )

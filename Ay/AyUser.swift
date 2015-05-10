@@ -15,7 +15,7 @@ import Foundation
  * AppDelegate
  */
 class AyUser {
-    var Object_Id: String = nil
+    var Object_Id: String = ""
     var User_Id : String = ""
     var First_Name : String = ""
     var Last_Name : String = ""
