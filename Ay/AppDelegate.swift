@@ -17,12 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var data_manager: DataManager?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Configure Parse server
+        Parse.setApplicationId("PJsiIDTlarbquGKpcr5AGFGesn7jPiPUiWhtsBa6", clientKey: "yZ3mYknoeno3UpkqmnXF6w3vgiJzsnIuI42ZNuhm")
         
         // Initialize data manager singleton instance
         data_manager = DataManager()
         
         // TODO: load back from core data Do a generic intialization for now
-        data_manager!.cur_user = AyUser()
+        data_manager!.cur_user = AyUser(first_name: "Do",last_name: "Kwon")
         
         return true
     }
