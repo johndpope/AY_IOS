@@ -14,6 +14,13 @@
 		1B4F4C7C1AFEC7A000C61708 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B4F4C7B1AFEC7A000C61708 /* Images.xcassets */; };
 		1B4F4C7F1AFEC7A000C61708 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B4F4C7D1AFEC7A000C61708 /* LaunchScreen.xib */; };
 		1B4F4C8B1AFEC7A000C61708 /* AyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C8A1AFEC7A000C61708 /* AyTests.swift */; };
+		1B4F4C951AFEDBEC00C61708 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C941AFEDBEC00C61708 /* ScheduleTableViewCell.swift */; };
+		1B4F4C971AFEDC3E00C61708 /* MonthlyCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B4F4C961AFEDC3E00C61708 /* MonthlyCalendarView.xib */; };
+		1B4F4C991AFEDDBD00C61708 /* AyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C981AFEDDBD00C61708 /* AyEvent.swift */; };
+		1B4F4C9B1AFEDDEA00C61708 /* AyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C9A1AFEDDEA00C61708 /* AyUser.swift */; };
+		1B4F4C9D1AFEDDFA00C61708 /* AyRecommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C9C1AFEDDFA00C61708 /* AyRecommendation.swift */; };
+		1B4F4C9F1AFEDEF500C61708 /* AyConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C9E1AFEDEF500C61708 /* AyConstants.swift */; };
+		1B4F4CA11AFEDF8F00C61708 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +45,13 @@
 		1B4F4C841AFEC7A000C61708 /* AyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B4F4C891AFEC7A000C61708 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B4F4C8A1AFEC7A000C61708 /* AyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyTests.swift; sourceTree = "<group>"; };
+		1B4F4C941AFEDBEC00C61708 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
+		1B4F4C961AFEDC3E00C61708 /* MonthlyCalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonthlyCalendarView.xib; sourceTree = "<group>"; };
+		1B4F4C981AFEDDBD00C61708 /* AyEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyEvent.swift; sourceTree = "<group>"; };
+		1B4F4C9A1AFEDDEA00C61708 /* AyUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyUser.swift; sourceTree = "<group>"; };
+		1B4F4C9C1AFEDDFA00C61708 /* AyRecommendation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyRecommendation.swift; sourceTree = "<group>"; };
+		1B4F4C9E1AFEDEF500C61708 /* AyConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyConstants.swift; sourceTree = "<group>"; };
+		1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,12 +94,19 @@
 			isa = PBXGroup;
 			children = (
 				1B4F4C711AFEC79F00C61708 /* AppDelegate.swift */,
+				1B4F4C941AFEDBEC00C61708 /* ScheduleTableViewCell.swift */,
 				1B4F4C761AFEC79F00C61708 /* ViewController.swift */,
 				1B4F4C781AFEC7A000C61708 /* Main.storyboard */,
 				1B4F4C7B1AFEC7A000C61708 /* Images.xcassets */,
 				1B4F4C7D1AFEC7A000C61708 /* LaunchScreen.xib */,
 				1B4F4C731AFEC79F00C61708 /* Ay.xcdatamodeld */,
 				1B4F4C6F1AFEC79F00C61708 /* Supporting Files */,
+				1B4F4C961AFEDC3E00C61708 /* MonthlyCalendarView.xib */,
+				1B4F4C981AFEDDBD00C61708 /* AyEvent.swift */,
+				1B4F4C9A1AFEDDEA00C61708 /* AyUser.swift */,
+				1B4F4C9C1AFEDDFA00C61708 /* AyRecommendation.swift */,
+				1B4F4C9E1AFEDEF500C61708 /* AyConstants.swift */,
+				1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */,
 			);
 			path = Ay;
 			sourceTree = "<group>";
@@ -195,6 +216,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B4F4C971AFEDC3E00C61708 /* MonthlyCalendarView.xib in Resources */,
 				1B4F4C7A1AFEC7A000C61708 /* Main.storyboard in Resources */,
 				1B4F4C7F1AFEC7A000C61708 /* LaunchScreen.xib in Resources */,
 				1B4F4C7C1AFEC7A000C61708 /* Images.xcassets in Resources */,
@@ -215,8 +237,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B4F4C9B1AFEDDEA00C61708 /* AyUser.swift in Sources */,
 				1B4F4C771AFEC79F00C61708 /* ViewController.swift in Sources */,
+				1B4F4C991AFEDDBD00C61708 /* AyEvent.swift in Sources */,
+				1B4F4C9F1AFEDEF500C61708 /* AyConstants.swift in Sources */,
 				1B4F4C721AFEC79F00C61708 /* AppDelegate.swift in Sources */,
+				1B4F4C951AFEDBEC00C61708 /* ScheduleTableViewCell.swift in Sources */,
+				1B4F4C9D1AFEDDFA00C61708 /* AyRecommendation.swift in Sources */,
+				1B4F4CA11AFEDF8F00C61708 /* DataManager.swift in Sources */,
 				1B4F4C751AFEC79F00C61708 /* Ay.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

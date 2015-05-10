@@ -14,9 +14,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var data_manager: DataManager?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // Initialize data manager singleton instance
+        data_manager = DataManager()
+        
+        // TODO: load back from core data Do a generic intialization for now
+        data_manager!.cur_user = AyUser()
+        
         return true
     }
 
