@@ -16,15 +16,19 @@ import Foundation
  */
 class AyUser {
     var Object_Id: String = ""
-    var User_Id : String = ""
-    var First_Name : String = ""
-    var Last_Name : String = ""
-    var Birth_Date  : NSDate? = nil
-    var Family_Members : NSDictionary? = nil
+    var email : String = ""
+    var first_name : String = ""
+    var last_name : String = ""
+    var birth_date  : NSDate? = nil
+    var family_members : Array<NSDictionary>? = []
         
-    init (first_name:String, last_name:String) {
-        self.First_Name = first_name
-        self.Last_Name = last_name
+    init (id: String, email: String, password: String, first_name:String, last_name:String, birth_date: NSDate, family_members: Array<NSDictionary>) {
+        self.Object_Id = id
+        self.email = email
+        self.first_name = first_name
+        self.last_name = last_name
+        self.birth_date = birth_date
+        self.family_members = family_members
     }
     
     required init!(coder: NSCoder!) {
@@ -32,6 +36,6 @@ class AyUser {
     }
     
     func getFullName() -> String! {
-        return self.First_Name + " " + self.Last_Name
+        return self.first_name + " " + self.last_name
     }
 }
