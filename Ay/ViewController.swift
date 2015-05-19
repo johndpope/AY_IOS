@@ -7,13 +7,71 @@
 //
 
 import UIKit
+//import CVCalendar
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var menuView: CVCalendarMenuView!
+    @IBOutlet weak var calendarView: CVCalendarView!
+    /*@IBOutlet weak var dateLabel: UILabel!
+    
+    @IBAction func addPressed(sender: AnyObject) {
+        println ("MainView controller : add button pressed ");
+    }
+    @IBAction func settingsPressed(sender: AnyObject) {
+        println ("MainView controller : setting button pressed ")
+    }
+    
+    @IBOutlet weak var scheduleTableView: UITableView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    var showing_date : NSDate?
+    var calendar_index : Int = 0
+    
+    
+    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.Right:
+                println("Swiped right")
+                calendar_index += 1
+                break;
+            case UISwipeGestureRecognizerDirection.Left:
+                println("Swiped left")
+                calendar_index -= 1
+                break;
+            default:
+                break
+            }
+        }
+        
+        // Get month by offset by calendar_index
+        showing_date = getMonthToOffset()
+        
+        loadSwipeData()
+    }
+    
+    /* Set up swipe recognizers for calendarview */
+    func setupSwipeRecognizers() {
+        // Set up swipe
+        var swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        var swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+        self.view.addGestureRecognizer(swipeLeft)
+    }
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Initialize the showing date to the current time
+        //self.showing_date = NSDate()
+        
         // Do any additional setup after loading the view, typically from a nib.
-        //This comment is for git
+        //self.setupSwipeRecognizers()
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,55 +79,39 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.calendarView.commitCalendarViewUpdate()
+        self.menuView.commitMenuViewUpdate()
+    }
+    
     /* Retrieve next or prev month NSDate instance */
-    func getMonthOffset (offset :Int) -> NSDate {
-        let d = NSCalendar.currentCalendar().dateByAddingUnit(.CalendarUnitMonth, value: offset, toDate: NSDate(), options: nil)
+    /*func getMonthToOffset () -> NSDate {
+        let d = NSCalendar.currentCalendar().dateByAddingUnit(.CalendarUnitMonth, value: calendar_index, toDate: NSDate(), options: nil)
         return d!
     }
     
     func loadSwipeData() {
         
-        let now = NSDate()
+        let calendar_vc = CalendarViewController(coder: NSCoder())
         
+        var adminFrame :CGRect = self.scrollView.frame
+        adminFrame.origin.x = adminFrame.width * CGFloat (calendar_index)
+        calendar_vc.view.frame = adminFrame
         
-        
-        /* 1) Create a scrollable viewcontroller showing the details of every deal,
-        * and add to the scrollview. TODO: consider payloading deals in constant numbered
-        * chunks to improve performance.
-        */
-        /*var page_count :Int = 0
-        
-        for deal in all_deals {
-            let deal_detail_vc = DealDetailViewController(nibName:"MonthlyCalendarView", bundle:nil)
-            deal_detail_vc.showing_deal = deal
-            
-            // 2) Add in each view to the container view hierarchy
-            //    Add them in opposite order since the view hieracrhy is a stack
-            self.addChildViewController(deal_detail_vc);
-            self.scrollView!.addSubview(deal_detail_vc.view);
-            deal_detail_vc.didMoveToParentViewController(self);
-            
-            // 3) Set up the frames of the view controllers to align
-            //    with eachother inside the container view
-            var adminFrame :CGRect = self.scrollView.frame
-            adminFrame.origin.x = adminFrame.width * CGFloat (page_count)
-            deal_detail_vc.view.frame = adminFrame
-            
-            // 4) Finally set the size of the scroll view that contains the frames
-            var scrollWidth: CGFloat  = CGFloat(all_deals.count) * self.view.frame.width
-            var scrollHeight: CGFloat  = self.view.frame.size.height
-            self.scrollView!.contentSize = CGSizeMake(scrollWidth, scrollHeight);
-            
-            page_count += 1
-        }*/
-        
+        //2) Add in each view to the container view hierarchy
+        //    Add them in opposite order since the view hieracrhy is a stack
+        self.addChildViewController(calendar_vc);
+        self.scrollView!.addSubview(calendar_vc.view);
+        calendar_vc.didMoveToParentViewController(self);
     }
     
     /* Loads data in the swipeviewcontroller
     */
     override func viewDidAppear(animated: Bool) {
         loadSwipeData()
-    }
+    }*/
 
 
 }
