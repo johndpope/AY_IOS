@@ -17,12 +17,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var data_manager: DataManager?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Configure Parse server
+        Parse.setApplicationId("PJsiIDTlarbquGKpcr5AGFGesn7jPiPUiWhtsBa6", clientKey: "yZ3mYknoeno3UpkqmnXF6w3vgiJzsnIuI42ZNuhm")
         
         // Initialize data manager singleton instance
         data_manager = DataManager()
         
         // TODO: load back from core data Do a generic intialization for now
-        data_manager!.cur_user = AyUser()
+        var list: Array<NSDictionary> = []
+        var member = ["First_Name": "Do", "Last_Name": "Kwon", "Type": "Child"]
+        list.append(member)
+        var dateString = "1991-01-02"
+        let dateStringFormatter = NSDateFormatter()
+        dateStringFormatter.dateFormat = "yyyy-MM-dd"
+        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        var d = dateStringFormatter.dateFromString(dateString)
+        data_manager!.cur_user = AyUser(id: "d1GsYlsY7B", email: "bjang1@stanford.edu", password: "stanford", first_name: "Brian", last_name: "Jang", birth_date: d!, family_members: list)
+        
+        var event_date = "2015-05-20"
+        var ed = dateStringFormatter.dateFromString(event_date)
+        ParseCoreService().getEvents()
         
         return true
     }
