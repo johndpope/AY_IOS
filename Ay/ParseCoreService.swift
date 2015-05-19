@@ -68,7 +68,7 @@ class ParseCoreService {
         })
     }
     
-    func createEvent(target: String, title: String, start: NSDate, end: NSDate, alarm: NSDate?, recur_end: NSDate?, recur_int: NSDictionary?, recur_days: Array<Int>){
+    func createEvent(target: String, title: String, start: NSDate, end: NSDate, alarm: NSDate?, recur_end: NSDate?, recur_freq: NSDictionary?, recur_occur: Int){
         let params = NSMutableDictionary()
         params.setObject(appDelegate.data_manager!.cur_user!.Object_Id, forKey: "User_Id" )
         params.setObject(target, forKey: "Target_Name" )
@@ -81,15 +81,15 @@ class ParseCoreService {
         if recur_end != nil{
             params.setObject(recur_end!, forKey: "Recur_End" )
         }
-        if recur_int != nil {
-            params.setObject(recur_int!, forKey: "Recur_Int" )
+        if recur_freq != nil {
+            params.setObject(recur_freq!, forKey: "Recur_Freq" )
         }
-        params.setObject(recur_days, forKey: "Recur_Days" )
+        params.setObject(recur_occur, forKey: "Recur_Occur" )
         PFCloud.callFunctionInBackground("createEvent", withParameters: params as [NSObject : AnyObject], block: {
             (result: AnyObject?, error: NSError?) -> Void in
             if ( error == nil) {
                 let new_id = result as! String
-                var new_event = AyEvent(id: new_id, target_name: target, start: start, end: end, title: title, alarm: alarm, recur_end: recur_end, recur_int: recur_int, recur_days: recur_days)
+                var new_event = AyEvent(id: new_id, target_name: target, start: start, end: end, title: title, alarm: alarm, recur_end: recur_end, recur_freq: recur_freq, recur_occur: recur_occur)
                 self.appDelegate.data_manager!.events.append(new_event)
             }
             else if (error != nil) {
@@ -122,7 +122,7 @@ class ParseCoreService {
         })
     }
     
-    func updateEvent(event_id: String, target: String, title: String, start: NSDate, end: NSDate, alarm: NSDate, recur_end: NSDate, recur_int: NSDictionary, recur_days: Array<Int>){
+    func updateEvent(event_id: String, target: String, title: String, start: NSDate, end: NSDate, alarm: NSDate, recur_end: NSDate, recur_freq: NSDictionary, recur_occur: Int){
         let params = NSMutableDictionary()
         params.setObject(event_id, forKey: "objectId" )
         params.setObject(target, forKey: "Target_Name" )
@@ -131,8 +131,8 @@ class ParseCoreService {
         params.setObject(end, forKey: "End_Time" )
         params.setObject(alarm, forKey: "Alarm_Time" )
         params.setObject(recur_end, forKey: "Recur_End" )
-        params.setObject(recur_int, forKey: "Recur_Int" )
-        params.setObject(recur_days, forKey: "Recur_Days" )
+        params.setObject(recur_freq, forKey: "Recur_Freq" )
+        params.setObject(recur_occur, forKey: "Recur_Occur" )
         PFCloud.callFunctionInBackground("updateEvent", withParameters: params as [NSObject : AnyObject], block: {
             (result: AnyObject?, error: NSError?) -> Void in
             if ( error == nil) {
@@ -146,8 +146,8 @@ class ParseCoreService {
                         event.end_timestamp = end
                         event.alarm_timestamp = alarm
                         event.recur_end = recur_end
-                        event.recur_int = recur_int
-                        event.recur_days = recur_days
+                        event.recur_freq = recur_freq
+                        event.recur_occur = recur_occur
                     }
                 }
             }
@@ -181,12 +181,12 @@ class ParseCoreService {
                     if event["Recur_End"] != nil {
                         recur_end = event["Recur_End"] as? NSDate
                     }
-                    var recur_int : NSDictionary?
-                    if event["Recur_Int"] != nil {
-                        event["Recur_Int"] as! NSDictionary
+                    var recur_freq : NSDictionary?
+                    if event["Recur_Freq"] != nil {
+                        event["Recur_Freq"] as! NSDictionary
                     }
-                    var recur_days = event["Recur_Days"] as! Array<Int>
-                    var new_event = AyEvent(id: new_id, target_name: target, start: start, end: end, title: title, alarm: alarm, recur_end: recur_end, recur_int: recur_int, recur_days: recur_days)
+                    var recur_occur = event["Recur_Occur"] as! Int
+                    var new_event = AyEvent(id: new_id, target_name: target, start: start, end: end, title: title, alarm: alarm, recur_end: recur_end, recur_freq: recur_freq, recur_occur: recur_occur)
                     self.appDelegate.data_manager!.events.append(new_event)
                 }
             }

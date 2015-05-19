@@ -19,10 +19,10 @@ class AyEvent {
     var title : String = ""
     var alarm_timestamp : NSDate?
     var recur_end : NSDate?
-    var recur_int : NSDictionary?
-    var recur_days : Array<Int> = []
+    var recur_freq : NSDictionary?
+    var recur_occur : Int
     
-    init(id: String, target_name: String, start: NSDate, end: NSDate, title: String, alarm: NSDate?, recur_end: NSDate?, recur_int: NSDictionary?, recur_days: Array<Int>){
+    init(id: String, target_name: String, start: NSDate, end: NSDate, title: String, alarm: NSDate?, recur_end: NSDate?, recur_freq: NSDictionary?, recur_occur: Int){
         self.id = id
         self.target_name = target_name
         self.start_timestamp = start
@@ -30,7 +30,7 @@ class AyEvent {
         self.title = title
         self.alarm_timestamp = alarm
         self.recur_end = recur_end
-        self.recur_int = recur_int
-        self.recur_days = recur_days
+        self.recur_freq = recur_freq
+        self.recur_occur = recur_occur
     }
 }
