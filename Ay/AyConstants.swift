@@ -7,3 +7,5 @@
 //
 
 import Foundation
+
+let schedule_cell_identifier = "ScheduleCellIdentifier$$"

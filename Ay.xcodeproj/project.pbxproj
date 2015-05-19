@@ -230,6 +230,7 @@
 		1B4F4C6E1AFEC79F00C61708 /* Ay */ = {
 			isa = PBXGroup;
 			children = (
+				95CF63BF1AFEF30A00F28153 /* Service */,
 				1B04EFC31B0AA83800DF30B3 /* CVCalendar */,
 				1B4F4C711AFEC79F00C61708 /* AppDelegate.swift */,
 				1B4F4C941AFEDBEC00C61708 /* ScheduleTableViewCell.swift */,
@@ -542,11 +543,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/frameworks",
+				);
 				INFOPLIST_FILE = Ay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/kisukjang/Desktop/School/College/CS/ME216C/AY_IOS/AY/SwiftHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = SwiftHeader.h;
 			};
 			name = Debug;
 		};
@@ -555,11 +561,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/frameworks",
+				);
 				INFOPLIST_FILE = Ay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/kisukjang/Desktop/School/College/CS/ME216C/AY_IOS/AY/SwiftHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = SwiftHeader.h;
 			};
 			name = Release;
 		};
