@@ -40,8 +40,6 @@
 		1B4F4C9D1AFEDDFA00C61708 /* AyRecommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C9C1AFEDDFA00C61708 /* AyRecommendation.swift */; };
 		1B4F4C9F1AFEDEF500C61708 /* AyConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C9E1AFEDEF500C61708 /* AyConstants.swift */; };
 		1B4F4CA11AFEDF8F00C61708 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */; };
-		1B4F4CA61AFEE9B300C61708 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4CA41AFEE9B300C61708 /* CalendarViewController.swift */; };
-		1B4F4CA71AFEE9B300C61708 /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B4F4CA51AFEE9B300C61708 /* CalendarViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,8 +90,6 @@
 		1B4F4C9C1AFEDDFA00C61708 /* AyRecommendation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyRecommendation.swift; sourceTree = "<group>"; };
 		1B4F4C9E1AFEDEF500C61708 /* AyConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyConstants.swift; sourceTree = "<group>"; };
 		1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		1B4F4CA41AFEE9B300C61708 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		1B4F4CA51AFEE9B300C61708 /* CalendarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,8 +173,6 @@
 				1B4F4C9C1AFEDDFA00C61708 /* AyRecommendation.swift */,
 				1B4F4C9E1AFEDEF500C61708 /* AyConstants.swift */,
 				1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */,
-				1B4F4CA41AFEE9B300C61708 /* CalendarViewController.swift */,
-				1B4F4CA51AFEE9B300C61708 /* CalendarViewController.xib */,
 			);
 			path = Ay;
 			sourceTree = "<group>";
@@ -289,7 +283,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B4F4CA71AFEE9B300C61708 /* CalendarViewController.xib in Resources */,
 				1B4F4C7A1AFEC7A000C61708 /* Main.storyboard in Resources */,
 				1B4F4C7F1AFEC7A000C61708 /* LaunchScreen.xib in Resources */,
 				1B4F4C7C1AFEC7A000C61708 /* Images.xcassets in Resources */,
@@ -311,7 +304,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B04EFDA1B0AA83800DF30B3 /* CVCalendarDayView.swift in Sources */,
-				1B4F4CA61AFEE9B300C61708 /* CalendarViewController.swift in Sources */,
 				1B04EFDF1B0AA83800DF30B3 /* CVCalendarMonthView.swift in Sources */,
 				1B04EFE41B0AA83800DF30B3 /* CVCalendarViewAppearance.swift in Sources */,
 				1B04EFD91B0AA83800DF30B3 /* CVCalendarContentViewController.swift in Sources */,
