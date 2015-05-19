@@ -125,7 +125,6 @@
 		95CF63B51AFEE87F00F28153 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = frameworks/ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		95CF63B61AFEE87F00F28153 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = frameworks/ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		95CF63B71AFEE87F00F28153 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = frameworks/ParseUI.framework; sourceTree = "<group>"; };
-		95CF63BE1AFEE8BF00F28153 /* SwiftHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftHeader.h; sourceTree = "<group>"; };
 		95CF63C01AFEF32300F28153 /* ParseCoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseCoreService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -244,7 +243,6 @@
 				1B4F4C9C1AFEDDFA00C61708 /* AyRecommendation.swift */,
 				1B4F4C9E1AFEDEF500C61708 /* AyConstants.swift */,
 				1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */,
-				95CF63BE1AFEE8BF00F28153 /* SwiftHeader.h */,
 			);
 			path = Ay;
 			sourceTree = "<group>";
@@ -551,7 +549,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = SwiftHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = Ay/SwiftHeader.h;
 			};
 			name = Debug;
 		};
@@ -569,7 +567,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = SwiftHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = Ay/SwiftHeader.h;
 			};
 			name = Release;
 		};

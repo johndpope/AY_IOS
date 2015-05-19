@@ -9,17 +9,19 @@
 import UIKit
 //import CVCalendar
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CVCalendarViewDelegate {
 
     @IBOutlet weak var scheduleTableView: UITableView!
     @IBOutlet weak var menuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
-    /*@IBOutlet weak var dateLabel: UILabel!*/
+    @IBOutlet weak var dateLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         scheduleTableView.delegate   = self
         scheduleTableView.dataSource = self
+        
+        calendarView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,6 +34,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         self.calendarView.commitCalendarViewUpdate()
         self.menuView.commitMenuViewUpdate()
+        
+       self.dateLabel.text = self.calendarView.presentedDate?.description_str()
     }
 
     var schedules = []
@@ -68,5 +72,44 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let row = indexPath.row*/
     }
     
+    /////////////////////// Calendar delegate methods ///////////////////////
+    
+    
+    /* Determines whether a month view should contain days out or not. 
+      If the value is true then it's possible to toggle between month 
+     views on selecting day out. */
+    func shouldShowWeekdaysOut() -> Bool {
+        return false
+    }
+    
+    /* Notifies the delegate when a specific day view is touched. */
+    func didSelectDayView(dayView: CVCalendarDayView) {
+        // TODO : Add individual schedules
+    }
+    
+    /* Notifies the delegate when the presented date is updated so you can update CurrentMonth label. */
+    func presentedDateUpdated(date: CVDate){
+        self.dateLabel.text = self.calendarView.presentedDate?.description_str()
+    }
+    
+    /* Determines if a specific Day View should contain a topMarker. */
+    func topMarker(shouldDisplayOnDayView dayView: CVCalendarDayView) -> Bool {
+        return true
+    }
+    
+    /* Determines if a dotMarker should move on its Day View highlighting. */
+    func dotMarker(shouldMoveOnHighlightingOnDayView dayView: CVCalendarDayView) -> Bool {
+        return true
+    }
+    
+    /* Determines whether a specific day view should be marked with dot marker or not. */
+    func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> Bool {
+        return true
+    }
+    
+     /* Determines a color for dot marker for a specific day view. */
+    func dotMarker(colorOnDayView dayView: CVCalendarDayView) -> UIColor {
+        return UIColor.clearColor()
+    }
 }
 

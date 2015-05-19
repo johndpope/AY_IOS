@@ -39,12 +39,12 @@ class CVDate: NSObject {
         super.init()
     }
     
-    /*func description() -> String {
+    func description_str() -> String {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MMMM"
         
         let month = dateFormatter.stringFromDate(self.date!)
         
         return "\(month), \(self.year!)"
-    }*/
+    }
 }
