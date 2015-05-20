@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         data_manager = DataManager()
         
         // TODO: load back from core data Do a generic intialization for now
-        var list: Array<NSDictionary> = []
+        /*var list: Array<NSDictionary> = []
         var member = ["First_Name": "Do", "Last_Name": "Kwon", "Type": "Child"]
         list.append(member)
         var dateString = "1991-01-02"
@@ -36,8 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var event_date = "2015-05-20"
         var ed = dateStringFormatter.dateFromString(event_date)
-        ParseCoreService().getEvents()
-        
+        ParseCoreService().getEvents()*/
         return true
     }
 

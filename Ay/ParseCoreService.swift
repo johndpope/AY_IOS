@@ -68,7 +68,7 @@ class ParseCoreService {
         })
     }
     
-    func createEvent(target: String, title: String, start: NSDate, end: NSDate, alarm: NSDate?, recur_end: NSDate?, recur_freq: NSDictionary?, recur_occur: Int){
+    func createEvent(target: String, title: String, start: NSDate, end: NSDate, alarm: NSDate?, recur_end: NSDate?, recur_freq: NSDictionary?, recur_occur: Int?){
         let params = NSMutableDictionary()
         params.setObject(appDelegate.data_manager!.cur_user!.Object_Id, forKey: "User_Id" )
         params.setObject(target, forKey: "Target_Name" )
@@ -84,12 +84,14 @@ class ParseCoreService {
         if recur_freq != nil {
             params.setObject(recur_freq!, forKey: "Recur_Freq" )
         }
-        params.setObject(recur_occur, forKey: "Recur_Occur" )
+        if recur_occur != nil {
+            params.setObject(recur_occur!, forKey: "Recur_Occur" )
+        }
         PFCloud.callFunctionInBackground("createEvent", withParameters: params as [NSObject : AnyObject], block: {
             (result: AnyObject?, error: NSError?) -> Void in
             if ( error == nil) {
                 let new_id = result as! String
-                var new_event = AyEvent(id: new_id, target_name: target, start: start, end: end, title: title, alarm: alarm, recur_end: recur_end, recur_freq: recur_freq, recur_occur: recur_occur)
+                var new_event = AyEvent(id: new_id, target_name: target, start: start, end: end, title: title, alarm: alarm, recur_end: recur_end, recur_freq: recur_freq, recur_occur: recur_occur!)
                 self.appDelegate.data_manager!.events.append(new_event)
             }
             else if (error != nil) {
@@ -142,9 +144,9 @@ class ParseCoreService {
                     if event.id == update_id {
                         event.target_name = target
                         event.title = title
-                        event.start_timestamp = start
-                        event.end_timestamp = end
-                        event.alarm_timestamp = alarm
+                        event.start_time = start
+                        event.end_time = end
+                        event.alarm_time = alarm
                         event.recur_end = recur_end
                         event.recur_freq = recur_freq
                         event.recur_occur = recur_occur
@@ -183,10 +185,13 @@ class ParseCoreService {
                     }
                     var recur_freq : NSDictionary?
                     if event["Recur_Freq"] != nil {
-                        event["Recur_Freq"] as! NSDictionary
+                        recur_freq = event["Recur_Freq"] as? NSDictionary
                     }
-                    var recur_occur = event["Recur_Occur"] as! Int
-                    var new_event = AyEvent(id: new_id, target_name: target, start: start, end: end, title: title, alarm: alarm, recur_end: recur_end, recur_freq: recur_freq, recur_occur: recur_occur)
+                    var recur_occur : Int?
+                    if event["Recur_Occur"] != nil {
+                        recur_occur = event["Recur_Occur"] as? Int
+                    }
+                    var new_event = AyEvent(id: new_id, target_name: target, start: start, end: end, title: title, alarm: alarm, recur_end: recur_end, recur_freq: recur_freq, recur_occur: recur_occur!)
                     self.appDelegate.data_manager!.events.append(new_event)
                 }
             }

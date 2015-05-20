@@ -14,10 +14,10 @@ import Foundation
 class AyEvent {
     var id : String = ""
     var target_name : String = ""
-    var start_timestamp : NSDate?
-    var end_timestamp : NSDate?
+    var start_time : NSDate?
+    var end_time : NSDate?
     var title : String = ""
-    var alarm_timestamp : NSDate?
+    var alarm_time : NSDate?
     var recur_end : NSDate?
     var recur_freq : NSDictionary?
     var recur_occur : Int
@@ -25,10 +25,10 @@ class AyEvent {
     init(id: String, target_name: String, start: NSDate, end: NSDate, title: String, alarm: NSDate?, recur_end: NSDate?, recur_freq: NSDictionary?, recur_occur: Int){
         self.id = id
         self.target_name = target_name
-        self.start_timestamp = start
-        self.end_timestamp = end
+        self.start_time = start
+        self.end_time = end
         self.title = title
-        self.alarm_timestamp = alarm
+        self.alarm_time = alarm
         self.recur_end = recur_end
         self.recur_freq = recur_freq
         self.recur_occur = recur_occur
