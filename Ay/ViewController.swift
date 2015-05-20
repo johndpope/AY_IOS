@@ -11,6 +11,9 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CVCalendarViewDelegate {
 
+    @IBAction func settingsPressed(sender: AnyObject) {
+    }
+   
     @IBOutlet weak var scheduleTableView: UITableView!
     @IBOutlet weak var menuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!

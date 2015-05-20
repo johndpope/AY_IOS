@@ -40,6 +40,17 @@
 		1B4F4C9D1AFEDDFA00C61708 /* AyRecommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C9C1AFEDDFA00C61708 /* AyRecommendation.swift */; };
 		1B4F4C9F1AFEDEF500C61708 /* AyConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C9E1AFEDEF500C61708 /* AyConstants.swift */; };
 		1B4F4CA11AFEDF8F00C61708 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */; };
+		1B7210301B0AF48400E0D729 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72102F1B0AF48300E0D729 /* AddEventViewController.swift */; };
+		1B7210331B0AFA5900E0D729 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7210321B0AFA5900E0D729 /* TitleCell.swift */; };
+		1B7210351B0AFA8A00E0D729 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7210341B0AFA8A00E0D729 /* LocationCell.swift */; };
+		1B7210371B0AFA9C00E0D729 /* RepeatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7210361B0AFA9C00E0D729 /* RepeatCell.swift */; };
+		1B7210391B0AFAB300E0D729 /* NotifyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7210381B0AFAB300E0D729 /* NotifyCell.swift */; };
+		1B72103B1B0AFAC600E0D729 /* StartDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72103A1B0AFAC600E0D729 /* StartDateCell.swift */; };
+		1B72103D1B0AFAD700E0D729 /* EndDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72103C1B0AFAD700E0D729 /* EndDateCell.swift */; };
+		1B72103F1B0AFAF700E0D729 /* ParticipantsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72103E1B0AFAF700E0D729 /* ParticipantsCell.swift */; };
+		1B7210411B0AFB0300E0D729 /* NotesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7210401B0AFB0300E0D729 /* NotesCell.swift */; };
+		1BE2A4E21B0B12040091DCC3 /* GEAR.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BE2A4E11B0B12040091DCC3 /* GEAR.png */; };
+		1BE2A4E41B0B12160091DCC3 /* PLUS.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BE2A4E31B0B12160091DCC3 /* PLUS.png */; };
 		95CF63911AFEE7E200F28153 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CF63901AFEE7E200F28153 /* AudioToolbox.framework */; };
 		95CF63931AFEE7E800F28153 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CF63921AFEE7E800F28153 /* CFNetwork.framework */; };
 		95CF63951AFEE7EF00F28153 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CF63941AFEE7EF00F28153 /* CoreGraphics.framework */; };
@@ -108,6 +119,17 @@
 		1B4F4C9C1AFEDDFA00C61708 /* AyRecommendation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyRecommendation.swift; sourceTree = "<group>"; };
 		1B4F4C9E1AFEDEF500C61708 /* AyConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyConstants.swift; sourceTree = "<group>"; };
 		1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		1B72102F1B0AF48300E0D729 /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		1B7210321B0AFA5900E0D729 /* TitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
+		1B7210341B0AFA8A00E0D729 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		1B7210361B0AFA9C00E0D729 /* RepeatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatCell.swift; sourceTree = "<group>"; };
+		1B7210381B0AFAB300E0D729 /* NotifyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotifyCell.swift; sourceTree = "<group>"; };
+		1B72103A1B0AFAC600E0D729 /* StartDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartDateCell.swift; sourceTree = "<group>"; };
+		1B72103C1B0AFAD700E0D729 /* EndDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndDateCell.swift; sourceTree = "<group>"; };
+		1B72103E1B0AFAF700E0D729 /* ParticipantsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantsCell.swift; sourceTree = "<group>"; };
+		1B7210401B0AFB0300E0D729 /* NotesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesCell.swift; sourceTree = "<group>"; };
+		1BE2A4E11B0B12040091DCC3 /* GEAR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GEAR.png; sourceTree = "<group>"; };
+		1BE2A4E31B0B12160091DCC3 /* PLUS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PLUS.png; sourceTree = "<group>"; };
 		957B729F1B0ACCF300C9A2EB /* SwiftHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftHeader.h; sourceTree = "<group>"; };
 		95CF63901AFEE7E200F28153 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		95CF63921AFEE7E800F28153 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -229,6 +251,7 @@
 		1B4F4C6E1AFEC79F00C61708 /* Ay */ = {
 			isa = PBXGroup;
 			children = (
+				1B7210311B0AFA1000E0D729 /* EventTableCells */,
 				1B04EFEC1B0ABD1100DF30B3 /* CVCalendar */,
 				95CF63BF1AFEF30A00F28153 /* Service */,
 				1B4F4C711AFEC79F00C61708 /* AppDelegate.swift */,
@@ -244,6 +267,8 @@
 				1B4F4C9C1AFEDDFA00C61708 /* AyRecommendation.swift */,
 				1B4F4C9E1AFEDEF500C61708 /* AyConstants.swift */,
 				1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */,
+				957B729F1B0ACCF300C9A2EB /* SwiftHeader.h */,
+				1B72102F1B0AF48300E0D729 /* AddEventViewController.swift */,
 			);
 			path = Ay;
 			sourceTree = "<group>";
@@ -251,6 +276,8 @@
 		1B4F4C6F1AFEC79F00C61708 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1BE2A4E31B0B12160091DCC3 /* PLUS.png */,
+				1BE2A4E11B0B12040091DCC3 /* GEAR.png */,
 				1B4F4C701AFEC79F00C61708 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -271,6 +298,21 @@
 				1B4F4C891AFEC7A000C61708 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1B7210311B0AFA1000E0D729 /* EventTableCells */ = {
+			isa = PBXGroup;
+			children = (
+				1B7210321B0AFA5900E0D729 /* TitleCell.swift */,
+				1B7210341B0AFA8A00E0D729 /* LocationCell.swift */,
+				1B7210361B0AFA9C00E0D729 /* RepeatCell.swift */,
+				1B7210381B0AFAB300E0D729 /* NotifyCell.swift */,
+				1B72103A1B0AFAC600E0D729 /* StartDateCell.swift */,
+				1B72103C1B0AFAD700E0D729 /* EndDateCell.swift */,
+				1B72103E1B0AFAF700E0D729 /* ParticipantsCell.swift */,
+				1B7210401B0AFB0300E0D729 /* NotesCell.swift */,
+			);
+			name = EventTableCells;
 			sourceTree = "<group>";
 		};
 		95CF63BF1AFEF30A00F28153 /* Service */ = {
@@ -364,6 +406,8 @@
 			files = (
 				1B4F4C7A1AFEC7A000C61708 /* Main.storyboard in Resources */,
 				1B4F4C7F1AFEC7A000C61708 /* LaunchScreen.xib in Resources */,
+				1BE2A4E41B0B12160091DCC3 /* PLUS.png in Resources */,
+				1BE2A4E21B0B12040091DCC3 /* GEAR.png in Resources */,
 				1B4F4C7C1AFEC7A000C61708 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,17 +426,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B7210301B0AF48400E0D729 /* AddEventViewController.swift in Sources */,
 				1B04F0031B0ABD1100DF30B3 /* CVCalendarDayView.swift in Sources */,
+				1B72103B1B0AFAC600E0D729 /* StartDateCell.swift in Sources */,
 				1B4F4C9B1AFEDDEA00C61708 /* AyUser.swift in Sources */,
 				1B04F0081B0ABD1100DF30B3 /* CVCalendarMonthView.swift in Sources */,
 				1B04F00D1B0ABD1100DF30B3 /* CVCalendarViewAppearance.swift in Sources */,
 				1B04F0021B0ABD1100DF30B3 /* CVCalendarContentViewController.swift in Sources */,
+				1B7210351B0AFA8A00E0D729 /* LocationCell.swift in Sources */,
 				1B04F0121B0ABD1100DF30B3 /* CVCalendarWeekView.swift in Sources */,
 				1B4F4C771AFEC79F00C61708 /* ViewController.swift in Sources */,
 				1B04F00B1B0ABD1100DF30B3 /* CVCalendarViewAnimator.swift in Sources */,
 				1B04F0101B0ABD1100DF30B3 /* CVCalendarWeekContentRecovery.swift in Sources */,
+				1B72103D1B0AFAD700E0D729 /* EndDateCell.swift in Sources */,
 				1B4F4C991AFEDDBD00C61708 /* AyEvent.swift in Sources */,
 				1B04F0011B0ABD1100DF30B3 /* CVCalendarContentDelegate.swift in Sources */,
+				1B7210391B0AFAB300E0D729 /* NotifyCell.swift in Sources */,
+				1B7210331B0AFA5900E0D729 /* TitleCell.swift in Sources */,
 				1B04F0061B0ABD1100DF30B3 /* CVCalendarMenuView.swift in Sources */,
 				1B04F00E1B0ABD1100DF30B3 /* CVCalendarViewAppearanceDelegate.swift in Sources */,
 				1B04F00F1B0ABD1100DF30B3 /* CVCalendarViewDelegate.swift in Sources */,
@@ -401,12 +451,15 @@
 				1B04F0131B0ABD1100DF30B3 /* CVCircleView.swift in Sources */,
 				1B04F0071B0ABD1100DF30B3 /* CVCalendarMonthContentView.swift in Sources */,
 				1B4F4C721AFEC79F00C61708 /* AppDelegate.swift in Sources */,
+				1B72103F1B0AFAF700E0D729 /* ParticipantsCell.swift in Sources */,
 				1B4F4C951AFEDBEC00C61708 /* ScheduleTableViewCell.swift in Sources */,
+				1B7210411B0AFB0300E0D729 /* NotesCell.swift in Sources */,
 				1B04F00A1B0ABD1100DF30B3 /* CVCalendarView.swift in Sources */,
 				1B4F4C9D1AFEDDFA00C61708 /* AyRecommendation.swift in Sources */,
 				1B04F0091B0ABD1100DF30B3 /* CVCalendarRenderer.swift in Sources */,
 				1B4F4CA11AFEDF8F00C61708 /* DataManager.swift in Sources */,
 				1B04F0141B0ABD1100DF30B3 /* CVDate.swift in Sources */,
+				1B7210371B0AFA9C00E0D729 /* RepeatCell.swift in Sources */,
 				1B04F0041B0ABD1100DF30B3 /* CVCalendarDayViewControlCoordinator.swift in Sources */,
 				1B04F00C1B0ABD1100DF30B3 /* CVCalendarViewAnimatorDelegate.swift in Sources */,
 				95CF63C11AFEF32300F28153 /* ParseCoreService.swift in Sources */,
