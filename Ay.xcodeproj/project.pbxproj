@@ -618,7 +618,7 @@
 				INFOPLIST_FILE = Ay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e5afac6c-2508-4710-ac52-ab444f407373";
 				SWIFT_OBJC_BRIDGING_HEADER = Ay/SwiftHeader.h;
 			};
 			name = Debug;
@@ -636,7 +636,7 @@
 				INFOPLIST_FILE = Ay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e5afac6c-2508-4710-ac52-ab444f407373";
 				SWIFT_OBJC_BRIDGING_HEADER = Ay/SwiftHeader.h;
 			};
 			name = Release;
