@@ -10,7 +10,10 @@
 import UIKit
 
 class LocationCell: UITableViewCell {
+    @IBOutlet weak var locationTextField: UITextField!
 
+    @IBAction func locationEntered(sender: AnyObject) {
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

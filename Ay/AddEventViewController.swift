@@ -45,7 +45,11 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
             case 0 :
                 return 2
             case 1 :
-                return 3
+                if time_showing == TimeCellShowingType.NONE_SHOWING {
+                    return 3
+                } else {
+                    return 4
+                }
             case 2 :
                 return 3
             default :
@@ -54,11 +58,6 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
-    /*func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.section == 2 && indexPath.row == 2 {
-            
-        }
-    }*/
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell : UITableViewCell?
@@ -67,41 +66,69 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
                 // Title
                 if indexPath.row == 0 {
                     cell = tableView.dequeueReusableCellWithIdentifier(add_event_title_cell_identifier) as? TitleCell
-                    if cell == nil {
-                        cell = TitleCell(style: UITableViewCellStyle.Default, reuseIdentifier: add_event_title_cell_identifier)
-                    }
+                    
                 }
                 // Location
                 else {
                     cell = tableView.dequeueReusableCellWithIdentifier(add_event_location_cell_identifier) as? LocationCell
 
-                    if cell == nil {
-                        cell = LocationCell(style: UITableViewCellStyle.Default, reuseIdentifier: add_event_location_cell_identifier)
-                    }
                 }
                 break
             case 1 :
-                // Start time
-                if indexPath.row == 0 {
-                    cell = tableView.dequeueReusableCellWithIdentifier(add_event_start_cell_identifier) as? StartDateCell
-
-                    if cell == nil {
-                        cell = StartDateCell(style: UITableViewCellStyle.Default, reuseIdentifier: add_event_start_cell_identifier)
+                
+                if time_showing == TimeCellShowingType.NONE_SHOWING {
+                    // Start time
+                    if indexPath.row == 0 {
+                        cell = tableView.dequeueReusableCellWithIdentifier(add_event_start_cell_identifier) as? StartDateCell
+                        
+                    } // End time
+                    else if indexPath.row == 1{
+                        cell = tableView.dequeueReusableCellWithIdentifier(add_event_end_cell_identifier) as? EndDateCell
+                        
+                    } else {
+                        cell = tableView.dequeueReusableCellWithIdentifier(add_event_repeat_cell_identifier) as? RepeatCell
+                        
                     }
-                }
-                // End time
-                else if indexPath.row == 1{
-                    cell = tableView.dequeueReusableCellWithIdentifier(add_event_end_cell_identifier) as? EndDateCell
-
-                    if cell == nil {
-                        cell = EndDateCell(style: UITableViewCellStyle.Default, reuseIdentifier: add_event_end_cell_identifier)
+                } else if time_showing == TimeCellShowingType.START_SHOWING {
+                    // Start time
+                    if indexPath.row == 0 {
+                        cell = tableView.dequeueReusableCellWithIdentifier(add_event_start_cell_identifier) as? StartDateCell
+                
+                    } else if indexPath.row == 1 {
+                        cell = tableView.dequeueReusableCellWithIdentifier(add_event_time_picker_cell_identifier) as? TimePickerCell
+                    }
+                        
+                        // End time
+                    else if indexPath.row == 2{
+                        cell = tableView.dequeueReusableCellWithIdentifier(add_event_end_cell_identifier) as? EndDateCell
+                        
+                    } else {
+                        cell = tableView.dequeueReusableCellWithIdentifier(add_event_repeat_cell_identifier) as? RepeatCell
+                        
                     }
                 } else {
-                    cell = tableView.dequeueReusableCellWithIdentifier(add_event_repeat_cell_identifier) as? RepeatCell
-                    if cell == nil {
-                        cell = RepeatCell(style: UITableViewCellStyle.Default, reuseIdentifier: add_event_repeat_cell_identifier)
+                    // Start time
+                    if indexPath.row == 0 {
+                        cell = tableView.dequeueReusableCellWithIdentifier(add_event_start_cell_identifier) as? StartDateCell
+                        
+                    }
+                        
+                        // End time
+                    else if indexPath.row == 1{
+                        cell = tableView.dequeueReusableCellWithIdentifier(add_event_end_cell_identifier) as? EndDateCell
+                        
+                    } else if indexPath.row == 2 {
+                        cell = tableView.dequeueReusableCellWithIdentifier(add_event_time_picker_cell_identifier) as? TimePickerCell
+                    }
+                    
+                    else {
+                        cell = tableView.dequeueReusableCellWithIdentifier(add_event_repeat_cell_identifier) as? RepeatCell
+                        
                     }
                 }
+            
+                    
+            
         
             case 2 :
         
@@ -109,27 +136,19 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
                 if indexPath.row == 0{
                     cell = tableView.dequeueReusableCellWithIdentifier(add_event_notify_cell_identifier) as? NotifyCell
 
-                    if cell == nil {
-                        cell = NotifyCell(style: UITableViewCellStyle.Default, reuseIdentifier: add_event_notify_cell_identifier)
-                    }
                 }
                 //Participants
                 else if indexPath.row == 1{
                     cell = tableView.dequeueReusableCellWithIdentifier(add_event_participants_cell_identifier) as? ParticipantsCell
 
-                    if cell == nil {
-                        cell = ParticipantsCell(style: UITableViewCellStyle.Default, reuseIdentifier: add_event_participants_cell_identifier)
-                    }
                 }
                 // Notes
                 else {
                     cell = tableView.dequeueReusableCellWithIdentifier(add_event_notes_cell_identifier) as? NotesCell
 
-                    if cell == nil {
-                        cell = NotesCell(style: UITableViewCellStyle.Default, reuseIdentifier: add_event_notes_cell_identifier)
-                    }
                 }
             default :
+                // Should never get here...
                 cell = UITableViewCell()
             
         }
@@ -137,12 +156,42 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         return cell!
     }
     
+    enum TimeCellShowingType {
+        case NONE_SHOWING
+        case START_SHOWING
+        case END_SHOWING
+    }
     
+    var time_showing = TimeCellShowingType.NONE_SHOWING
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         /*println ("NOT IMPLEMENTED YET")
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.performSegueWithIdentifier(deal_detail_segue_identifer, sender: tableView)
         let row = indexPath.row*/
+        // Either start time or end time
+        if (indexPath.section == 1) {
+            var path : NSIndexPath?
+            
+            if (indexPath.row == 0) {
+                tableView.beginUpdates()
+                path = NSIndexPath(forRow: 1, inSection: 1)
+                tableView.insertRowsAtIndexPaths([path!], withRowAnimation: .Fade)
+                time_showing = TimeCellShowingType.START_SHOWING
+                
+                tableView.endUpdates()
+            } else if indexPath.row == 1 {
+                tableView.beginUpdates()
+                path = NSIndexPath(forRow: 2, inSection: 1)
+                tableView.insertRowsAtIndexPaths([path!], withRowAnimation: .Fade)
+                
+                time_showing = TimeCellShowingType.END_SHOWING
+                
+                tableView.endUpdates()
+            }
+            
+            
+            
+        }
     }
 }

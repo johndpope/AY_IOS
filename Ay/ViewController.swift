@@ -97,7 +97,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     /* Determines if a specific Day View should contain a topMarker. */
     func topMarker(shouldDisplayOnDayView dayView: CVCalendarDayView) -> Bool {
-        return true
+        return false
     }
     
     /* Determines if a dotMarker should move on its Day View highlighting. */
