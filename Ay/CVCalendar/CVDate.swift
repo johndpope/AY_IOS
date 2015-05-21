@@ -45,6 +45,6 @@ class CVDate: NSObject {
         
         let month = dateFormatter.stringFromDate(self.date!)
         
-        return "\(month), \(self.year!)"
+        return "\(month) \(self.year!)"
     }
 }

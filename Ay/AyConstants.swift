@@ -24,3 +24,5 @@ let add_event_title_cell_identifier = "add_event_title_cell_identifier"
 
 let add_event_participants_cell_identifier = "add_event_participants_cell_identifier"
 
+let add_event_time_picker_cell_identifier = "add_event_time_picker_cell_identifier"
+

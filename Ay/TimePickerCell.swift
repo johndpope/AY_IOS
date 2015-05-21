@@ -1,18 +1,15 @@
 //
-//  TitleCell.swift
+//  TimePickerCell.swift
 //  Ay
 //
-//  Created by Do Kwon on 5/18/15.
+//  Created by Do Kwon on 5/20/15.
 //  Copyright (c) 2015 Do Kwon. All rights reserved.
 //
 
 import UIKit
 
-class TitleCell: UITableViewCell {
+class TimePickerCell: UITableViewCell {
 
-    @IBAction func titleEntered(sender: AnyObject) {
-    }
-    @IBOutlet weak var titleTextField: UITextField!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

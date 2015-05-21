@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var event_date = "2015-05-20"
         var ed = dateStringFormatter.dateFromString(event_date)
         ParseCoreService().getEvents()*/
+        application.statusBarStyle = .LightContent
         return true
     }
 
