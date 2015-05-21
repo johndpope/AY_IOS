@@ -39,6 +39,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.menuView.commitMenuViewUpdate()
         
        self.dateLabel.text = self.calendarView.presentedDate?.description_str()
+        
+        setBgColor(self.calendarView.presentedDate!)
     }
 
     var schedules = []
@@ -78,6 +80,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     /////////////////////// Calendar delegate methods ///////////////////////
     
     
+   
+    
     /* Determines whether a month view should contain days out or not. 
       If the value is true then it's possible to toggle between month 
      views on selecting day out. */
@@ -90,9 +94,45 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // TODO : Add individual schedules
     }
     
+    func setBgColor(date: CVDate) {
+        // Set the colors of the status bar
+        var colors = [
+            // January
+            UIColor(red:0.11, green:0.61,blue:0.89,alpha:1.0),
+            // February
+            UIColor(red:0.18, green:0.78,blue:0.64,alpha:1.0),
+            // March
+            UIColor(red:0.31, green:0.68,blue:0.33,alpha:1.0),
+            // April
+            UIColor(red:0.41, green:0.73,blue:0.43,alpha:1.0),
+            // May
+            UIColor(red:0.99, green:0.84,blue:0.28,alpha:1.0),
+            // June
+            UIColor(red:0.99, green:0.75,blue:0.18,alpha:1.0),
+            // July
+            UIColor(red:0.99, green:0.59,blue:0.15,alpha:1.0),
+            // august
+            UIColor(red:0.95, green:0.21,blue:0.24,alpha:1.0),
+            // September
+            UIColor(red:0.95, green:0.06,blue:0.35,alpha:1.0),
+            // October
+            UIColor(red:0.78, green:0.12,blue:0.51,alpha:1.0),
+            // November
+            UIColor(red:0.61, green:0.18,blue:0.68,alpha:1.0),
+            // December
+            UIColor(red:0.32, green:0.39,blue:0.78,alpha:1.0)
+            
+        ]
+        
+        //self.menuView.backgroundColor = colors [date.month! - 1]
+        self.view.backgroundColor = colors [date.month! - 1]
+        
+    }
+    
     /* Notifies the delegate when the presented date is updated so you can update CurrentMonth label. */
     func presentedDateUpdated(date: CVDate){
-        self.dateLabel.text = self.calendarView.presentedDate?.description_str()
+        self.dateLabel.text = date.description_str()
+        setBgColor(date)
     }
     
     /* Determines if a specific Day View should contain a topMarker. */
