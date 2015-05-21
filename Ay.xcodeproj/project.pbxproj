@@ -609,8 +609,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
@@ -618,7 +618,7 @@
 				INFOPLIST_FILE = Ay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e5afac6c-2508-4710-ac52-ab444f407373";
+				PROVISIONING_PROFILE = "f6aa0277-70c4-4889-81ce-34e5d6298e99";
 				SWIFT_OBJC_BRIDGING_HEADER = Ay/SwiftHeader.h;
 			};
 			name = Debug;
@@ -627,8 +627,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
@@ -636,7 +636,7 @@
 				INFOPLIST_FILE = Ay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e5afac6c-2508-4710-ac52-ab444f407373";
+				PROVISIONING_PROFILE = "f6aa0277-70c4-4889-81ce-34e5d6298e99";
 				SWIFT_OBJC_BRIDGING_HEADER = Ay/SwiftHeader.h;
 			};
 			name = Release;
