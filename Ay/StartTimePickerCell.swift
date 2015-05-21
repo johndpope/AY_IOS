@@ -1,16 +1,16 @@
 //
-//  StartDateCell.swift
+//  TimePickerCell.swift
 //  Ay
 //
-//  Created by Do Kwon on 5/18/15.
+//  Created by Do Kwon on 5/20/15.
 //  Copyright (c) 2015 Do Kwon. All rights reserved.
 //
 
 import UIKit
 
-class StartDateCell: UITableViewCell {
+class StartTimePickerCell: UITableViewCell {
 
-    @IBOutlet weak var dateView: UILabel!
+    @IBOutlet weak var datePicker: UIDatePicker!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -129,6 +129,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    @IBAction func todayMonthView() {
+        self.calendarView.toggleTodayMonthView()
+    }
+    
     /* Notifies the delegate when the presented date is updated so you can update CurrentMonth label. */
     func presentedDateUpdated(date: CVDate){
         self.dateLabel.text = date.description_str()
