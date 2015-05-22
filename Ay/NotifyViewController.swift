@@ -14,6 +14,8 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var none_options: [String] = ["None"]
     var notify_options: [String] = ["At the time of event", "5 minutes before", "10 minutes before", "15 minutes before", "30 minutes before", "1 hour before", "2 hours before", "1 day before", "2 days before", "1 week before"]
     
+    var onDataAvailable : ((data: String) -> ())?
+    
     @IBAction func cancelPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -52,7 +54,7 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         switch indexPath.section {
             
         case 0 :
-            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: none_option_cell)
+            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: notify_none_option_cell)
             cell?.textLabel?.text = none_options[indexPath.row]
             break
         
@@ -72,14 +74,38 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let row = Row(indexPath: indexPath)
+        
+        switch indexPath.section {
+            
+        case 0 :
+            self.onDataAvailable?(data: none_options[indexPath.row])
+            self.dismissViewControllerAnimated(true, completion: nil)
+            break
+            
+        case 1 :
+            self.onDataAvailable?(data: notify_options[indexPath.row])
+            self.dismissViewControllerAnimated(true, completion: nil)
+            break
+            
+        default :
+            // Should never get here...
+            self.dismissViewControllerAnimated(true, completion: nil)
+            
+        }
     }
     
     private enum Row: Int {
-        case Daily
-        case Weekly
-        case TwoWeekly
-        case Monthly
-        case Yearly
+        case None
+        case EventTime
+        case FiveMin
+        case TenMin
+        case FifteenMin
+        case ThirtyMin
+        case OneHr
+        case TwoHr
+        case OneDay
+        case TwoDay
+        case OneWeek
         
         case Unknown
         
@@ -89,15 +115,25 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             switch (indexPath.section, indexPath.row) {
             case (0, 0):
-                row = Row.Daily
-            case (0, 1):
-                row = Row.Weekly
-            case (0, 2):
-                row = Row.TwoWeekly
-            case (0, 3):
-                row = Row.Monthly
-            case (0, 4):
-                row = Row.Yearly
+                row = Row.None
+            case (1, 0):
+                row = Row.FiveMin
+            case (1, 1):
+                row = Row.TenMin
+            case (1, 2):
+                row = Row.FifteenMin
+            case (1, 3):
+                row = Row.ThirtyMin
+            case (1, 4):
+                row = Row.OneHr
+            case (1, 5):
+                row = Row.TwoHr
+            case (1, 6):
+                row = Row.OneDay
+            case (1, 7):
+                row = Row.TwoDay
+            case (1, 8):
+                row = Row.OneWeek
             default:
                 ()
             }

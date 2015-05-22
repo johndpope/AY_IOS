@@ -143,7 +143,7 @@
                                 <rect key="frame" x="0.0" y="58" width="375" height="609"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="add_event_title_cell_identifier" id="QMV-la-fF8" customClass="TitleCell" customModule="Ay" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="add_event_title_cell_identifier" id="QMV-la-fF8" customClass="TitleCell" customModule="Ay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QMV-la-fF8" id="ZaJ-65-x7y">
@@ -155,6 +155,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <action selector="titleEntered:" destination="QMV-la-fF8" eventType="editingDidEnd" id="Ng9-O9-Fix"/>
+                                                        <outlet property="delegate" destination="ne0-pL-k5P" id="hXY-11-1zl"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -163,7 +164,7 @@
                                             <outlet property="titleTextField" destination="3Kd-Ok-brI" id="nFG-f2-qOn"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="add_event_location_cell_identifier" id="iVq-vz-7Vd" customClass="LocationCell" customModule="Ay" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="add_event_location_cell_identifier" id="iVq-vz-7Vd" customClass="LocationCell" customModule="Ay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iVq-vz-7Vd" id="Hyx-NX-8kQ">
@@ -175,6 +176,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <action selector="locationEntered:" destination="iVq-vz-7Vd" eventType="editingDidEnd" id="mNe-rb-WJa"/>
+                                                        <outlet property="delegate" destination="ne0-pL-k5P" id="Kyt-Lq-FZ1"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -183,7 +185,7 @@
                                             <outlet property="locationTextField" destination="Ptm-Wm-ger" id="eol-tP-c1T"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="add_event_start_cell_identifier" textLabel="Ar2-7Y-lpX" detailTextLabel="qAW-Ec-Z8R" style="IBUITableViewCellStyleValue1" id="zx1-t9-lxw" customClass="StartDateCell" customModule="Ay" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="add_event_start_cell_identifier" textLabel="Ar2-7Y-lpX" detailTextLabel="qAW-Ec-Z8R" style="IBUITableViewCellStyleValue1" id="zx1-t9-lxw" customClass="StartDateCell" customModule="Ay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zx1-t9-lxw" id="ujB-n2-A60">
@@ -228,7 +230,7 @@
                                             <outlet property="datePicker" destination="1Bh-wd-g7m" id="xmt-6L-Qum"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="add_event_end_cell_identifier" textLabel="Fa9-Ww-8OF" detailTextLabel="mVm-Jl-QW3" style="IBUITableViewCellStyleValue1" id="xUj-yl-toC" customClass="EndDateCell" customModule="Ay" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="add_event_end_cell_identifier" textLabel="Fa9-Ww-8OF" detailTextLabel="mVm-Jl-QW3" style="IBUITableViewCellStyleValue1" id="xUj-yl-toC" customClass="EndDateCell" customModule="Ay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xUj-yl-toC" id="GgJ-q3-07e">
@@ -273,7 +275,7 @@
                                             <outlet property="datePicker" destination="8RE-4n-1Xz" id="Rbd-56-rZO"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="add_event_repeat_cell_identifier" id="xoT-OQ-05k" customClass="RepeatCell" customModule="Ay" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="add_event_repeat_cell_identifier" id="xoT-OQ-05k" customClass="RepeatCell" customModule="Ay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xoT-OQ-05k" id="oV4-9n-kTY">
@@ -285,8 +287,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Never" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3u-C6-a3W">
-                                                    <rect key="frame" x="296" y="11" width="46" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Never" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3u-C6-a3W">
+                                                    <rect key="frame" x="133" y="11" width="209" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -294,10 +296,11 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="repeatView" destination="e3u-C6-a3W" id="eeL-tU-a0k"/>
                                             <segue destination="tTS-1k-q8E" kind="presentation" id="FAt-9L-L0K"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="add_notify_cell_identifier" id="vJO-J1-gMs" customClass="NotifyCell" customModule="Ay" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="add_notify_cell_identifier" id="vJO-J1-gMs" customClass="NotifyCell" customModule="Ay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vJO-J1-gMs" id="w37-ad-vyh">
@@ -309,13 +312,20 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="None" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wy4-Zw-kGF">
+                                                    <rect key="frame" x="127" y="11" width="215" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="notifyView" destination="Wy4-Zw-kGF" id="SIL-xa-yKg"/>
                                             <segue destination="QTh-j0-UlA" kind="presentation" id="Rxk-j8-Ont"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="add_event_participants_cell_identifier" id="9oP-ZP-cWy" customClass="ParticipantsCell" customModule="Ay" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="add_event_participants_cell_identifier" id="9oP-ZP-cWy" customClass="ParticipantsCell" customModule="Ay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9oP-ZP-cWy" id="LAC-bc-iKZ">

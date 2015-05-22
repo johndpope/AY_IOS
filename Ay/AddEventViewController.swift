@@ -9,7 +9,7 @@
 
 import UIKit
 
-class AddEventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AddEventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -19,6 +19,10 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     private var end_date_cell : EndDateCell!
     private var start_date_picker_cell : StartTimePickerCell!
     private var end_date_picker_cell : EndTimePickerCell!
+    private var title_cell : TitleCell!
+    private var loc_cell : LocationCell!
+    private var repeat_cell : RepeatCell!
+    private var notify_cell : NotifyCell!
     
     @IBAction func cancelPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -38,6 +42,34 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     func initializeDatePickers(){
         toggleStartDatePicker()
         toggleEndDatePicker()
+    }
+    
+    func setRepeat(data: String){
+        repeat_cell.repeatView.text = data
+    }
+    
+    func setNotify(data: String){
+        notify_cell.notifyView.text = data
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        // When preparing for the segue, have viewController1 provide a closure for
+        // onDataAvailable
+        if let viewController = segue.destinationViewController as? RepeatSettingViewController {
+            viewController.onDataAvailable = {[weak self]
+                (data) in
+                if let weakSelf = self {
+                    weakSelf.setRepeat(data)
+                }
+            }
+        } else if let viewController = segue.destinationViewController as? NotifyViewController {
+            viewController.onDataAvailable = {[weak self]
+                (data) in
+                if let weakSelf = self {
+                    weakSelf.setNotify(data)
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,12 +107,12 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
                 // Title
                 if indexPath.row == 0 {
                     cell = tableView.dequeueReusableCellWithIdentifier(add_event_title_cell_identifier) as? TitleCell
-                    
+                    title_cell = cell as! TitleCell
                 }
                 // Location
                 else {
                     cell = tableView.dequeueReusableCellWithIdentifier(add_event_location_cell_identifier) as? LocationCell
-
+                    loc_cell = cell as! LocationCell
                 }
                 break
             case 1 :
@@ -107,9 +139,10 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
                     end_date_picker_cell = cell as! EndTimePickerCell
                 } else if indexPath.row == 4{
                     cell = tableView.dequeueReusableCellWithIdentifier(add_event_repeat_cell_identifier) as? RepeatCell
-                        
+                    repeat_cell = cell as! RepeatCell
                 } else {
                     cell = tableView.dequeueReusableCellWithIdentifier(add_event_notify_cell_identifier) as? NotifyCell
+                    notify_cell = cell as! NotifyCell
                 }
                     
             
@@ -152,11 +185,37 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let row = Row(indexPath: indexPath)
         
-        if row == Row.StartDate{
+        if row != Row.Title && row != Row.Location{
+            title_cell.titleTextField.endEditing(true)
+            loc_cell.locationTextField.endEditing(true)
+        }
+        
+        // close date picker if opened
+        if row != Row.StartDate && !startDatePickerHidden{
             toggleStartDatePicker()
-        } else if row == Row.EndDate {
+        }
+        if row != Row.EndDate && !endDatePickerHidden{
             toggleEndDatePicker()
         }
+        
+        // open date picker
+        if row == Row.StartDate{
+            toggleStartDatePicker()
+        }
+        if row == Row.EndDate{
+            toggleEndDatePicker()
+        }
+    }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        title_cell.titleTextField.endEditing(true)
+        loc_cell.locationTextField.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     @IBAction
