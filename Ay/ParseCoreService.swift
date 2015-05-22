@@ -20,6 +20,8 @@ class ParseCoreService {
         params.setObject(last_name, forKey: "Last_Name" )
         params.setObject(birth, forKey: "Birth_Date" )
         params.setObject(family_members, forKey: "Fam_Members" )
+        let installation = PFInstallation.currentInstallation()
+        params.setObject(installation.installationId, forKey: "Device_Token")
         PFCloud.callFunctionInBackground("createUser", withParameters: params as [NSObject : AnyObject], block: {
             (result: AnyObject?, error: NSError?) -> Void in
             if ( error == nil) {

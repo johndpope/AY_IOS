@@ -10,6 +10,7 @@ import UIKit
 
 class StartDateCell: UITableViewCell {
 
+    @IBOutlet weak var dateView: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,5 +21,4 @@ class StartDateCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }

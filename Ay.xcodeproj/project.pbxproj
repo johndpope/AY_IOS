@@ -40,7 +40,7 @@
 		1B4F4C9D1AFEDDFA00C61708 /* AyRecommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C9C1AFEDDFA00C61708 /* AyRecommendation.swift */; };
 		1B4F4C9F1AFEDEF500C61708 /* AyConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C9E1AFEDEF500C61708 /* AyConstants.swift */; };
 		1B4F4CA11AFEDF8F00C61708 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */; };
-		1B5D68241B0D171900BBB904 /* TimePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D68231B0D171900BBB904 /* TimePickerCell.swift */; };
+		1B5D68241B0D171900BBB904 /* StartTimePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D68231B0D171900BBB904 /* StartTimePickerCell.swift */; };
 		1B5D68261B0D5E6200BBB904 /* OPACITY_STATUS_BAR_COVER.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5D68251B0D5E6200BBB904 /* OPACITY_STATUS_BAR_COVER.png */; };
 		1B5D68281B0D62F400BBB904 /* X.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5D68271B0D62F400BBB904 /* X.png */; };
 		1B5D682A1B0D63C900BBB904 /* CHECK.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5D68291B0D63C900BBB904 /* CHECK.png */; };
@@ -73,6 +73,9 @@
 		95CF63BC1AFEE87F00F28153 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CF63B61AFEE87F00F28153 /* ParseFacebookUtilsV4.framework */; };
 		95CF63BD1AFEE87F00F28153 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CF63B71AFEE87F00F28153 /* ParseUI.framework */; };
 		95CF63C11AFEF32300F28153 /* ParseCoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CF63C01AFEF32300F28153 /* ParseCoreService.swift */; };
+		95DCA09D1B0E9FF90033D729 /* EndTimePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA09C1B0E9FF90033D729 /* EndTimePickerCell.swift */; };
+		95DCA09F1B0EFAF40033D729 /* RepeatSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA09E1B0EFAF40033D729 /* RepeatSettingViewController.swift */; };
+		95DCA0A11B0F08580033D729 /* NotifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0A01B0F08580033D729 /* NotifyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,7 +126,7 @@
 		1B4F4C9C1AFEDDFA00C61708 /* AyRecommendation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyRecommendation.swift; sourceTree = "<group>"; };
 		1B4F4C9E1AFEDEF500C61708 /* AyConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyConstants.swift; sourceTree = "<group>"; };
 		1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		1B5D68231B0D171900BBB904 /* TimePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerCell.swift; sourceTree = "<group>"; };
+		1B5D68231B0D171900BBB904 /* StartTimePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartTimePickerCell.swift; sourceTree = "<group>"; };
 		1B5D68251B0D5E6200BBB904 /* OPACITY_STATUS_BAR_COVER.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OPACITY_STATUS_BAR_COVER.png; sourceTree = "<group>"; };
 		1B5D68271B0D62F400BBB904 /* X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = X.png; sourceTree = "<group>"; };
 		1B5D68291B0D63C900BBB904 /* CHECK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CHECK.png; sourceTree = "<group>"; };
@@ -157,6 +160,9 @@
 		95CF63B61AFEE87F00F28153 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = frameworks/ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		95CF63B71AFEE87F00F28153 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = frameworks/ParseUI.framework; sourceTree = "<group>"; };
 		95CF63C01AFEF32300F28153 /* ParseCoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseCoreService.swift; sourceTree = "<group>"; };
+		95DCA09C1B0E9FF90033D729 /* EndTimePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndTimePickerCell.swift; sourceTree = "<group>"; };
+		95DCA09E1B0EFAF40033D729 /* RepeatSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatSettingViewController.swift; sourceTree = "<group>"; };
+		95DCA0A01B0F08580033D729 /* NotifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotifyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +283,8 @@
 				1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */,
 				957B729F1B0ACCF300C9A2EB /* SwiftHeader.h */,
 				1B72102F1B0AF48300E0D729 /* AddEventViewController.swift */,
+				95DCA09E1B0EFAF40033D729 /* RepeatSettingViewController.swift */,
+				95DCA0A01B0F08580033D729 /* NotifyViewController.swift */,
 			);
 			path = Ay;
 			sourceTree = "<group>";
@@ -322,7 +330,8 @@
 				1B72103C1B0AFAD700E0D729 /* EndDateCell.swift */,
 				1B72103E1B0AFAF700E0D729 /* ParticipantsCell.swift */,
 				1B7210401B0AFB0300E0D729 /* NotesCell.swift */,
-				1B5D68231B0D171900BBB904 /* TimePickerCell.swift */,
+				1B5D68231B0D171900BBB904 /* StartTimePickerCell.swift */,
+				95DCA09C1B0E9FF90033D729 /* EndTimePickerCell.swift */,
 			);
 			name = EventTableCells;
 			sourceTree = "<group>";
@@ -461,6 +470,7 @@
 				1B04F0061B0ABD1100DF30B3 /* CVCalendarMenuView.swift in Sources */,
 				1B04F00E1B0ABD1100DF30B3 /* CVCalendarViewAppearanceDelegate.swift in Sources */,
 				1B04F00F1B0ABD1100DF30B3 /* CVCalendarViewDelegate.swift in Sources */,
+				95DCA09F1B0EFAF40033D729 /* RepeatSettingViewController.swift in Sources */,
 				1B04F0051B0ABD1100DF30B3 /* CVCalendarManager.swift in Sources */,
 				1B4F4C9F1AFEDEF500C61708 /* AyConstants.swift in Sources */,
 				1B04F0131B0ABD1100DF30B3 /* CVCircleView.swift in Sources */,
@@ -473,11 +483,13 @@
 				1B4F4C9D1AFEDDFA00C61708 /* AyRecommendation.swift in Sources */,
 				1B04F0091B0ABD1100DF30B3 /* CVCalendarRenderer.swift in Sources */,
 				1B4F4CA11AFEDF8F00C61708 /* DataManager.swift in Sources */,
+				95DCA09D1B0E9FF90033D729 /* EndTimePickerCell.swift in Sources */,
 				1B04F0141B0ABD1100DF30B3 /* CVDate.swift in Sources */,
+				95DCA0A11B0F08580033D729 /* NotifyViewController.swift in Sources */,
 				1B7210371B0AFA9C00E0D729 /* RepeatCell.swift in Sources */,
 				1B04F0041B0ABD1100DF30B3 /* CVCalendarDayViewControlCoordinator.swift in Sources */,
 				1B04F00C1B0ABD1100DF30B3 /* CVCalendarViewAnimatorDelegate.swift in Sources */,
-				1B5D68241B0D171900BBB904 /* TimePickerCell.swift in Sources */,
+				1B5D68241B0D171900BBB904 /* StartTimePickerCell.swift in Sources */,
 				95CF63C11AFEF32300F28153 /* ParseCoreService.swift in Sources */,
 				1B4F4C751AFEC79F00C61708 /* Ay.xcdatamodeld in Sources */,
 				1B04F0111B0ABD1100DF30B3 /* CVCalendarWeekContentView.swift in Sources */,

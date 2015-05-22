@@ -1,16 +1,16 @@
 //
-//  NotifyCell.swift
+//  TimePickerCell.swift
 //  Ay
 //
-//  Created by Do Kwon on 5/18/15.
+//  Created by Do Kwon on 5/20/15.
 //  Copyright (c) 2015 Do Kwon. All rights reserved.
 //
 
 import UIKit
 
-class NotifyCell: UITableViewCell {
+class StartTimePickerCell: UITableViewCell {
 
-    @IBOutlet weak var notifyView: UILabel!
+    @IBOutlet weak var datePicker: UIDatePicker!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

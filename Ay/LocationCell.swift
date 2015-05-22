@@ -13,6 +13,7 @@ class LocationCell: UITableViewCell {
     @IBOutlet weak var locationTextField: UITextField!
 
     @IBAction func locationEntered(sender: AnyObject) {
+        locationTextField.endEditing(true)
     }
     override func awakeFromNib() {
         super.awakeFromNib()

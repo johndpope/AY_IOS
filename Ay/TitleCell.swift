@@ -11,6 +11,7 @@ import UIKit
 class TitleCell: UITableViewCell {
 
     @IBAction func titleEntered(sender: AnyObject) {
+        titleTextField.endEditing(true)
     }
     @IBOutlet weak var titleTextField: UITextField!
     override func awakeFromNib() {

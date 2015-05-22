@@ -10,6 +10,7 @@ import UIKit
 
 class RepeatCell: UITableViewCell {
 
+    @IBOutlet weak var repeatView: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
