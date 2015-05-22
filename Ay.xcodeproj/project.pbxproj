@@ -74,6 +74,8 @@
 		95CF63BD1AFEE87F00F28153 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CF63B71AFEE87F00F28153 /* ParseUI.framework */; };
 		95CF63C11AFEF32300F28153 /* ParseCoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CF63C01AFEF32300F28153 /* ParseCoreService.swift */; };
 		95DCA09D1B0E9FF90033D729 /* EndTimePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA09C1B0E9FF90033D729 /* EndTimePickerCell.swift */; };
+		95DCA09F1B0EFAF40033D729 /* RepeatSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA09E1B0EFAF40033D729 /* RepeatSettingViewController.swift */; };
+		95DCA0A11B0F08580033D729 /* NotifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0A01B0F08580033D729 /* NotifyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +161,8 @@
 		95CF63B71AFEE87F00F28153 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = frameworks/ParseUI.framework; sourceTree = "<group>"; };
 		95CF63C01AFEF32300F28153 /* ParseCoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseCoreService.swift; sourceTree = "<group>"; };
 		95DCA09C1B0E9FF90033D729 /* EndTimePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndTimePickerCell.swift; sourceTree = "<group>"; };
+		95DCA09E1B0EFAF40033D729 /* RepeatSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatSettingViewController.swift; sourceTree = "<group>"; };
+		95DCA0A01B0F08580033D729 /* NotifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotifyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +283,8 @@
 				1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */,
 				957B729F1B0ACCF300C9A2EB /* SwiftHeader.h */,
 				1B72102F1B0AF48300E0D729 /* AddEventViewController.swift */,
+				95DCA09E1B0EFAF40033D729 /* RepeatSettingViewController.swift */,
+				95DCA0A01B0F08580033D729 /* NotifyViewController.swift */,
 			);
 			path = Ay;
 			sourceTree = "<group>";
@@ -464,6 +470,7 @@
 				1B04F0061B0ABD1100DF30B3 /* CVCalendarMenuView.swift in Sources */,
 				1B04F00E1B0ABD1100DF30B3 /* CVCalendarViewAppearanceDelegate.swift in Sources */,
 				1B04F00F1B0ABD1100DF30B3 /* CVCalendarViewDelegate.swift in Sources */,
+				95DCA09F1B0EFAF40033D729 /* RepeatSettingViewController.swift in Sources */,
 				1B04F0051B0ABD1100DF30B3 /* CVCalendarManager.swift in Sources */,
 				1B4F4C9F1AFEDEF500C61708 /* AyConstants.swift in Sources */,
 				1B04F0131B0ABD1100DF30B3 /* CVCircleView.swift in Sources */,
@@ -478,6 +485,7 @@
 				1B4F4CA11AFEDF8F00C61708 /* DataManager.swift in Sources */,
 				95DCA09D1B0E9FF90033D729 /* EndTimePickerCell.swift in Sources */,
 				1B04F0141B0ABD1100DF30B3 /* CVDate.swift in Sources */,
+				95DCA0A11B0F08580033D729 /* NotifyViewController.swift in Sources */,
 				1B7210371B0AFA9C00E0D729 /* RepeatCell.swift in Sources */,
 				1B04F0041B0ABD1100DF30B3 /* CVCalendarDayViewControlCoordinator.swift in Sources */,
 				1B04F00C1B0ABD1100DF30B3 /* CVCalendarViewAnimatorDelegate.swift in Sources */,

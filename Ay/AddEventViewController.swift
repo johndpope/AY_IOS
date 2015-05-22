@@ -15,10 +15,10 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     
     private var startDatePickerHidden = false
     private var endDatePickerHidden = false
-    private var start_date : StartDateCell?
-    private var end_date : EndDateCell?
-    private var start_date_picker : StartTimePickerCell?
-    private var end_date_picker : EndTimePickerCell?
+    private var start_date_cell : StartDateCell!
+    private var end_date_cell : EndDateCell!
+    private var start_date_picker_cell : StartTimePickerCell!
+    private var end_date_picker_cell : EndTimePickerCell!
     
     @IBAction func cancelPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -36,13 +36,6 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func initializeDatePickers(){
-        start_date = tableView.dequeueReusableCellWithIdentifier(add_event_start_cell_identifier) as! StartDateCell
-        start_date_picker = tableView.dequeueReusableCellWithIdentifier(add_event_start_time_picker_cell_identifier) as! StartTimePickerCell
-        end_date = tableView.dequeueReusableCellWithIdentifier(add_event_end_cell_identifier) as! EndDateCell
-        end_date_picker = tableView.dequeueReusableCellWithIdentifier(add_event_end_time_picker_cell_identifier) as! EndTimePickerCell
-        
-        didChangeStartDate()
-        didChangeEndDate()
         toggleStartDatePicker()
         toggleEndDatePicker()
     }
@@ -66,7 +59,7 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
             case 1 :
                 return 6
             case 2 :
-                return 2
+                return 1
             default :
                 return 3
         }
@@ -93,18 +86,25 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
             case 1 :
                 
                 if indexPath.row == 0 {
-                        cell = tableView.dequeueReusableCellWithIdentifier(add_event_start_cell_identifier) as? StartDateCell
-                
+                    cell = tableView.dequeueReusableCellWithIdentifier(add_event_start_cell_identifier) as? StartDateCell
+                    start_date_cell = cell as! StartDateCell
+                    if start_date_cell.dateView.text == "Detail" {
+                        var date_picker = UIDatePicker()
+                        start_date_cell.dateView.text = NSDateFormatter.localizedStringFromDate(date_picker.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+                    }
                 } else if indexPath.row == 1 {
-                        cell = tableView.dequeueReusableCellWithIdentifier(add_event_start_time_picker_cell_identifier) as? UITableViewCell
-                }
-                        
-                        // End time
-                else if indexPath.row == 2{
-                        cell = tableView.dequeueReusableCellWithIdentifier(add_event_end_cell_identifier) as? EndDateCell
-                        
+                    cell = tableView.dequeueReusableCellWithIdentifier(add_event_start_time_picker_cell_identifier) as? StartTimePickerCell
+                    start_date_picker_cell = cell as! StartTimePickerCell
+                } else if indexPath.row == 2{
+                    cell = tableView.dequeueReusableCellWithIdentifier(add_event_end_cell_identifier) as? EndDateCell
+                    end_date_cell = cell as! EndDateCell
+                    if end_date_cell.dateView.text == "Detail" {
+                        var date_picker = UIDatePicker()
+                        end_date_cell.dateView.text = NSDateFormatter.localizedStringFromDate(date_picker.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+                    }
                 } else if indexPath.row == 3 {
-                    cell = tableView.dequeueReusableCellWithIdentifier(add_event_end_time_picker_cell_identifier) as? UITableViewCell
+                    cell = tableView.dequeueReusableCellWithIdentifier(add_event_end_time_picker_cell_identifier) as? EndTimePickerCell
+                    end_date_picker_cell = cell as! EndTimePickerCell
                 } else if indexPath.row == 4{
                     cell = tableView.dequeueReusableCellWithIdentifier(add_event_repeat_cell_identifier) as? RepeatCell
                         
@@ -118,11 +118,6 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         
                 if indexPath.row == 0{
                     cell = tableView.dequeueReusableCellWithIdentifier(add_event_participants_cell_identifier) as? ParticipantsCell
-
-                }
-                // Notes
-                else {
-                    cell = tableView.dequeueReusableCellWithIdentifier(add_event_notes_cell_identifier) as? NotesCell
 
                 }
             default :
@@ -166,18 +161,16 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction
     func didChangeStartDate() {
-        start_date!.dateView.text = NSDateFormatter.localizedStringFromDate(start_date_picker!.datePicker.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
-        // Force table to update its contents
-        tableView.beginUpdates()
-        tableView.endUpdates()
+        if start_date_cell != nil && start_date_picker_cell != nil {
+            start_date_cell.dateView.text = NSDateFormatter.localizedStringFromDate(start_date_picker_cell.datePicker.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+        }
     }
     
     @IBAction
     func didChangeEndDate() {
-        end_date!.dateView.text = NSDateFormatter.localizedStringFromDate(end_date_picker!.datePicker.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
-        // Force table to update its contents
-        tableView.beginUpdates()
-        tableView.endUpdates()
+        if end_date_cell != nil && end_date_picker_cell != nil {
+            end_date_cell.dateView.text = NSDateFormatter.localizedStringFromDate(end_date_picker_cell.datePicker.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+        }
     }
     
     private func toggleStartDatePicker() {
@@ -205,7 +198,6 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         case EndDatePicker
         case Repeat
         case Notify
-        case Notes
         case Participants
         
         case Unknown
@@ -233,8 +225,6 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
                 row = Row.Notify
             case (2, 0):
                 row = Row.Participants
-            case (2, 1):
-                row = Row.Notes
             default:
                 ()
             }

@@ -27,4 +27,7 @@ let add_event_participants_cell_identifier = "add_event_participants_cell_identi
 let add_event_time_picker_cell_identifier = "add_event_time_picker_cell_identifier"
 let add_event_start_time_picker_cell_identifier = "add_event_start_time_picker_cell_identifier"
 let add_event_end_time_picker_cell_identifier = "add_event_end_time_picker_cell_identifier"
+let repeat_option_cell = "repeat_option_cell"
+let none_option_cell = "none_option_cell"
+let notify_option_cell = "notify_option_cell"
 
