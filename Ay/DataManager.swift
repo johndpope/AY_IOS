@@ -15,6 +15,11 @@ class DataManager {
     var cur_user : AyUser?
     let flags: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitWeekday
     
+    var repeat_none_options: [String] = ["Never"]
+    var repeat_options: [String] = ["Every Day", "Every Week", "Every Other Week", "Every Month", "Every Year"]
+    var notify_none_options: [String] = ["None"]
+    var notify_options: [String] = ["At the time of event", "5 minutes before", "10 minutes before", "15 minutes before", "30 minutes before", "1 hour before", "2 hours before", "1 day before", "2 days before", "1 week before"]
+    
     func getMonthlySchedule(month: Int, year: Int) -> Array<AyEvent> {
         var monthly_schedule = Array<AyEvent>()
         for event in events{
@@ -79,7 +84,7 @@ class DataManager {
                             var next_start_components = NSCalendar.currentCalendar().components(flags, fromDate: next_start_date)
                             var next_end_components = NSCalendar.currentCalendar().components(flags, fromDate: next_end_date)
                             //Loop while under recurrence end date
-                            while recur_components.year > next_start_components.year || (recur_components.year == next_start_components.year && recur_components.month >= next_start_components.month){
+                            while recur_components.year > next_start_components.year || (recur_components.year == next_start_components.year && recur_components.month > next_start_components.month) || (recur_components.year == next_start_components.year && recur_components.month == next_start_components.month && recur_components.day >= next_start_components.day){
                                 next_start_date = getNextOccurance(next_start_date, freq_dict: event.recur_freq!)
                                 next_end_date = getNextOccurance(next_end_date, freq_dict: event.recur_freq!)
                                 next_start_components = NSCalendar.currentCalendar().components(flags, fromDate: next_start_date)

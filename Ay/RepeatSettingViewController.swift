@@ -11,11 +11,10 @@ import UIKit
 
 class RepeatSettingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     @IBOutlet weak var tableView: UITableView!
-    var none_options: [String] = ["Never"]
-    var repeat_options: [String] = ["Every Day", "Every Week", "Every Other Week", "Every Month", "Every Year"]
     
-    var onDataAvailable : ((data: String) -> ())?
+    var onDataAvailable : ((data: NSDictionary) -> ())?
     
     @IBAction func cancelPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -39,9 +38,9 @@ class RepeatSettingViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0 :
-            return none_options.count
+            return self.appDelegate.data_manager!.repeat_none_options.count
         case 1 :
-            return repeat_options.count
+            return self.appDelegate.data_manager!.repeat_options.count
         default :
             return 1
         }
@@ -55,12 +54,12 @@ class RepeatSettingViewController: UIViewController, UITableViewDelegate, UITabl
             
         case 0 :
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: repeat_none_option_cell)
-            cell?.textLabel?.text = none_options[indexPath.row]
+            cell?.textLabel?.text = self.appDelegate.data_manager!.repeat_none_options[indexPath.row]
             break
             
         case 1 :
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: repeat_option_cell)
-            cell?.textLabel?.text = repeat_options[indexPath.row]
+            cell?.textLabel?.text = self.appDelegate.data_manager!.repeat_options[indexPath.row]
             break
             
         default :
@@ -74,16 +73,18 @@ class RepeatSettingViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //let row = Row(indexPath: indexPath)
-        
+        var return_val = NSMutableDictionary()
+        return_val.setObject(indexPath.section, forKey: "section")
+        return_val.setObject(indexPath.row, forKey: "row")
         switch indexPath.section {
             
         case 0 :
-            self.onDataAvailable?(data: none_options[indexPath.row])
+            self.onDataAvailable?(data: return_val)
             self.dismissViewControllerAnimated(true, completion: nil)
             break
         
         case 1 :
-            self.onDataAvailable?(data: repeat_options[indexPath.row])
+            self.onDataAvailable?(data: return_val)
             self.dismissViewControllerAnimated(true, completion: nil)
             break
             
