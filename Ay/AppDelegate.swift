@@ -49,6 +49,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize data manager singleton instance
         data_manager = DataManager()
         
+        
+        
+        
         // TODO: load back from core data Do a generic intialization for now
         /*var list: Array<NSDictionary> = []
         var member = ["First_Name": "Do", "Last_Name": "Kwon", "Type": "Child"]

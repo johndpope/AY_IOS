@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B02710F1B11196F005AED86 /* SyncCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B02710E1B11196F005AED86 /* SyncCalendarViewController.swift */; };
+		1B0271111B1146A3005AED86 /* AddChildrenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0271101B1146A1005AED86 /* AddChildrenViewController.swift */; };
 		1B04F0011B0ABD1100DF30B3 /* CVCalendarContentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B04EFED1B0ABD1100DF30B3 /* CVCalendarContentDelegate.swift */; settings = {COMPILER_FLAGS = "-w"; }; };
 		1B04F0021B0ABD1100DF30B3 /* CVCalendarContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B04EFEE1B0ABD1100DF30B3 /* CVCalendarContentViewController.swift */; settings = {COMPILER_FLAGS = "-w"; }; };
 		1B04F0031B0ABD1100DF30B3 /* CVCalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B04EFEF1B0ABD1100DF30B3 /* CVCalendarDayView.swift */; settings = {COMPILER_FLAGS = "-w"; }; };
@@ -89,6 +91,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B02710E1B11196F005AED86 /* SyncCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncCalendarViewController.swift; sourceTree = "<group>"; };
+		1B0271101B1146A1005AED86 /* AddChildrenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddChildrenViewController.swift; sourceTree = "<group>"; };
 		1B04EFED1B0ABD1100DF30B3 /* CVCalendarContentDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVCalendarContentDelegate.swift; sourceTree = "<group>"; };
 		1B04EFEE1B0ABD1100DF30B3 /* CVCalendarContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVCalendarContentViewController.swift; sourceTree = "<group>"; };
 		1B04EFEF1B0ABD1100DF30B3 /* CVCalendarDayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVCalendarDayView.swift; sourceTree = "<group>"; };
@@ -200,6 +204,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B0271121B114A29005AED86 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				1B0271101B1146A1005AED86 /* AddChildrenViewController.swift */,
+				1B02710E1B11196F005AED86 /* SyncCalendarViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		1B04EFEC1B0ABD1100DF30B3 /* CVCalendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +278,7 @@
 		1B4F4C6E1AFEC79F00C61708 /* Ay */ = {
 			isa = PBXGroup;
 			children = (
+				1B0271121B114A29005AED86 /* Login */,
 				1B7210311B0AFA1000E0D729 /* EventTableCells */,
 				1B04EFEC1B0ABD1100DF30B3 /* CVCalendar */,
 				95CF63BF1AFEF30A00F28153 /* Service */,
@@ -470,6 +484,7 @@
 				1B04F0061B0ABD1100DF30B3 /* CVCalendarMenuView.swift in Sources */,
 				1B04F00E1B0ABD1100DF30B3 /* CVCalendarViewAppearanceDelegate.swift in Sources */,
 				1B04F00F1B0ABD1100DF30B3 /* CVCalendarViewDelegate.swift in Sources */,
+				1B0271111B1146A3005AED86 /* AddChildrenViewController.swift in Sources */,
 				95DCA09F1B0EFAF40033D729 /* RepeatSettingViewController.swift in Sources */,
 				1B04F0051B0ABD1100DF30B3 /* CVCalendarManager.swift in Sources */,
 				1B4F4C9F1AFEDEF500C61708 /* AyConstants.swift in Sources */,
@@ -488,6 +503,7 @@
 				95DCA0A11B0F08580033D729 /* NotifyViewController.swift in Sources */,
 				1B7210371B0AFA9C00E0D729 /* RepeatCell.swift in Sources */,
 				1B04F0041B0ABD1100DF30B3 /* CVCalendarDayViewControlCoordinator.swift in Sources */,
+				1B02710F1B11196F005AED86 /* SyncCalendarViewController.swift in Sources */,
 				1B04F00C1B0ABD1100DF30B3 /* CVCalendarViewAnimatorDelegate.swift in Sources */,
 				1B5D68241B0D171900BBB904 /* StartTimePickerCell.swift in Sources */,
 				95CF63C11AFEF32300F28153 /* ParseCoreService.swift in Sources */,

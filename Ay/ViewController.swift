@@ -25,6 +25,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         scheduleTableView.dataSource = self
         
         calendarView.delegate = self
+        
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,13 +38,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        self.calendarView.commitCalendarViewUpdate()
-        self.menuView.commitMenuViewUpdate()
-        
-       self.dateLabel.text = self.calendarView.presentedDate?.description_str()
-        
-        setBgColor(self.calendarView.presentedDate!)
+        let app_delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        // User data is already initialized
+        if app_delegate.data_manager!.getCurrentUser() == nil {
+            // Do login procedure
+            self.performSegueWithIdentifier(login_segue_identifier, sender: self)
+        } else {
+            // Load the calendar view
+            self.calendarView.commitCalendarViewUpdate()
+            self.menuView.commitMenuViewUpdate()
+            
+           self.dateLabel.text = self.calendarView.presentedDate?.description_str()
+            
+            setBgColor(self.calendarView.presentedDate!)
+        }
     }
 
     var schedules = []

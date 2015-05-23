@@ -8,7 +8,7 @@
 
 import Foundation
 
-let schedule_cell_identifier = "ScheduleCellIdentifier$$"
+let schedule_cell_identifier = "schedule_cell_identifier"
 
 let add_event_notify_cell_identifier = "add_notify_cell_identifier"
 
@@ -31,4 +31,9 @@ let repeat_option_cell = "repeat_option_cell"
 let repeat_none_option_cell = "repeat_none_option_cell"
 let notify_none_option_cell = "notify_none_option_cell"
 let notify_option_cell = "notify_option_cell"
+
+
+// Login Segue
+
+let login_segue_identifier = "login_segue_identifier"
 

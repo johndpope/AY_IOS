@@ -11,6 +11,14 @@ import UIKit
 
 class ScheduleTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var participant_color_code: UIView!
+    @IBOutlet weak var start_time_label: UILabel!
+    @IBOutlet weak var end_time_label: UILabel!
+    @IBOutlet weak var title_label: UILabel!
+    
+    var cur_event : AyEvent?
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

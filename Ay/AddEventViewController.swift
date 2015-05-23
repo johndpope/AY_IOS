@@ -13,6 +13,10 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var tableView: UITableView!
     
+    var cur_event :AyEvent?
+    
+    var cur_date : CVDate?
+    
     private var startDatePickerHidden = false
     private var endDatePickerHidden = false
     private var start_date_cell : StartDateCell!
@@ -27,8 +31,33 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func cancelPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    @IBAction func addPressed(sender: AnyObject) {
+    
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    @IBAction func addPressed(sender: AnyObject) {
+        
+        cur_event!.title = title_cell.titleTextField.text
+      
+        if !cur_event!.isComplete() {
+            let alertController = UIAlertController(title: "Incomplete", message: "You need to fill in all the required fields.", preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "Ok", style: .Default) { (action) in
+                self.dismissViewControllerAnimated(true, completion:nil)
+            }
+            alertController.addAction(okAction)
+            self.presentViewController(alertController, animated: true) {
+                // ...
+            }
+        } else {
+            // TODO : add event to global or local array
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
@@ -123,6 +152,9 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
                     if start_date_cell.dateView.text == "Detail" {
                         var date_picker = UIDatePicker()
                         start_date_cell.dateView.text = NSDateFormatter.localizedStringFromDate(date_picker.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+                        
+                        // Set start time
+                        cur_event?.start_time = date_picker.date
                     }
                 } else if indexPath.row == 1 {
                     cell = tableView.dequeueReusableCellWithIdentifier(add_event_start_time_picker_cell_identifier) as? StartTimePickerCell
@@ -133,6 +165,9 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
                     if end_date_cell.dateView.text == "Detail" {
                         var date_picker = UIDatePicker()
                         end_date_cell.dateView.text = NSDateFormatter.localizedStringFromDate(date_picker.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+                        
+                        // End time
+                        cur_event?.end_time = date_picker.date
                     }
                 } else if indexPath.row == 3 {
                     cell = tableView.dequeueReusableCellWithIdentifier(add_event_end_time_picker_cell_identifier) as? EndTimePickerCell

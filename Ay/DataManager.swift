@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 
 class DataManager {
@@ -14,6 +15,59 @@ class DataManager {
     // Initialize cur_user on CoreData access/ login
     var cur_user : AyUser?
     let flags: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitWeekday
+    
+    
+    func saveCurrentUser(id:String, first_name : String, last_name : String, email :String) {
+        let app_delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = app_delegate.managedObjectContext!
+        
+        let entity = NSEntityDescription.entityForName("AyUser", inManagedObjectContext: managedContext)
+        
+        let user = NSManagedObject(entity : entity!, insertIntoManagedObjectContext:managedContext)
+        
+        user.setValue(first_name, forKey: "first_name")
+        user.setValue(last_name, forKey: "last_name")
+        user.setValue(email, forKey: "email")
+        user.setValue(id, forKey: "id")
+        
+        var error : NSError?
+        if !managedContext.save(&error) {
+            println ("Could not save \(error), \(error?.userInfo)")
+        } else {
+            self.cur_user!.first_name = first_name
+            self.cur_user!.last_name = last_name
+            self.cur_user!.email = email
+            self.cur_user!.Object_Id = id
+            println ("Current user successfully saved.")
+        }
+    }
+    
+    
+    func getCurrentUser() -> AyUser? {
+        let app_delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = app_delegate.managedObjectContext!
+        
+        let fetchRequest = NSFetchRequest(entityName:"AyUser")
+        
+        var error : NSError?
+        
+        let fetched_results = managedContext.executeFetchRequest(fetchRequest, error:&error) as? [NSManagedObject]
+        
+        if let results = fetched_results {
+            if results.count == 0 {return nil}
+            self.cur_user!.first_name = results[0].valueForKey("first_name") as! String
+            
+            self.cur_user!.last_name = results[0].valueForKey("last_name") as! String
+            self.cur_user!.email = results[0].valueForKey("email") as! String
+            self.cur_user!.Object_Id = results[0].valueForKey("id") as! String
+        } else {
+            println ("Could not fetch \(error), \(error?.userInfo)")
+        }
+        return self.cur_user
+    }
+    
     
     func getMonthlySchedule(month: Int, year: Int) -> Array<AyEvent> {
         var monthly_schedule = Array<AyEvent>()
