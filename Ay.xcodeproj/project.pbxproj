@@ -80,6 +80,9 @@
 		95DCA09D1B0E9FF90033D729 /* EndTimePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA09C1B0E9FF90033D729 /* EndTimePickerCell.swift */; };
 		95DCA09F1B0EFAF40033D729 /* RepeatSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA09E1B0EFAF40033D729 /* RepeatSettingViewController.swift */; };
 		95DCA0A11B0F08580033D729 /* NotifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0A01B0F08580033D729 /* NotifyViewController.swift */; };
+		95DCA0A31B0FEE890033D729 /* RepeatEndCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0A21B0FEE890033D729 /* RepeatEndCell.swift */; };
+		95DCA0A51B0FF3790033D729 /* RepeatEndsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0A41B0FF3790033D729 /* RepeatEndsViewController.swift */; };
+		95DCA0A71B1139D70033D729 /* ListEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0A61B1139D70033D729 /* ListEventCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +174,9 @@
 		95DCA09C1B0E9FF90033D729 /* EndTimePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndTimePickerCell.swift; sourceTree = "<group>"; };
 		95DCA09E1B0EFAF40033D729 /* RepeatSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatSettingViewController.swift; sourceTree = "<group>"; };
 		95DCA0A01B0F08580033D729 /* NotifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotifyViewController.swift; sourceTree = "<group>"; };
+		95DCA0A21B0FEE890033D729 /* RepeatEndCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatEndCell.swift; sourceTree = "<group>"; };
+		95DCA0A41B0FF3790033D729 /* RepeatEndsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatEndsViewController.swift; sourceTree = "<group>"; };
+		95DCA0A61B1139D70033D729 /* ListEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListEventCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +306,7 @@
 				1B72102F1B0AF48300E0D729 /* AddEventViewController.swift */,
 				95DCA09E1B0EFAF40033D729 /* RepeatSettingViewController.swift */,
 				95DCA0A01B0F08580033D729 /* NotifyViewController.swift */,
+				95DCA0A41B0FF3790033D729 /* RepeatEndsViewController.swift */,
 			);
 			path = Ay;
 			sourceTree = "<group>";
@@ -348,6 +355,8 @@
 				1B7210401B0AFB0300E0D729 /* NotesCell.swift */,
 				1B5D68231B0D171900BBB904 /* StartTimePickerCell.swift */,
 				95DCA09C1B0E9FF90033D729 /* EndTimePickerCell.swift */,
+				95DCA0A21B0FEE890033D729 /* RepeatEndCell.swift */,
+				95DCA0A61B1139D70033D729 /* ListEventCell.swift */,
 			);
 			name = CustomTableCells;
 			sourceTree = "<group>";
@@ -485,9 +494,11 @@
 				1B04F0081B0ABD1100DF30B3 /* CVCalendarMonthView.swift in Sources */,
 				1B04F00D1B0ABD1100DF30B3 /* CVCalendarViewAppearance.swift in Sources */,
 				1B04F0021B0ABD1100DF30B3 /* CVCalendarContentViewController.swift in Sources */,
+				95DCA0A51B0FF3790033D729 /* RepeatEndsViewController.swift in Sources */,
 				1B7210351B0AFA8A00E0D729 /* LocationCell.swift in Sources */,
 				1B04F0121B0ABD1100DF30B3 /* CVCalendarWeekView.swift in Sources */,
 				1B4F4C771AFEC79F00C61708 /* ViewController.swift in Sources */,
+				95DCA0A31B0FEE890033D729 /* RepeatEndCell.swift in Sources */,
 				1B04F00B1B0ABD1100DF30B3 /* CVCalendarViewAnimator.swift in Sources */,
 				1B04F0101B0ABD1100DF30B3 /* CVCalendarWeekContentRecovery.swift in Sources */,
 				1B87B06D1B1186AC00A6C381 /* TutorialContentViewController.swift in Sources */,
@@ -506,6 +517,7 @@
 				1B04F0131B0ABD1100DF30B3 /* CVCircleView.swift in Sources */,
 				1B04F0071B0ABD1100DF30B3 /* CVCalendarMonthContentView.swift in Sources */,
 				1B4F4C721AFEC79F00C61708 /* AppDelegate.swift in Sources */,
+				95DCA0A71B1139D70033D729 /* ListEventCell.swift in Sources */,
 				1B72103F1B0AFAF700E0D729 /* ParticipantsCell.swift in Sources */,
 				1B4F4C951AFEDBEC00C61708 /* ScheduleTableViewCell.swift in Sources */,
 				1B7210411B0AFB0300E0D729 /* NotesCell.swift in Sources */,

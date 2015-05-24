@@ -11,10 +11,8 @@ import UIKit
 
 class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var none_options: [String] = ["None"]
-    var notify_options: [String] = ["At the time of event", "5 minutes before", "10 minutes before", "15 minutes before", "30 minutes before", "1 hour before", "2 hours before", "1 day before", "2 days before", "1 week before"]
-    
-    var onDataAvailable : ((data: String) -> ())?
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var onDataAvailable : ((data: NSDictionary) -> ())?
     
     @IBAction func cancelPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -39,9 +37,9 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0 :
-            return none_options.count
+            return self.appDelegate.data_manager!.notify_none_options.count
         case 1 :
-            return notify_options.count
+            return self.appDelegate.data_manager!.notify_options.count
         default :
             return 1
         }
@@ -55,12 +53,12 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
         case 0 :
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: notify_none_option_cell)
-            cell?.textLabel?.text = none_options[indexPath.row]
+            cell?.textLabel?.text = self.appDelegate.data_manager!.notify_none_options[indexPath.row]
             break
         
         case 1 :
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: notify_option_cell)
-            cell?.textLabel?.text = notify_options[indexPath.row]
+            cell?.textLabel?.text = self.appDelegate.data_manager!.notify_options[indexPath.row]
             break
             
         default :
@@ -74,16 +72,18 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let row = Row(indexPath: indexPath)
-        
+        var return_val = NSMutableDictionary()
+        return_val.setObject(indexPath.section, forKey: "section")
+        return_val.setObject(indexPath.row, forKey: "row")
         switch indexPath.section {
             
         case 0 :
-            self.onDataAvailable?(data: none_options[indexPath.row])
+            self.onDataAvailable?(data: return_val)
             self.dismissViewControllerAnimated(true, completion: nil)
             break
             
         case 1 :
-            self.onDataAvailable?(data: notify_options[indexPath.row])
+            self.onDataAvailable?(data: return_val)
             self.dismissViewControllerAnimated(true, completion: nil)
             break
             

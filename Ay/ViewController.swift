@@ -11,6 +11,8 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CVCalendarViewDelegate {
 
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
     @IBAction func settingsPressed(sender: AnyObject) {
     }
    
@@ -18,6 +20,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var menuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var dateLabel: UILabel!
+    private var schedules = NSMapTable()
+    private var section_index_to_date = Array<String>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +30,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         calendarView.delegate = self
         
-        
-        
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshSchedule:", name: notification_events_fetched, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,39 +55,132 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             setBgColor(self.calendarView.presentedDate!)
         }
     }
+    
+    func refreshSchedule(notification: NSNotification){
+        var new_schedules = self.appDelegate.data_manager!.getMonthlySchedule(5, year: 2015)
+        
+        scheduleTableView.beginUpdates()
 
-    var schedules = []
+        // Add sections to table view
+        var temp_schedule = addSchedule(new_schedules)
+        var org_section_count = section_index_to_date.count
+        refreshDateSectionMap(temp_schedule)
+        var index_set = NSMutableIndexSet()
+        for var i = org_section_count; i < section_index_to_date.count; ++i {
+            index_set.addIndex(i)
+        }
+        scheduleTableView.insertSections(index_set, withRowAnimation: UITableViewRowAnimation.Bottom)
+        
+
+        // Add rows to each section
+        var index_path_list = Array<NSIndexPath>()
+        var enumerator = new_schedules.keyEnumerator()
+        while let date: String = enumerator.nextObject() as? String {
+            let new_event_list = new_schedules.objectForKey(date) as! Array<AyEvent>
+            var section_index = 0
+            for var i = 0; i < section_index_to_date.count; ++i {
+                if section_index_to_date[i] == date {
+                    section_index = i
+                    break
+                }
+            }
+            
+            let org_event_list = schedules.objectForKey(date) as? Array<AyEvent>
+            var org_count = 0
+            if org_event_list != nil {
+                org_count = org_event_list!.count
+            }
+            for var i = 0; i < new_event_list.count; ++i{
+                var new_index_path = NSIndexPath(forRow: org_count + i, inSection: section_index)
+                index_path_list.append(new_index_path)
+            }
+        }
+        
+        schedules = temp_schedule
+        scheduleTableView.insertRowsAtIndexPaths(index_path_list, withRowAnimation: UITableViewRowAnimation.Bottom)
+
+        scheduleTableView.endUpdates()
+    }
+    
+    func refreshDateSectionMap(new_schedule: NSMapTable){
+        section_index_to_date.removeAll(keepCapacity: false)
+        var enumerator = new_schedule.keyEnumerator()
+        while let date: String = enumerator.nextObject() as? String {
+            section_index_to_date.append(date)
+        }
+        section_index_to_date.sort({ $0 < $1 })
+    }
     
     // Table view Datasource / delegate methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return schedules.count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return schedules.count
-        
+        let date = section_index_to_date[section]
+        let event_list = schedules.objectForKey(date) as! Array<AyEvent>
+        return event_list.count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 80
+        return 44
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(schedule_cell_identifier, forIndexPath: indexPath)as? ScheduleTableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(list_event_cell_identifier, forIndexPath: indexPath) as? ListEventCell
         if (cell == nil) {
-            cell = ScheduleTableViewCell (style: UITableViewCellStyle.Default, reuseIdentifier: schedule_cell_identifier)
+            cell = ListEventCell (style: UITableViewCellStyle.Default, reuseIdentifier: list_event_cell_identifier)
         }
-        let row = indexPath.row
+        let date = section_index_to_date[indexPath.section]
+        let event_list = schedules.objectForKey(date) as! Array<AyEvent>
+        let event = event_list[indexPath.row]
+        cell!.titleView.text = event.title
+        cell!.timeView.text = NSDateFormatter.localizedStringFromDate(event.start_time!, dateStyle: .NoStyle, timeStyle: .ShortStyle) + " - " + NSDateFormatter.localizedStringFromDate(event.end_time!, dateStyle: .NoStyle, timeStyle: .ShortStyle)
         return cell!
     }
     
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 23
+    }
+
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var dateView = UILabel(frame: CGRect(x: 15, y: 0, width: 200, height: 23))
+        dateView.text = section_index_to_date[section]
+        dateView.textAlignment = NSTextAlignment.Left
+        dateView.textColor = UIColor.blackColor()
+        var headerView = UIView()
+        headerView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
+        headerView.addSubview(dateView)
+        
+        return headerView
+    }
     
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         /*println ("NOT IMPLEMENTED YET")
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.performSegueWithIdentifier(deal_detail_segue_identifer, sender: tableView)
         let row = indexPath.row*/
+    }
+    
+    
+    func addSchedule(new_schedule_map: NSMapTable) -> NSMapTable{
+        var temp_schedule = schedules.copy() as! NSMapTable
+        var enumerator = new_schedule_map.keyEnumerator()
+        while let date: String = enumerator.nextObject() as? String {
+            var event_list = temp_schedule.objectForKey(date) as? Array<AyEvent>
+            var new_event_list = new_schedule_map.objectForKey(date) as! Array<AyEvent>
+            if event_list == nil {
+                event_list = new_event_list
+            } else {
+                event_list! += new_event_list
+            }
+            temp_schedule.setObject(event_list!, forKey: date)
+        }
+        return temp_schedule
     }
     
     /////////////////////// Calendar delegate methods ///////////////////////

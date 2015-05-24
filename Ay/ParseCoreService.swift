@@ -196,10 +196,13 @@ class ParseCoreService {
                     var new_event = AyEvent(id: new_id, target_name: target, start: start, end: end, title: title, alarm: alarm, recur_end: recur_end, recur_freq: recur_freq, recur_occur: recur_occur!)
                     self.appDelegate.data_manager!.events.append(new_event)
                 }
+                NSNotificationCenter.defaultCenter().postNotificationName(notification_events_fetched, object: self)
             }
             else if (error != nil) {
                 NSLog("error: \(error!.userInfo)")
             }
+            
+            
         })
     }
 }
