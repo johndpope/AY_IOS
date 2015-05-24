@@ -49,7 +49,7 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func addPressed(sender: AnyObject) {
         
-        cur_event!.title = title_cell.titleTextField.text
+        cur_event?.title = title_cell.titleTextField.text
       
         if !cur_event!.isComplete() {
             let alertController = UIAlertController(title: "Incomplete", message: "You need to fill in all the required fields.", preferredStyle: .Alert)
@@ -73,6 +73,8 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        cur_event = AyEvent()
         
         initializeDatePickers()
         
