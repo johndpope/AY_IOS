@@ -66,10 +66,13 @@ class SyncCalendarViewController: UIViewController {
         }*/
         
     }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        // Add to db using parsecoreservice
+        ParseCoreService().createUser("", password: "", first_name : "PlaceHolder", last_name : "", birth : NSDate(), family_members: Array<NSDictionary>())
     }
 
     override func didReceiveMemoryWarning() {

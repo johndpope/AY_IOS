@@ -42,6 +42,8 @@
 		1B4F4C9D1AFEDDFA00C61708 /* AyRecommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C9C1AFEDDFA00C61708 /* AyRecommendation.swift */; };
 		1B4F4C9F1AFEDEF500C61708 /* AyConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C9E1AFEDEF500C61708 /* AyConstants.swift */; };
 		1B4F4CA11AFEDF8F00C61708 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */; };
+		1B56220B1B124B08006426AD /* ChildInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56220A1B124B07006426AD /* ChildInfoViewController.swift */; };
+		1B56220D1B126503006426AD /* ChildInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56220C1B126502006426AD /* ChildInfoTableViewCell.swift */; };
 		1B5D68241B0D171900BBB904 /* StartTimePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D68231B0D171900BBB904 /* StartTimePickerCell.swift */; };
 		1B5D68261B0D5E6200BBB904 /* OPACITY_STATUS_BAR_COVER.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5D68251B0D5E6200BBB904 /* OPACITY_STATUS_BAR_COVER.png */; };
 		1B5D68281B0D62F400BBB904 /* X.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5D68271B0D62F400BBB904 /* X.png */; };
@@ -135,6 +137,8 @@
 		1B4F4C9C1AFEDDFA00C61708 /* AyRecommendation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyRecommendation.swift; sourceTree = "<group>"; };
 		1B4F4C9E1AFEDEF500C61708 /* AyConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyConstants.swift; sourceTree = "<group>"; };
 		1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		1B56220A1B124B07006426AD /* ChildInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildInfoViewController.swift; sourceTree = "<group>"; };
+		1B56220C1B126502006426AD /* ChildInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildInfoTableViewCell.swift; sourceTree = "<group>"; };
 		1B5D68231B0D171900BBB904 /* StartTimePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartTimePickerCell.swift; sourceTree = "<group>"; };
 		1B5D68251B0D5E6200BBB904 /* OPACITY_STATUS_BAR_COVER.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OPACITY_STATUS_BAR_COVER.png; sourceTree = "<group>"; };
 		1B5D68271B0D62F400BBB904 /* X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = X.png; sourceTree = "<group>"; };
@@ -220,6 +224,7 @@
 				1B87B06A1B1181AE00A6C381 /* TutorialViewController.swift */,
 				1B87B06C1B1186AC00A6C381 /* TutorialContentViewController.swift */,
 				1B0271101B1146A1005AED86 /* AddChildrenViewController.swift */,
+				1B56220A1B124B07006426AD /* ChildInfoViewController.swift */,
 				1B02710E1B11196F005AED86 /* SyncCalendarViewController.swift */,
 			);
 			name = Login;
@@ -357,6 +362,7 @@
 				95DCA09C1B0E9FF90033D729 /* EndTimePickerCell.swift */,
 				95DCA0A21B0FEE890033D729 /* RepeatEndCell.swift */,
 				95DCA0A61B1139D70033D729 /* ListEventCell.swift */,
+				1B56220C1B126502006426AD /* ChildInfoTableViewCell.swift */,
 			);
 			name = CustomTableCells;
 			sourceTree = "<group>";
@@ -491,11 +497,13 @@
 				1B04F0031B0ABD1100DF30B3 /* CVCalendarDayView.swift in Sources */,
 				1B72103B1B0AFAC600E0D729 /* StartDateCell.swift in Sources */,
 				1B4F4C9B1AFEDDEA00C61708 /* AyUser.swift in Sources */,
+				1B56220B1B124B08006426AD /* ChildInfoViewController.swift in Sources */,
 				1B04F0081B0ABD1100DF30B3 /* CVCalendarMonthView.swift in Sources */,
 				1B04F00D1B0ABD1100DF30B3 /* CVCalendarViewAppearance.swift in Sources */,
 				1B04F0021B0ABD1100DF30B3 /* CVCalendarContentViewController.swift in Sources */,
 				95DCA0A51B0FF3790033D729 /* RepeatEndsViewController.swift in Sources */,
 				1B7210351B0AFA8A00E0D729 /* LocationCell.swift in Sources */,
+				1B56220D1B126503006426AD /* ChildInfoTableViewCell.swift in Sources */,
 				1B04F0121B0ABD1100DF30B3 /* CVCalendarWeekView.swift in Sources */,
 				1B4F4C771AFEC79F00C61708 /* ViewController.swift in Sources */,
 				95DCA0A31B0FEE890033D729 /* RepeatEndCell.swift in Sources */,

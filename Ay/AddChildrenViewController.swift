@@ -10,6 +10,11 @@ import UIKit
 
 class AddChildrenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var tableView: UITableView!
+    
+    override func viewDidAppear(animated: Bool){
+        self.tableView.reloadData()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,9 +50,11 @@ class AddChildrenViewController: UIViewController, UITableViewDelegate, UITableV
         let user = app_delegate.data_manager!.cur_user
 
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(schedule_cell_identifier, forIndexPath: indexPath)as? UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(add_child_cell_identifier)as? ChildInfoTableViewCell
         let row = indexPath.row
-        cell!.textLabel!.text = user!.family_members![row]["First_Name"] as? String
+        cell!.name_label.text = user!.family_members![row]["first_name"] as? String
+        cell!.age_label.text = user!.family_members![row]["age"] as? String
+
         return cell!
     }
     

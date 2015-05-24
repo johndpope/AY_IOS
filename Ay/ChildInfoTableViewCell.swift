@@ -1,3 +1,4 @@
+
 //
 //  ChildInfoTableViewCell.swift
 //  Ay
@@ -10,6 +11,8 @@ import UIKit
 
 class ChildInfoTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var age_label: UILabel!
+    @IBOutlet weak var name_label: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
