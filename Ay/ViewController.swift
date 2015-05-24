@@ -42,7 +42,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidAppear(animated)
         let app_delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         // User data is already initialized
-        if app_delegate.data_manager!.getCurrentUser() == nil {
+        if app_delegate.data_manager!.cur_user == nil && app_delegate.data_manager!.getCurrentUser() == nil {
             // Do login procedure
             self.performSegueWithIdentifier(login_segue_identifier, sender: self)
         } else {
