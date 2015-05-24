@@ -4,6 +4,20 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <scenes>
+        <!--Tutorial View Controller-->
+        <scene sceneID="tZe-pb-Ibe">
+            <objects>
+                <pageViewController storyboardIdentifier="TutorialViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="dIy-YR-TAO" customClass="TutorialViewController" customModule="Ay" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iwZ-Ho-Z7o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="i6W-y6-buy">
+                    <connections>
+                        <action selector="motionDetected:" destination="dIy-YR-TAO" id="jlL-LO-8cE"/>
+                        <outlet property="delegate" destination="dIy-YR-TAO" id="yEw-DF-nvf"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="532" y="-444"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -129,7 +143,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="XS0-Pk-CFu" kind="presentation" identifier="login_segue_identifier" id="PAC-Gm-TRP"/>
+                                    <segue destination="dIy-YR-TAO" kind="presentation" identifier="login_segue_identifier" id="Mcd-fs-6pX"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -447,6 +461,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2bz-dP-QHG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1618.5" y="975.5"/>
+        </scene>
+        <!--Tutorial Content View Controller-->
+        <scene sceneID="s4e-9v-l4j">
+            <objects>
+                <viewController storyboardIdentifier="TutorialContentViewController" id="ghR-kt-8NM" customClass="TutorialContentViewController" customModule="Ay" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UtK-Ld-w7G"/>
+                        <viewControllerLayoutGuide type="bottom" id="cdO-29-2d9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RzY-nn-DHQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lCo-SG-bHX">
+                                <rect key="frame" x="0.0" y="207" width="375" height="279"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELG-MV-zrd">
+                                <rect key="frame" x="147" y="579" width="80" height="30"/>
+                                <state key="normal" title="Get Started">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="XS0-Pk-CFu" kind="presentation" id="DmU-Or-Wq0"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tn6-Hv-oIg">
+                                <rect key="frame" x="104" y="28" width="166" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="bkImageView" destination="lCo-SG-bHX" id="2BU-rl-rJL"/>
+                        <outlet property="heading" destination="tn6-Hv-oIg" id="aeJ-sb-nEU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CF0-7v-FUe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="460.5" y="-1149.5"/>
         </scene>
         <!--Sync Calendar View Controller-->
         <scene sceneID="bcr-Io-x8t">

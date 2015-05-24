@@ -56,6 +56,8 @@
 		1B72103D1B0AFAD700E0D729 /* EndDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72103C1B0AFAD700E0D729 /* EndDateCell.swift */; };
 		1B72103F1B0AFAF700E0D729 /* ParticipantsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72103E1B0AFAF700E0D729 /* ParticipantsCell.swift */; };
 		1B7210411B0AFB0300E0D729 /* NotesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7210401B0AFB0300E0D729 /* NotesCell.swift */; };
+		1B87B06B1B1181AF00A6C381 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B87B06A1B1181AE00A6C381 /* TutorialViewController.swift */; };
+		1B87B06D1B1186AC00A6C381 /* TutorialContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B87B06C1B1186AC00A6C381 /* TutorialContentViewController.swift */; };
 		1BE2A4E41B0B12160091DCC3 /* PLUS.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BE2A4E31B0B12160091DCC3 /* PLUS.png */; };
 		95CF63911AFEE7E200F28153 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CF63901AFEE7E200F28153 /* AudioToolbox.framework */; };
 		95CF63931AFEE7E800F28153 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CF63921AFEE7E800F28153 /* CFNetwork.framework */; };
@@ -144,6 +146,8 @@
 		1B72103C1B0AFAD700E0D729 /* EndDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndDateCell.swift; sourceTree = "<group>"; };
 		1B72103E1B0AFAF700E0D729 /* ParticipantsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantsCell.swift; sourceTree = "<group>"; };
 		1B7210401B0AFB0300E0D729 /* NotesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesCell.swift; sourceTree = "<group>"; };
+		1B87B06A1B1181AE00A6C381 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		1B87B06C1B1186AC00A6C381 /* TutorialContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialContentViewController.swift; sourceTree = "<group>"; };
 		1BE2A4E31B0B12160091DCC3 /* PLUS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PLUS.png; sourceTree = "<group>"; };
 		957B729F1B0ACCF300C9A2EB /* SwiftHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftHeader.h; sourceTree = "<group>"; };
 		95CF63901AFEE7E200F28153 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -207,6 +211,8 @@
 		1B0271121B114A29005AED86 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				1B87B06A1B1181AE00A6C381 /* TutorialViewController.swift */,
+				1B87B06C1B1186AC00A6C381 /* TutorialContentViewController.swift */,
 				1B0271101B1146A1005AED86 /* AddChildrenViewController.swift */,
 				1B02710E1B11196F005AED86 /* SyncCalendarViewController.swift */,
 			);
@@ -278,23 +284,18 @@
 		1B4F4C6E1AFEC79F00C61708 /* Ay */ = {
 			isa = PBXGroup;
 			children = (
+				1B87B06E1B1186D200A6C381 /* Models */,
 				1B0271121B114A29005AED86 /* Login */,
-				1B7210311B0AFA1000E0D729 /* EventTableCells */,
+				1B7210311B0AFA1000E0D729 /* CustomTableCells */,
 				1B04EFEC1B0ABD1100DF30B3 /* CVCalendar */,
 				95CF63BF1AFEF30A00F28153 /* Service */,
 				1B4F4C711AFEC79F00C61708 /* AppDelegate.swift */,
-				1B4F4C941AFEDBEC00C61708 /* ScheduleTableViewCell.swift */,
 				1B4F4C761AFEC79F00C61708 /* ViewController.swift */,
 				1B4F4C781AFEC7A000C61708 /* Main.storyboard */,
 				1B4F4C7B1AFEC7A000C61708 /* Images.xcassets */,
 				1B4F4C7D1AFEC7A000C61708 /* LaunchScreen.xib */,
 				1B4F4C731AFEC79F00C61708 /* Ay.xcdatamodeld */,
 				1B4F4C6F1AFEC79F00C61708 /* Supporting Files */,
-				1B4F4C981AFEDDBD00C61708 /* AyEvent.swift */,
-				1B4F4C9A1AFEDDEA00C61708 /* AyUser.swift */,
-				1B4F4C9C1AFEDDFA00C61708 /* AyRecommendation.swift */,
-				1B4F4C9E1AFEDEF500C61708 /* AyConstants.swift */,
-				1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */,
 				957B729F1B0ACCF300C9A2EB /* SwiftHeader.h */,
 				1B72102F1B0AF48300E0D729 /* AddEventViewController.swift */,
 				95DCA09E1B0EFAF40033D729 /* RepeatSettingViewController.swift */,
@@ -333,9 +334,10 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		1B7210311B0AFA1000E0D729 /* EventTableCells */ = {
+		1B7210311B0AFA1000E0D729 /* CustomTableCells */ = {
 			isa = PBXGroup;
 			children = (
+				1B4F4C941AFEDBEC00C61708 /* ScheduleTableViewCell.swift */,
 				1B7210321B0AFA5900E0D729 /* TitleCell.swift */,
 				1B7210341B0AFA8A00E0D729 /* LocationCell.swift */,
 				1B7210361B0AFA9C00E0D729 /* RepeatCell.swift */,
@@ -347,7 +349,19 @@
 				1B5D68231B0D171900BBB904 /* StartTimePickerCell.swift */,
 				95DCA09C1B0E9FF90033D729 /* EndTimePickerCell.swift */,
 			);
-			name = EventTableCells;
+			name = CustomTableCells;
+			sourceTree = "<group>";
+		};
+		1B87B06E1B1186D200A6C381 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1B4F4C9E1AFEDEF500C61708 /* AyConstants.swift */,
+				1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */,
+				1B4F4C981AFEDDBD00C61708 /* AyEvent.swift */,
+				1B4F4C9A1AFEDDEA00C61708 /* AyUser.swift */,
+				1B4F4C9C1AFEDDFA00C61708 /* AyRecommendation.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		95CF63BF1AFEF30A00F28153 /* Service */ = {
@@ -476,6 +490,7 @@
 				1B4F4C771AFEC79F00C61708 /* ViewController.swift in Sources */,
 				1B04F00B1B0ABD1100DF30B3 /* CVCalendarViewAnimator.swift in Sources */,
 				1B04F0101B0ABD1100DF30B3 /* CVCalendarWeekContentRecovery.swift in Sources */,
+				1B87B06D1B1186AC00A6C381 /* TutorialContentViewController.swift in Sources */,
 				1B72103D1B0AFAD700E0D729 /* EndDateCell.swift in Sources */,
 				1B4F4C991AFEDDBD00C61708 /* AyEvent.swift in Sources */,
 				1B04F0011B0ABD1100DF30B3 /* CVCalendarContentDelegate.swift in Sources */,
@@ -498,6 +513,7 @@
 				1B4F4C9D1AFEDDFA00C61708 /* AyRecommendation.swift in Sources */,
 				1B04F0091B0ABD1100DF30B3 /* CVCalendarRenderer.swift in Sources */,
 				1B4F4CA11AFEDF8F00C61708 /* DataManager.swift in Sources */,
+				1B87B06B1B1181AF00A6C381 /* TutorialViewController.swift in Sources */,
 				95DCA09D1B0E9FF90033D729 /* EndTimePickerCell.swift in Sources */,
 				1B04F0141B0ABD1100DF30B3 /* CVDate.swift in Sources */,
 				95DCA0A11B0F08580033D729 /* NotifyViewController.swift in Sources */,

@@ -37,3 +37,8 @@ let notify_option_cell = "notify_option_cell"
 
 let login_segue_identifier = "login_segue_identifier"
 
+
+// Add children cell
+
+let add_child_cell_identifier = "add_child_cell_identifier"
+

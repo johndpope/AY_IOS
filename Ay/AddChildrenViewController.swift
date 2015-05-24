@@ -28,11 +28,11 @@ class AddChildrenViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        /*let app_delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let app_delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let user = app_delegate.data_manager!.cur_user
-        if user.family_members.count != 0 {
-            return user.family_members.count
-        }*/
+        if user != nil && user!.family_members!.count != 0 {
+            return user!.family_members!.count
+        }
         return 0
     }
     
@@ -41,11 +41,13 @@ class AddChildrenViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(schedule_cell_identifier, forIndexPath: indexPath)as? ScheduleTableViewCell
-        if (cell == nil) {
-            cell = ScheduleTableViewCell (style: UITableViewCellStyle.Default, reuseIdentifier: schedule_cell_identifier)
-        }
+        let app_delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let user = app_delegate.data_manager!.cur_user
+
+        
+        var cell = tableView.dequeueReusableCellWithIdentifier(schedule_cell_identifier, forIndexPath: indexPath)as? UITableViewCell
         let row = indexPath.row
+        cell!.textLabel!.text = user!.family_members![row]["First_Name"] as? String
         return cell!
     }
     
@@ -56,6 +58,8 @@ class AddChildrenViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.performSegueWithIdentifier(deal_detail_segue_identifer, sender: tableView)
         let row = indexPath.row*/
+        
+        // TODO, but I think we will disable user interaction
     }
     /*
     // MARK: - Navigation
