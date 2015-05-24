@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     var data_manager: DataManager?
+    var core_service: ParseCoreService?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Configure Parse server
@@ -48,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Initialize data manager singleton instance
         data_manager = DataManager()
+        core_service = ParseCoreService()
         
         // TODO: load back from core data Do a generic intialization for now
         var list: Array<NSDictionary> = []
@@ -61,8 +63,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         data_manager!.cur_user = AyUser(id: "d1GsYlsY7B", email: "bjang1@stanford.edu", password: "stanford", first_name: "Brian", last_name: "Jang", birth_date: d!, family_members: list)
         
         /*var event_date = "2015-05-20"
-        var ed = dateStringFormatter.dateFromString(event_date)
-        ParseCoreService().getEvents()*/
+        var ed = dateStringFormatter.dateFromString(event_date)*/
+        core_service!.getEvents()
         application.statusBarStyle = .LightContent
         return true
     }

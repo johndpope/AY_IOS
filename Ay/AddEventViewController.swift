@@ -40,8 +40,6 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func addPressed(sender: AnyObject) {
         
         var recur_freq = getRecurStructure()
-        var new_event = AyEvent(id: appDelegate.data_manager!.cur_user!.Object_Id, target_name: "Brian", start: start_date_picker_cell.datePicker.date, end: end_date_picker_cell.datePicker.date, title: title_cell.titleTextField.text, alarm: notify_time, recur_end: repeat_end_time, recur_freq: recur_freq, recur_occur: 0)
-        self.appDelegate.data_manager!.events.append(new_event)
         ParseCoreService().createEvent("Brian", title: title_cell.titleTextField.text, start: start_date_picker_cell.datePicker.date, end: end_date_picker_cell.datePicker.date, alarm: notify_time, recur_end: repeat_end_time, recur_freq: recur_freq, recur_occur: 0)
         self.dismissViewControllerAnimated(true, completion: nil)
     }

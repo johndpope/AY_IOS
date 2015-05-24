@@ -20,8 +20,8 @@ class DataManager {
     var notify_none_options: [String] = ["None"]
     var notify_options: [String] = ["At the time of event", "5 minutes before", "10 minutes before", "15 minutes before", "30 minutes before", "1 hour before", "2 hours before", "1 day before", "2 days before", "1 week before"]
     
-    func getMonthlySchedule(month: Int, year: Int) -> Array<AyEvent> {
-        var monthly_schedule = Array<AyEvent>()
+    func getMonthlySchedule(month: Int, year: Int) -> NSMapTable {
+        var monthly_schedule = NSMapTable()
         for event in events{
             let start_components = NSCalendar.currentCalendar().components(flags, fromDate: event.start_time!)
             let end_components = NSCalendar.currentCalendar().components(flags, fromDate: event.end_time!)
@@ -29,7 +29,7 @@ class DataManager {
             // Event has no recurrance
             if event.recur_freq == nil {
                 if isInThisMonth(start_components, end_components: end_components, month: month, year: year) {
-                    monthly_schedule.append(event)
+                    monthly_schedule = addEvent(monthly_schedule, new_event: event)
                 }
             
             // Event has recurrance
@@ -40,7 +40,7 @@ class DataManager {
                     
                     // Add event if it starts this month
                     if isInThisMonth(start_components, end_components: end_components, month: month, year: year) {
-                        monthly_schedule.append(event)
+                        monthly_schedule = addEvent(monthly_schedule, new_event: event)
                     }
                     
                     // Event has occurance limit
@@ -57,7 +57,7 @@ class DataManager {
                             // next event belongs to this month
                             if isInThisMonth(next_start_components, end_components: next_end_components, month: month, year: year) {
                                 var schedule = AyEvent(id: event.id, target_name: event.target_name, start: next_start_date, end: next_end_date, title: event.title, alarm: event.alarm_time, recur_end: event.recur_end, recur_freq: event.recur_freq, recur_occur: event.recur_occur)
-                                    monthly_schedule.append(schedule)
+                                    monthly_schedule = addEvent(monthly_schedule, new_event: schedule)
                             
                             // next event pass this month
                             } else if next_start_components.year > year || (next_start_components.year == year && next_start_components.month > month) {
@@ -93,7 +93,7 @@ class DataManager {
                                 // next event belongs to this month
                                 if isInThisMonth(next_start_components, end_components: next_end_components, month: month, year: year){
                                     var schedule = AyEvent(id: event.id, target_name: event.target_name, start: next_start_date, end: next_end_date, title: event.title, alarm: event.alarm_time, recur_end: event.recur_end, recur_freq: event.recur_freq, recur_occur: event.recur_occur)
-                                    monthly_schedule.append(schedule)
+                                    monthly_schedule = addEvent(monthly_schedule, new_event: schedule)
                                     
                                 // next event pass this month
                                 } else if next_start_components.year > year || (next_start_components.year == year && next_start_components.month > month) {
@@ -204,6 +204,17 @@ class DataManager {
             }
             return NSCalendar.currentCalendar().dateByAddingUnit(.CalendarUnitYear, value: year_inc, toDate: start_date, options: nil)!
         }
+    }
+    
+    func addEvent(event_map : NSMapTable, new_event: AyEvent) -> NSMapTable{
+        var date = NSDateFormatter.localizedStringFromDate(new_event.start_time!, dateStyle: .ShortStyle, timeStyle: .NoStyle) as String
+        var event_list = event_map.objectForKey(date) as? Array<AyEvent>
+        if event_list == nil {
+            event_list = Array<AyEvent>()
+        }
+        event_list!.append(new_event as AyEvent)
+        event_map.setObject(event_list!, forKey: date)
+        return event_map
     }
 
 }

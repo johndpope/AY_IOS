@@ -8,7 +8,8 @@
 
 import Foundation
 
-let schedule_cell_identifier = "ScheduleCellIdentifier$$"
+let list_event_cell_identifier = "list_event_cell_identifier"
+let list_date_cell_identifier = "list_date_cell_identifier"
 
 let add_event_notify_cell_identifier = "add_notify_cell_identifier"
 
@@ -38,3 +39,5 @@ let repeat_ends_never_cell_identifier = "repeat_ends_never_cell_identifier"
 let repeat_ends_end_date_cell_identifier = "repeat_ends_end_date_cell_identifier"
 let repeat_ends_end_date_picker_cell_identifier = "repeat_ends_end_date_picker_cell_identifier"
 
+/* Notification Constants */
+let notification_events_fetched = "notification_events_fetched"
