@@ -28,11 +28,11 @@ class AddChildrenViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let app_delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let user = app_delegate.data_manager.cur_user
+        /*let app_delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let user = app_delegate.data_manager!.cur_user
         if user.family_members.count != 0 {
             return user.family_members.count
-        }
+        }*/
         return 0
     }
     
