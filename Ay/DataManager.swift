@@ -16,6 +16,8 @@ class DataManager {
     var cur_user : AyUser?
     let flags: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitWeekday
     
+    let weekday_list : [String] = ["Sunday", "Monday", "Tuesday", "Wednsday", "Thursday", "Friday", "Saturday"]
+    
     
     func saveCurrentUser(id:String, first_name : String, last_name : String, email :String) {
         let app_delegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -260,7 +262,9 @@ class DataManager {
     }
     
     func addEvent(event_map : NSMapTable, new_event: AyEvent) -> NSMapTable{
-        var date = NSDateFormatter.localizedStringFromDate(new_event.start_time!, dateStyle: .ShortStyle, timeStyle: .NoStyle) as String
+        var date_components = NSCalendar.currentCalendar().components(flags, fromDate: new_event.start_time!)
+        var date = date_components.year * 10000 + date_components.month * 100 + date_components.day
+        //var date = NSDateFormatter.localizedStringFromDate(new_event.start_time!, dateStyle: .ShortStyle, timeStyle: .NoStyle) as String
         var event_list = event_map.objectForKey(date) as? Array<AyEvent>
         if event_list == nil {
             event_list = Array<AyEvent>()

@@ -38,6 +38,8 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     
     let flags: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitWeekday
     
+    var onDataAvailable : ((data: String) -> ())?
+    
     @IBAction func cancelPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -65,7 +67,6 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
             // TODO : add event to global or local array
             var recur_freq = getRecurStructure()
             ParseCoreService().createEvent("Brian", title: title_cell.titleTextField.text, start: start_date_picker_cell.datePicker.date, end: end_date_picker_cell.datePicker.date, alarm: notify_time, recur_end: repeat_end_time, recur_freq: recur_freq, recur_occur: 0)
-            self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
@@ -78,12 +79,18 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         
         initializeDatePickers()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "addEventSuccess:", name: notification_event_created, object: nil)
         // Do any additional setup after loading the view.
     }
     
     func initializeDatePickers(){
         toggleStartDatePicker()
         toggleEndDatePicker()
+    }
+    
+    func addEventSuccess(notification: NSNotification){
+        self.onDataAvailable?(data: "success")
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func setRepeat(data: NSDictionary){

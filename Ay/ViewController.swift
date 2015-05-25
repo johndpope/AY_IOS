@@ -12,6 +12,10 @@ import UIKit
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CVCalendarViewDelegate {
 
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+    let flags: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitWeekday
+    
+    let header_height = 25
 
     @IBAction func settingsPressed(sender: AnyObject) {
     }
@@ -21,10 +25,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var dateLabel: UILabel!
     private var schedules = NSMapTable()
-    private var section_index_to_date = Array<String>()
+    private var section_index_to_date = Array<Int>()
+    private var first_month_available : Int! // YYYYMM
+    private var last_month_available : Int! // YYYYMM
+    private var loading_next_month = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        initializeDate()
+        
         scheduleTableView.delegate   = self
         scheduleTableView.dataSource = self
         
@@ -56,13 +66,52 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    func initializeDate(){
+        //Initialize current month
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.CalendarUnitYear | .CalendarUnitMonth, fromDate: date)
+        first_month_available = components.year * 100 + components.month
+        last_month_available = first_month_available
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        // When preparing for the segue, have viewController1 provide a closure for
+        // onDataAvailable
+        if let viewController = segue.destinationViewController as? AddEventViewController {
+            viewController.onDataAvailable = {[weak self]
+                (data) in
+                if let weakSelf = self {
+                    if data == "success"{
+                        weakSelf.refreshSchedule()
+                    }
+                }
+            }
+        }
+    }
+
+    
+    // Events pulled from server
     func refreshSchedule(notification: NSNotification){
-        var new_schedules = self.appDelegate.data_manager!.getMonthlySchedule(5, year: 2015)
+        refreshSchedule()
+    }
+    
+    func refreshSchedule(){
+        initializeDate()
+        schedules.removeAllObjects()
+        section_index_to_date.removeAll(keepCapacity: false)
+        scheduleTableView.reloadData()
+        addMonthlySchedule(first_month_available % 100, year: first_month_available / 100)
+    }
+    
+    func addMonthlySchedule(month: Int, year: Int) {
+        var new_schedules = self.appDelegate.data_manager!.getMonthlySchedule(month, year: year)
         
         scheduleTableView.beginUpdates()
-
-        // Add sections to table view
+        
         var temp_schedule = addSchedule(new_schedules)
+        
+        // Add sections to table view
         var org_section_count = section_index_to_date.count
         refreshDateSectionMap(temp_schedule)
         var index_set = NSMutableIndexSet()
@@ -75,7 +124,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Add rows to each section
         var index_path_list = Array<NSIndexPath>()
         var enumerator = new_schedules.keyEnumerator()
-        while let date: String = enumerator.nextObject() as? String {
+        while let date: Int = enumerator.nextObject() as? Int {
             let new_event_list = new_schedules.objectForKey(date) as! Array<AyEvent>
             var section_index = 0
             for var i = 0; i < section_index_to_date.count; ++i {
@@ -105,7 +154,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func refreshDateSectionMap(new_schedule: NSMapTable){
         section_index_to_date.removeAll(keepCapacity: false)
         var enumerator = new_schedule.keyEnumerator()
-        while let date: String = enumerator.nextObject() as? String {
+        while let date: Int = enumerator.nextObject() as? Int {
             section_index_to_date.append(date)
         }
         section_index_to_date.sort({ $0 < $1 })
@@ -140,16 +189,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 23
+        return CGFloat(header_height)
     }
 
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var dateView = UILabel(frame: CGRect(x: 15, y: 0, width: 200, height: 23))
-        dateView.text = section_index_to_date[section]
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+        var date = dateFormatter.dateFromString(String(section_index_to_date[section]))
+        var date_components = NSCalendar.currentCalendar().components(flags, fromDate: date!)
+        var cal_date : String = String(date_components.month) + "/" + String(date_components.day) + "/" + String(date_components.year % 100)
+        
+        var weekDayView = UILabel(frame: CGRect(x: 15, y: 0, width: 200, height: header_height))
+        weekDayView.text = self.appDelegate.data_manager!.weekday_list[date_components.weekday-1]
+        weekDayView.textAlignment = NSTextAlignment.Left
+        weekDayView.font = UIFont.boldSystemFontOfSize(16.0)
+        weekDayView.textColor = UIColor.blackColor()
+        
+        var dateView = UILabel(frame: CGRect(x: 100, y: 0, width: 200, height: header_height))
+        dateView.text = cal_date
         dateView.textAlignment = NSTextAlignment.Left
+        dateView.font = UIFont(name: dateView.font.fontName, size: 15)
         dateView.textColor = UIColor.blackColor()
+        
         var headerView = UIView()
         headerView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
+        headerView.addSubview(weekDayView)
         headerView.addSubview(dateView)
         
         return headerView
@@ -166,11 +230,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let row = indexPath.row*/
     }
     
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+        
+        if (maximumOffset - currentOffset) <= 40 && !loading_next_month{
+            loading_next_month = true
+            
+            var next_month = last_month_available + 1
+            if next_month % 100 == 13 {
+                next_month += 88
+            }
+            last_month_available = next_month
+            println(next_month)
+            addMonthlySchedule(next_month % 100, year: next_month / 100)
+            
+            loading_next_month = false
+        }
+    }
+    
     
     func addSchedule(new_schedule_map: NSMapTable) -> NSMapTable{
         var temp_schedule = schedules.copy() as! NSMapTable
         var enumerator = new_schedule_map.keyEnumerator()
-        while let date: String = enumerator.nextObject() as? String {
+        while let date: Int = enumerator.nextObject() as? Int {
             var event_list = temp_schedule.objectForKey(date) as? Array<AyEvent>
             var new_event_list = new_schedule_map.objectForKey(date) as! Array<AyEvent>
             if event_list == nil {
@@ -243,6 +326,50 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func presentedDateUpdated(date: CVDate){
         self.dateLabel.text = date.description_str()
         setBgColor(date)
+        
+        // Add new month's schedules if needed
+        let presented_month = date.year! * 100 + date.month!
+        if presented_month < first_month_available {
+            first_month_available = presented_month
+            addMonthlySchedule(date.month!, year: date.year!)
+        } else if presented_month > last_month_available {
+            last_month_available = presented_month
+            addMonthlySchedule(date.month!, year: date.year!)
+        }
+        
+        let nearest_section = getNearestSection(date.month!, year: date.year!)
+        var nearest_index_path: NSIndexPath
+        if nearest_section == section_index_to_date.count {
+            nearest_index_path = NSIndexPath(forRow: 0, inSection: section_index_to_date.count-1)
+            scheduleTableView.scrollToRowAtIndexPath(nearest_index_path, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+        } else if nearest_section >= 0 {
+            nearest_index_path = NSIndexPath(forRow: 0, inSection: nearest_section)
+            scheduleTableView.scrollToRowAtIndexPath(nearest_index_path, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+        }
+        
+    }
+    
+    func getNearestSection(month: Int, year: Int) -> Int{
+        var date_formatter = NSDateFormatter()
+        for var i = 0; i < section_index_to_date.count; ++i {
+            var date = section_index_to_date[i]
+            var temp_month = (date % 10000) / 100
+            var temp_year = date / 10000
+            
+            if temp_year >= year{
+                if temp_year > year {
+                    return i - 1
+                } else {
+                    if temp_month > month {
+                        return i - 1
+                    } else if temp_month == month{
+                        return i
+                    }
+                }
+            }
+        }
+        
+        return section_index_to_date.count
     }
     
     /* Determines if a specific Day View should contain a topMarker. */

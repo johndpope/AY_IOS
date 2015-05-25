@@ -50,4 +50,5 @@ let repeat_ends_end_date_cell_identifier = "repeat_ends_end_date_cell_identifier
 let repeat_ends_end_date_picker_cell_identifier = "repeat_ends_end_date_picker_cell_identifier"
 
 /* Notification Constants */
+let notification_event_created = "notification_event_created"
 let notification_events_fetched = "notification_events_fetched"
