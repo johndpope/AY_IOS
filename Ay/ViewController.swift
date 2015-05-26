@@ -11,9 +11,18 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CVCalendarViewDelegate {
 
+    // The titlebar pressed, shoudl return to today
+    @IBAction func return_today_button_pressed(sender: AnyObject) {
+        
+        
+    }
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     let flags: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay | .CalendarUnitWeekday
+    
+    @IBOutlet weak var sectionheader: UIView!
+    
+    @IBOutlet weak var dateHeader: UILabel!
     
     let header_height = 25
 
@@ -172,7 +181,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 44
+        return 48
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -184,7 +193,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let event_list = schedules.objectForKey(date) as! Array<AyEvent>
         let event = event_list[indexPath.row]
         cell!.titleView.text = event.title
-        cell!.timeView.text = NSDateFormatter.localizedStringFromDate(event.start_time!, dateStyle: .NoStyle, timeStyle: .ShortStyle) + " - " + NSDateFormatter.localizedStringFromDate(event.end_time!, dateStyle: .NoStyle, timeStyle: .ShortStyle)
+        
+        cell!.subtitle_label.text = "location"
+        
+        cell!.start_time_label.text = NSDateFormatter.localizedStringFromDate(event.start_time!, dateStyle: .NoStyle, timeStyle: .ShortStyle)
+        
+        cell!.end_time_label.text = NSDateFormatter.localizedStringFromDate(event.end_time!, dateStyle: .NoStyle, timeStyle: .ShortStyle)
         return cell!
     }
     
@@ -275,12 +289,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       If the value is true then it's possible to toggle between month 
      views on selecting day out. */
     func shouldShowWeekdaysOut() -> Bool {
-        return false
+        return true
     }
     
     /* Notifies the delegate when a specific day view is touched. */
     func didSelectDayView(dayView: CVCalendarDayView) {
         // TODO : Add individual schedules
+        // Move to certain schedule view
     }
     
     func setBgColor(date: CVDate) {

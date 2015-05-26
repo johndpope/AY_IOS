@@ -9,9 +9,11 @@
 import UIKit
 
 class ListEventCell: UITableViewCell {
-    
+    @IBOutlet weak var start_time_label: UILabel!
+    // Contains the location
+    @IBOutlet weak var subtitle_label: UILabel!
+    @IBOutlet weak var end_time_label: UILabel!
     @IBOutlet weak var titleView: UILabel!
-    @IBOutlet weak var timeView: UILabel!
     @IBOutlet weak var colorImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()

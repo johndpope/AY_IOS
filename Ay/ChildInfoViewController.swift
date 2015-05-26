@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ChildInfoViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var name_textfield: UITextField!
@@ -49,6 +50,12 @@ class ChildInfoViewController: UIViewController, UITextFieldDelegate {
     @IBAction func cancel_pressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    /*func assign_color() -> UIColor {
+        let colors = [UIColor.blueColor(), UIColor.greenColor(), UIColor.yellowColor(), UIColor.grayColor(), UIColor.orangeColor(), UIColor.purpleColor()]
+        let i : Int = Int(arc4random_uniform(colors.count))
+        return colors [i]
+    }*/
     
     func infoComplete() -> Bool {
         println (child["gender"])

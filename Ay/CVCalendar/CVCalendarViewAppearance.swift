@@ -27,7 +27,7 @@ class CVCalendarViewAppearance: NSObject {
     var dayLabelPresentWeekdayInitallyBold: Bool = true
     
     var dayLabelWeekdayInTextColor: UIColor? = .blackColor()
-    var dayLabelWeekdayOutTextColor: UIColor? = .grayColor()
+    var dayLabelWeekdayOutTextColor: UIColor? = UIColor(red:0.63, green:0.63,blue:0.63,alpha:1.0)
     var dayLabelWeekdayHighlightedBackgroundColor: UIColor? = .blueColor()
     var dayLabelWeekdayHighlightedBackgroundAlpha: CGFloat? = 0.6
     var dayLabelPresentWeekdayTextColor: UIColor? = .redColor()
