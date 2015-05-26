@@ -20,7 +20,7 @@ class AyEvent {
     var alarm_time : NSDate?
     var recur_end : NSDate?
     var recur_freq : NSDictionary?
-    var recur_occur : Int
+    var recur_occur : Int?
     
     init () {
         self.id = ""
@@ -34,7 +34,7 @@ class AyEvent {
         self.recur_occur = -1
     }
     
-    init(id: String, target_name: String, start: NSDate, end: NSDate, title: String, alarm: NSDate?, recur_end: NSDate?, recur_freq: NSDictionary?, recur_occur: Int){
+    init(id: String, target_name: String, start: NSDate, end: NSDate, title: String, alarm: NSDate?, recur_end: NSDate?, recur_freq: NSDictionary?, recur_occur: Int?){
         self.id = id
         self.target_name = target_name
         self.start_time = start
@@ -48,15 +48,5 @@ class AyEvent {
     
     func dateAsString(date : NSDate) ->String {
         return  NSDateFormatter.localizedStringFromDate(date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
-    }
-    
-    func isComplete() -> Bool {
-        
-        if (start_time != nil &&
-         end_time != nil &&
-         title != "") {
-                return true
-        }
-        return false
     }
 }

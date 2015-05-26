@@ -50,7 +50,7 @@
 		1B5D68281B0D62F400BBB904 /* X.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5D68271B0D62F400BBB904 /* X.png */; };
 		1B5D682A1B0D63C900BBB904 /* CHECK.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5D68291B0D63C900BBB904 /* CHECK.png */; };
 		1B5D682C1B0D717B00BBB904 /* GEAR.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5D682B1B0D717B00BBB904 /* GEAR.png */; };
-		1B7210301B0AF48400E0D729 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72102F1B0AF48300E0D729 /* AddEventViewController.swift */; };
+		1B7210301B0AF48400E0D729 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72102F1B0AF48300E0D729 /* EventViewController.swift */; };
 		1B7210331B0AFA5900E0D729 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7210321B0AFA5900E0D729 /* TitleCell.swift */; };
 		1B7210351B0AFA8A00E0D729 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7210341B0AFA8A00E0D729 /* LocationCell.swift */; };
 		1B7210371B0AFA9C00E0D729 /* RepeatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7210361B0AFA9C00E0D729 /* RepeatCell.swift */; };
@@ -86,6 +86,7 @@
 		95DCA0A31B0FEE890033D729 /* RepeatEndCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0A21B0FEE890033D729 /* RepeatEndCell.swift */; };
 		95DCA0A51B0FF3790033D729 /* RepeatEndsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0A41B0FF3790033D729 /* RepeatEndsViewController.swift */; };
 		95DCA0A71B1139D70033D729 /* ListEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0A61B1139D70033D729 /* ListEventCell.swift */; };
+		95DCA0AB1B1441CC0033D729 /* AllDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0AA1B1441CC0033D729 /* AllDayCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,7 +147,7 @@
 		1B5D68271B0D62F400BBB904 /* X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = X.png; sourceTree = "<group>"; };
 		1B5D68291B0D63C900BBB904 /* CHECK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CHECK.png; sourceTree = "<group>"; };
 		1B5D682B1B0D717B00BBB904 /* GEAR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GEAR.png; sourceTree = "<group>"; };
-		1B72102F1B0AF48300E0D729 /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		1B72102F1B0AF48300E0D729 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		1B7210321B0AFA5900E0D729 /* TitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		1B7210341B0AFA8A00E0D729 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		1B7210361B0AFA9C00E0D729 /* RepeatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatCell.swift; sourceTree = "<group>"; };
@@ -183,6 +184,7 @@
 		95DCA0A21B0FEE890033D729 /* RepeatEndCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatEndCell.swift; sourceTree = "<group>"; };
 		95DCA0A41B0FF3790033D729 /* RepeatEndsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatEndsViewController.swift; sourceTree = "<group>"; };
 		95DCA0A61B1139D70033D729 /* ListEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListEventCell.swift; sourceTree = "<group>"; };
+		95DCA0AA1B1441CC0033D729 /* AllDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllDayCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -310,7 +312,7 @@
 				1B4F4C731AFEC79F00C61708 /* Ay.xcdatamodeld */,
 				1B4F4C6F1AFEC79F00C61708 /* Supporting Files */,
 				957B729F1B0ACCF300C9A2EB /* SwiftHeader.h */,
-				1B72102F1B0AF48300E0D729 /* AddEventViewController.swift */,
+				1B72102F1B0AF48300E0D729 /* EventViewController.swift */,
 				95DCA09E1B0EFAF40033D729 /* RepeatSettingViewController.swift */,
 				95DCA0A01B0F08580033D729 /* NotifyViewController.swift */,
 				95DCA0A41B0FF3790033D729 /* RepeatEndsViewController.swift */,
@@ -366,6 +368,7 @@
 				95DCA0A21B0FEE890033D729 /* RepeatEndCell.swift */,
 				95DCA0A61B1139D70033D729 /* ListEventCell.swift */,
 				1B56220C1B126502006426AD /* ChildInfoTableViewCell.swift */,
+				95DCA0AA1B1441CC0033D729 /* AllDayCell.swift */,
 			);
 			name = CustomTableCells;
 			sourceTree = "<group>";
@@ -497,7 +500,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B7210301B0AF48400E0D729 /* AddEventViewController.swift in Sources */,
+				1B7210301B0AF48400E0D729 /* EventViewController.swift in Sources */,
 				1B04F0031B0ABD1100DF30B3 /* CVCalendarDayView.swift in Sources */,
 				1B72103B1B0AFAC600E0D729 /* StartDateCell.swift in Sources */,
 				1B4F4C9B1AFEDDEA00C61708 /* AyUser.swift in Sources */,
@@ -518,6 +521,7 @@
 				1B4F4C991AFEDDBD00C61708 /* AyEvent.swift in Sources */,
 				1B04F0011B0ABD1100DF30B3 /* CVCalendarContentDelegate.swift in Sources */,
 				1B7210391B0AFAB300E0D729 /* NotifyCell.swift in Sources */,
+				95DCA0AB1B1441CC0033D729 /* AllDayCell.swift in Sources */,
 				1B7210331B0AFA5900E0D729 /* TitleCell.swift in Sources */,
 				1B04F0061B0ABD1100DF30B3 /* CVCalendarMenuView.swift in Sources */,
 				1B04F00E1B0ABD1100DF30B3 /* CVCalendarViewAppearanceDelegate.swift in Sources */,
@@ -686,7 +690,7 @@
 				INFOPLIST_FILE = Ay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f6aa0277-70c4-4889-81ce-34e5d6298e99";
+				PROVISIONING_PROFILE = "db7afcd9-61e5-49c7-bc21-468f8ec99a07";
 				SWIFT_OBJC_BRIDGING_HEADER = Ay/SwiftHeader.h;
 			};
 			name = Debug;
@@ -704,7 +708,7 @@
 				INFOPLIST_FILE = Ay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f6aa0277-70c4-4889-81ce-34e5d6298e99";
+				PROVISIONING_PROFILE = "db7afcd9-61e5-49c7-bc21-468f8ec99a07";
 				SWIFT_OBJC_BRIDGING_HEADER = Ay/SwiftHeader.h;
 			};
 			name = Release;

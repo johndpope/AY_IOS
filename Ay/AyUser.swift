@@ -20,7 +20,7 @@ class AyUser {
     var first_name : String = ""
     var last_name : String = ""
     var birth_date  : NSDate? = nil
-    var family_members : Array<NSDictionary>? = []
+    var family_members : Array<NSDictionary>!
         
     init (id: String, email: String, password: String, first_name:String, last_name:String, birth_date: NSDate, family_members: Array<NSDictionary>) {
         self.Object_Id = id

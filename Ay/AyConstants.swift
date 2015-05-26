@@ -29,6 +29,9 @@ let add_event_time_picker_cell_identifier = "add_event_time_picker_cell_identifi
 let add_event_start_time_picker_cell_identifier = "add_event_start_time_picker_cell_identifier"
 let add_event_end_time_picker_cell_identifier = "add_event_end_time_picker_cell_identifier"
 let add_event_repeat_end_cell_identifier = "add_event_repeat_end_cell_identifier"
+let add_event_all_day_cell_identifier = "add_event_all_day_cell_identifier"
+
+let event_delete_cell_identifier = "event_delete_cell_identifier"
 
 let repeat_option_cell = "repeat_option_cell"
 let repeat_none_option_cell = "repeat_none_option_cell"
@@ -51,4 +54,6 @@ let repeat_ends_end_date_picker_cell_identifier = "repeat_ends_end_date_picker_c
 
 /* Notification Constants */
 let notification_event_created = "notification_event_created"
+let notification_event_updated = "notification_event_updated"
+let notification_event_deleted = "notification_event_deleted"
 let notification_events_fetched = "notification_events_fetched"

@@ -87,7 +87,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         // When preparing for the segue, have viewController1 provide a closure for
         // onDataAvailable
-        if let viewController = segue.destinationViewController as? AddEventViewController {
+        if let viewController = segue.destinationViewController as? EventViewController {
+            if sender is ListEventCell {
+                viewController.event_id = (sender as! ListEventCell).event_id
+            }
             viewController.onDataAvailable = {[weak self]
                 (data) in
                 if let weakSelf = self {
@@ -193,6 +196,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let event_list = schedules.objectForKey(date) as! Array<AyEvent>
         let event = event_list[indexPath.row]
         cell!.titleView.text = event.title
+        cell!.event_id = event.id
         
         cell!.subtitle_label.text = "location"
         
@@ -238,10 +242,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        /*println ("NOT IMPLEMENTED YET")
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        self.performSegueWithIdentifier(deal_detail_segue_identifer, sender: tableView)
-        let row = indexPath.row*/
+        self.scheduleTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -256,7 +257,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 next_month += 88
             }
             last_month_available = next_month
-            println(next_month)
             addMonthlySchedule(next_month % 100, year: next_month / 100)
             
             loading_next_month = false
