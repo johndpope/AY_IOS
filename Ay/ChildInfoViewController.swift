@@ -82,7 +82,7 @@ class ChildInfoViewController: UIViewController, UITextFieldDelegate {
             // Assign a random color to the child
             assign_color ()
             // Add the child as a family member
-            appDelegate.data_manager!.cur_user!.family_members!.append(child)
+            appDelegate.data_manager!.cur_user!.family_members.append(child)
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }

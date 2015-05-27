@@ -75,6 +75,15 @@ class DataManager {
     var notify_none_options: [String] = ["None"]
     var notify_options: [String] = ["At the time of event", "5 minutes before", "10 minutes before", "15 minutes before", "30 minutes before", "1 hour before", "2 hours before", "1 day before", "2 days before", "1 week before"]
     
+    func getEvent(event_id : String) -> AyEvent {
+        for event in events{
+            if event.id == event_id{
+                return event
+            }
+        }
+        return AyEvent()
+    }
+    
     func getMonthlySchedule(month: Int, year: Int) -> NSMapTable {
         var monthly_schedule = NSMapTable()
         for event in events{
@@ -117,7 +126,7 @@ class DataManager {
                             // next event pass this month
                             } else if next_start_components.year > year || (next_start_components.year == year && next_start_components.month > month) {
                                 if event.recur_occur > 0 {
-                                    index = event.recur_occur
+                                    index = event.recur_occur!
                                 } else {
                                     index++
                                 }

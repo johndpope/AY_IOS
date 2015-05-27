@@ -1,20 +1,17 @@
-
 //
-//  AddEventViewController.swift
+//  EditEventViewController.swift
 //  Ay
 //
-//  Created by Do Kwon on 5/18/15.
+//  Created by Ki Suk Jang on 5/25/15.
 //  Copyright (c) 2015 Do Kwon. All rights reserved.
 //
 
 import UIKit
 
-class AddEventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
-
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-
-    @IBOutlet weak var tableView: UITableView!
+class EditEventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
     var cur_event :AyEvent?
     
     var cur_date : CVDate?
@@ -52,7 +49,7 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func addPressed(sender: AnyObject) {
         
         cur_event?.title = title_cell.titleTextField.text
-      
+        
         if !cur_event!.isComplete() {
             let alertController = UIAlertController(title: "Incomplete", message: "You need to fill in all the required fields.", preferredStyle: .Alert)
             
@@ -63,6 +60,18 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
             self.presentViewController(alertController, animated: true) {
                 // ...
             }
+        } else if end_date_picker_cell.datePicker.date.compare(start_date_picker_cell.datePicker.date) == NSComparisonResult.OrderedAscending{
+            end_date_picker_cell.datePicker.date = start_date_picker_cell.datePicker.date
+            let alertController = UIAlertController(title: "Time Error", message: "Starting time must occur prior to Ending time.", preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "Ok", style: .Default) { (action) in
+                self.dismissViewControllerAnimated(true, completion:nil)
+            }
+            alertController.addAction(okAction)
+            self.presentViewController(alertController, animated: true) {
+                // ...
+            }
+            
         } else {
             // TODO : add event to global or local array
             var recur_freq = getRecurStructure()
@@ -159,13 +168,13 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
             viewController.add_event_controller = self
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     // Table view Datasource / delegate methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
@@ -174,14 +183,14 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-            case 0 :
-                return 2
-            case 1 :
-                return 7
-            case 2 :
-                return 1
-            default :
-                return 3
+        case 0 :
+            return 2
+        case 1 :
+            return 7
+        case 2 :
+            return 1
+        default :
+            return 3
         }
     }
     
@@ -191,68 +200,68 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         var cell : UITableViewCell?
         switch indexPath.section {
             
-            case 0 :
-                // Title
-                if indexPath.row == 0 {
-                    cell = tableView.dequeueReusableCellWithIdentifier(add_event_title_cell_identifier) as? TitleCell
-                    title_cell = cell as! TitleCell
-                }
+        case 0 :
+            // Title
+            if indexPath.row == 0 {
+                cell = tableView.dequeueReusableCellWithIdentifier(add_event_title_cell_identifier) as? TitleCell
+                title_cell = cell as! TitleCell
+            }
                 // Location
-                else {
-                    cell = tableView.dequeueReusableCellWithIdentifier(add_event_location_cell_identifier) as? LocationCell
-                    loc_cell = cell as! LocationCell
-                }
-                break
-            case 1 :
-                
-                if indexPath.row == 0 {
-                    cell = tableView.dequeueReusableCellWithIdentifier(add_event_start_cell_identifier) as? StartDateCell
-                    start_date_cell = cell as! StartDateCell
-                    if start_date_cell.dateView.text == "Detail" {
-                        var date_picker = UIDatePicker()
-                        start_date_cell.dateView.text = NSDateFormatter.localizedStringFromDate(date_picker.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
-                        
-                        // Set start time
-                        cur_event?.start_time = date_picker.date
-                    }
-                } else if indexPath.row == 1 {
-                    cell = tableView.dequeueReusableCellWithIdentifier(add_event_start_time_picker_cell_identifier) as? StartTimePickerCell
-                    start_date_picker_cell = cell as! StartTimePickerCell
-                } else if indexPath.row == 2{
-                    cell = tableView.dequeueReusableCellWithIdentifier(add_event_end_cell_identifier) as? EndDateCell
-                    end_date_cell = cell as! EndDateCell
-                    if end_date_cell.dateView.text == "Detail" {
-                        var date_picker = UIDatePicker()
-                        end_date_cell.dateView.text = NSDateFormatter.localizedStringFromDate(date_picker.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
-                        
-                        // End time
-                        cur_event?.end_time = date_picker.date
-                    }
-                } else if indexPath.row == 3 {
-                    cell = tableView.dequeueReusableCellWithIdentifier(add_event_end_time_picker_cell_identifier) as? EndTimePickerCell
-                    end_date_picker_cell = cell as! EndTimePickerCell
-                } else if indexPath.row == 4{
-                    cell = tableView.dequeueReusableCellWithIdentifier(add_event_repeat_cell_identifier) as? RepeatCell
-                    repeat_cell = cell as! RepeatCell
-                } else if indexPath.row == 5{
-                    cell = tableView.dequeueReusableCellWithIdentifier(add_event_repeat_end_cell_identifier) as? RepeatEndCell
-                    repeat_end_cell = cell as! RepeatEndCell
-                } else {
-                    cell = tableView.dequeueReusableCellWithIdentifier(add_event_notify_cell_identifier) as? NotifyCell
-                    notify_cell = cell as! NotifyCell
-                }
-                    
+            else {
+                cell = tableView.dequeueReusableCellWithIdentifier(add_event_location_cell_identifier) as? LocationCell
+                loc_cell = cell as! LocationCell
+            }
+            break
+        case 1 :
             
-        
-            case 2 :
-        
-                if indexPath.row == 0{
-                    cell = tableView.dequeueReusableCellWithIdentifier(add_event_participants_cell_identifier) as? ParticipantsCell
-
+            if indexPath.row == 0 {
+                cell = tableView.dequeueReusableCellWithIdentifier(add_event_start_cell_identifier) as? StartDateCell
+                start_date_cell = cell as! StartDateCell
+                if start_date_cell.dateView.text == "Detail" {
+                    var date_picker = UIDatePicker()
+                    start_date_cell.dateView.text = NSDateFormatter.localizedStringFromDate(date_picker.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+                    
+                    // Set start time
+                    cur_event?.start_time = date_picker.date
                 }
-            default :
-                // Should never get here...
-                cell = UITableViewCell()
+            } else if indexPath.row == 1 {
+                cell = tableView.dequeueReusableCellWithIdentifier(add_event_start_time_picker_cell_identifier) as? StartTimePickerCell
+                start_date_picker_cell = cell as! StartTimePickerCell
+            } else if indexPath.row == 2{
+                cell = tableView.dequeueReusableCellWithIdentifier(add_event_end_cell_identifier) as? EndDateCell
+                end_date_cell = cell as! EndDateCell
+                if end_date_cell.dateView.text == "Detail" {
+                    var date_picker = UIDatePicker()
+                    end_date_cell.dateView.text = NSDateFormatter.localizedStringFromDate(date_picker.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+                    
+                    // End time
+                    cur_event?.end_time = date_picker.date
+                }
+            } else if indexPath.row == 3 {
+                cell = tableView.dequeueReusableCellWithIdentifier(add_event_end_time_picker_cell_identifier) as? EndTimePickerCell
+                end_date_picker_cell = cell as! EndTimePickerCell
+            } else if indexPath.row == 4{
+                cell = tableView.dequeueReusableCellWithIdentifier(add_event_repeat_cell_identifier) as? RepeatCell
+                repeat_cell = cell as! RepeatCell
+            } else if indexPath.row == 5{
+                cell = tableView.dequeueReusableCellWithIdentifier(add_event_repeat_end_cell_identifier) as? RepeatEndCell
+                repeat_end_cell = cell as! RepeatEndCell
+            } else {
+                cell = tableView.dequeueReusableCellWithIdentifier(add_event_notify_cell_identifier) as? NotifyCell
+                notify_cell = cell as! NotifyCell
+            }
+            
+            
+            
+        case 2 :
+            
+            if indexPath.row == 0{
+                cell = tableView.dequeueReusableCellWithIdentifier(add_event_participants_cell_identifier) as? ParticipantsCell
+                
+            }
+        default :
+            // Should never get here...
+            cell = UITableViewCell()
             
         }
         
@@ -280,7 +289,7 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         
         return 44
     }
-
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let row = Row(indexPath: indexPath)
         
@@ -397,7 +406,7 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
         var every_other = 1
         var days_of_week : Array<NSDictionary>? = Array<NSDictionary>()
         var days_of_month: Array<Int>? = Array<Int>()
-
+        
         if (repeat_option["row"] as! Int) == 0 {
             base = "daily"
             days_of_week = nil

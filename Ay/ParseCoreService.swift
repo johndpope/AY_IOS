@@ -93,7 +93,7 @@ class ParseCoreService {
             (result: AnyObject?, error: NSError?) -> Void in
             if ( error == nil) {
                 let new_id = result as! String
-                var new_event = AyEvent(id: new_id, target_name: target, start: start, end: end, title: title, alarm: alarm, recur_end: recur_end, recur_freq: recur_freq, recur_occur: recur_occur!)
+                var new_event = AyEvent(id: new_id, target_name: target, start: start, end: end, title: title, alarm: alarm, recur_end: recur_end, recur_freq: recur_freq, recur_occur: recur_occur)
                 self.appDelegate.data_manager!.events.append(new_event)
                 NSNotificationCenter.defaultCenter().postNotificationName(notification_event_created, object: self)
             }
@@ -119,6 +119,7 @@ class ParseCoreService {
                 }
                 if(del_index != nil){
                     self.appDelegate.data_manager!.events.removeAtIndex(del_index!)
+                    NSNotificationCenter.defaultCenter().postNotificationName(notification_event_deleted, object: self)
                 }
             }
             else if (error != nil) {
@@ -127,17 +128,33 @@ class ParseCoreService {
         })
     }
     
-    func updateEvent(event_id: String, target: String, title: String, start: NSDate, end: NSDate, alarm: NSDate, recur_end: NSDate, recur_freq: NSDictionary, recur_occur: Int){
+    func updateEvent(event_id: String, target: String, title: String, start: NSDate, end: NSDate, alarm: NSDate?, recur_end: NSDate?, recur_freq: NSDictionary?, recur_occur: Int?){
         let params = NSMutableDictionary()
         params.setObject(event_id, forKey: "objectId" )
         params.setObject(target, forKey: "Target_Name" )
         params.setObject(title, forKey: "Title" )
         params.setObject(start, forKey: "Start_Time" )
         params.setObject(end, forKey: "End_Time" )
-        params.setObject(alarm, forKey: "Alarm_Time" )
-        params.setObject(recur_end, forKey: "Recur_End" )
-        params.setObject(recur_freq, forKey: "Recur_Freq" )
-        params.setObject(recur_occur, forKey: "Recur_Occur" )
+        if alarm != nil {
+            params.setObject(alarm!, forKey: "Alarm_Time" )
+        } else {
+            params.setObject(NSNull(), forKey: "Alarm_Time" )
+        }
+        if recur_end != nil{
+            params.setObject(recur_end!, forKey: "Recur_End" )
+        } else {
+            params.setObject(NSNull(), forKey: "Recur_End" )
+        }
+        if recur_freq != nil {
+            params.setObject(recur_freq!, forKey: "Recur_Freq" )
+        } else {
+            params.setObject(NSNull(), forKey: "Recur_Freq" )
+        }
+        if recur_occur != nil {
+            params.setObject(recur_occur!, forKey: "Recur_Occur" )
+        } else {
+            params.setObject(NSNull(), forKey: "Recur_Occur" )
+        }
         PFCloud.callFunctionInBackground("updateEvent", withParameters: params as [NSObject : AnyObject], block: {
             (result: AnyObject?, error: NSError?) -> Void in
             if ( error == nil) {
@@ -155,6 +172,7 @@ class ParseCoreService {
                         event.recur_occur = recur_occur
                     }
                 }
+                NSNotificationCenter.defaultCenter().postNotificationName(notification_event_updated, object: self)
             }
             else if (error != nil) {
                 NSLog("error: \(error!.userInfo)")

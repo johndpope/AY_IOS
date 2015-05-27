@@ -29,6 +29,9 @@ let add_event_time_picker_cell_identifier = "add_event_time_picker_cell_identifi
 let add_event_start_time_picker_cell_identifier = "add_event_start_time_picker_cell_identifier"
 let add_event_end_time_picker_cell_identifier = "add_event_end_time_picker_cell_identifier"
 let add_event_repeat_end_cell_identifier = "add_event_repeat_end_cell_identifier"
+let add_event_all_day_cell_identifier = "add_event_all_day_cell_identifier"
+
+let event_delete_cell_identifier = "event_delete_cell_identifier"
 
 let repeat_option_cell = "repeat_option_cell"
 let repeat_none_option_cell = "repeat_none_option_cell"

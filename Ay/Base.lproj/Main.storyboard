@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
         <!--Tutorial View Controller-->
@@ -128,6 +128,7 @@
                                             <outlet property="start_time_label" destination="wAi-LO-rt1" id="Frz-fd-nbB"/>
                                             <outlet property="subtitle_label" destination="ZCk-5A-zGa" id="cr0-ia-DrQ"/>
                                             <outlet property="titleView" destination="vWu-9D-Vpp" id="sv9-0w-bVO"/>
+                                            <segue destination="ne0-pL-k5P" kind="presentation" id="JVV-ma-g35"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -195,10 +196,10 @@
             </objects>
             <point key="canvasLocation" x="464.5" y="264.5"/>
         </scene>
-        <!--Add Event View Controller-->
+        <!--Event View Controller-->
         <scene sceneID="9nB-Va-wzH">
             <objects>
-                <viewController id="ne0-pL-k5P" customClass="AddEventViewController" customModule="Ay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ne0-pL-k5P" customClass="EventViewController" customModule="Ay" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wDI-2a-BYo"/>
                         <viewControllerLayoutGuide type="bottom" id="7SZ-6q-NJX"/>
@@ -274,7 +275,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qAW-Ec-Z8R">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text=":" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qAW-Ec-Z8R">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
@@ -319,7 +320,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mVm-Jl-QW3">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text=":" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mVm-Jl-QW3">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
@@ -427,7 +428,7 @@
                                             <segue destination="QTh-j0-UlA" kind="presentation" id="Rxk-j8-Ont"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="add_event_participants_cell_identifier" id="9oP-ZP-cWy" customClass="ParticipantsCell" customModule="Ay" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="add_event_participants_cell_identifier" rowHeight="120" id="9oP-ZP-cWy" customClass="ParticipantsCell" customModule="Ay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9oP-ZP-cWy" id="LAC-bc-iKZ">
@@ -445,33 +446,49 @@
                                             <segue destination="WWj-8Y-Mhs" kind="show" id="koe-Jn-mzr"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="event_delete_cell_identifier" id="sT7-yZ-A5T">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sT7-yZ-A5T" id="co2-XD-uhs">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Delete" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JY5-8W-Y4n">
+                                                    <rect key="frame" x="18" y="11" width="154" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="vUD-ig-tSz" id="y1K-ee-6GN"/>
                                     <outlet property="delegate" destination="vUD-ig-tSz" id="g02-S2-OX4"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Event" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATm-66-WWh">
-                                <rect key="frame" x="147" y="24" width="80" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfn-lt-aFq">
                                 <rect key="frame" x="337" y="27" width="15" height="15"/>
                                 <state key="normal" image="CHECK.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="addPressed:" destination="ne0-pL-k5P" eventType="touchUpInside" id="leY-9m-vpe"/>
+                                    <action selector="completePressed:" destination="ne0-pL-k5P" eventType="touchUpInside" id="Lqg-wM-YTO"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATm-66-WWh">
+                                <rect key="frame" x="125" y="24" width="125" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="NIL-iH-n9t" id="XGm-Uw-pqT"/>
+                        <outlet property="viewTitleView" destination="ATm-66-WWh" id="saC-UL-5XC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mCf-Yg-YzR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1012,5 +1029,8 @@
         <image name="Statusbar.png" width="3125" height="167"/>
         <image name="X.png" width="136" height="136"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="aDF-F9-nsf"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.011764705882352941" green="0.60784313725490191" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

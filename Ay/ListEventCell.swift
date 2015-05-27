@@ -15,6 +15,8 @@ class ListEventCell: UITableViewCell {
     @IBOutlet weak var end_time_label: UILabel!
     @IBOutlet weak var titleView: UILabel!
     @IBOutlet weak var colorImageView: UIImageView!
+    
+    var event_id: String?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
