@@ -155,6 +155,8 @@ class AddEventViewController: UIViewController, UITableViewDelegate, UITableView
                     weakSelf.setNotify(data)
                 }
             }
+        } else if let viewController = segue.destinationViewController as? PickParticipantTableViewController {
+            viewController.add_event_controller = self
         }
     }
 

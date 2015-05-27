@@ -21,6 +21,8 @@ class CVCalendarDayView: UIView {
     var topMarker: CALayer?
     var dotMarker: CVCircleView?
     
+    //var dotMarkers : [CVCircleView?]
+    
     var isOut = false
     var isCurrentDay = false
     

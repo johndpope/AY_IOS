@@ -54,7 +54,8 @@ class AddChildrenViewController: UIViewController, UITableViewDelegate, UITableV
         let row = indexPath.row
         cell!.name_label.text = user!.family_members![row]["first_name"] as? String
         cell!.age_label.text = user!.family_members![row]["age"] as? String
-
+        cell!.contentView.backgroundColor = user!.color_for_family_member(user!.family_members![row])
+        
         return cell!
     }
     

@@ -51,21 +51,15 @@ class ChildInfoViewController: UIViewController, UITextFieldDelegate {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    /*func assign_color() -> UIColor {
-        let colors = [UIColor.blueColor(), UIColor.greenColor(), UIColor.yellowColor(), UIColor.grayColor(), UIColor.orangeColor(), UIColor.purpleColor()]
-        let i : Int = Int(arc4random_uniform(colors.count))
-        return colors [i]
-    }*/
+    func assign_color(){
+        
+        let color_strs = ["blue", "green", "yellow", "gray", "orange", "purple"]
+        
+        let i : Int = Int(arc4random_uniform(6))
+        child["color"] = color_strs[i]
+    }
     
     func infoComplete() -> Bool {
-        println (child["gender"])
-        println ( child["age"] )
-
-        println (child["first_name"])
-
-        println (child["interest"])
-
-        
         return child["gender"] != nil && child["age"] != nil && child["first_name"] != nil && child["interest"] != nil
         
     }
@@ -85,7 +79,8 @@ class ChildInfoViewController: UIViewController, UITextFieldDelegate {
             }
         } else {
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            
+            // Assign a random color to the child
+            assign_color ()
             // Add the child as a family member
             appDelegate.data_manager!.cur_user!.family_members!.append(child)
             self.dismissViewControllerAnimated(true, completion: nil)

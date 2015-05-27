@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="AyUser" syncable="YES">
+    <entity name="AyUser" representedClassName="PRODUCT_MODULE_NAME.AyUser" syncable="YES">
+        <attribute name="birth_date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="first_name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="last_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="object_id" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="child" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FamilyMember" inverseName="parent" inverseEntity="FamilyMember" syncable="YES"/>
+    </entity>
+    <entity name="FamilyMember" representedClassName="PRODUCT_MODULE_NAME.FamilyMember" syncable="YES">
+        <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gender" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="interests" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AyUser" inverseName="child" inverseEntity="AyUser" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AyUser" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="AyUser" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="FamilyMember" positionX="162" positionY="9" width="128" height="133"/>
     </elements>
 </model>

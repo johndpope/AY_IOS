@@ -21,6 +21,7 @@ class AyEvent {
     var recur_end : NSDate?
     var recur_freq : NSDictionary?
     var recur_occur : Int
+    var participants : [NSDictionary] = []
     
     init () {
         self.id = ""

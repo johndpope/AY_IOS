@@ -31,6 +31,8 @@
 		1B04F0141B0ABD1100DF30B3 /* CVDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B04F0001B0ABD1100DF30B3 /* CVDate.swift */; };
 		1B2AEBCD1B13EFA200B67450 /* AY_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B2AEBCC1B13EFA200B67450 /* AY_icon.png */; };
 		1B2AEBD11B13F54100B67450 /* Statusbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B2AEBD01B13F54100B67450 /* Statusbar.png */; };
+		1B2AEBD51B14492600B67450 /* AyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AEBD41B14492500B67450 /* AyUser.swift */; };
+		1B2AEBD71B144E8900B67450 /* PickParticipantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AEBD61B144E8900B67450 /* PickParticipantTableViewController.swift */; };
 		1B4F4C721AFEC79F00C61708 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C711AFEC79F00C61708 /* AppDelegate.swift */; };
 		1B4F4C751AFEC79F00C61708 /* Ay.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C731AFEC79F00C61708 /* Ay.xcdatamodeld */; };
 		1B4F4C771AFEC79F00C61708 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C761AFEC79F00C61708 /* ViewController.swift */; };
@@ -40,7 +42,6 @@
 		1B4F4C8B1AFEC7A000C61708 /* AyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C8A1AFEC7A000C61708 /* AyTests.swift */; };
 		1B4F4C951AFEDBEC00C61708 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C941AFEDBEC00C61708 /* ScheduleTableViewCell.swift */; };
 		1B4F4C991AFEDDBD00C61708 /* AyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C981AFEDDBD00C61708 /* AyEvent.swift */; };
-		1B4F4C9B1AFEDDEA00C61708 /* AyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C9A1AFEDDEA00C61708 /* AyUser.swift */; };
 		1B4F4C9D1AFEDDFA00C61708 /* AyRecommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C9C1AFEDDFA00C61708 /* AyRecommendation.swift */; };
 		1B4F4C9F1AFEDEF500C61708 /* AyConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C9E1AFEDEF500C61708 /* AyConstants.swift */; };
 		1B4F4CA11AFEDF8F00C61708 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */; };
@@ -123,6 +124,8 @@
 		1B04F0001B0ABD1100DF30B3 /* CVDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVDate.swift; sourceTree = "<group>"; };
 		1B2AEBCC1B13EFA200B67450 /* AY_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AY_icon.png; sourceTree = "<group>"; };
 		1B2AEBD01B13F54100B67450 /* Statusbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Statusbar.png; sourceTree = "<group>"; };
+		1B2AEBD41B14492500B67450 /* AyUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyUser.swift; sourceTree = "<group>"; };
+		1B2AEBD61B144E8900B67450 /* PickParticipantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickParticipantTableViewController.swift; sourceTree = "<group>"; };
 		1B4F4C6C1AFEC79F00C61708 /* Ay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B4F4C701AFEC79F00C61708 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B4F4C711AFEC79F00C61708 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,7 +139,6 @@
 		1B4F4C8A1AFEC7A000C61708 /* AyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyTests.swift; sourceTree = "<group>"; };
 		1B4F4C941AFEDBEC00C61708 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		1B4F4C981AFEDDBD00C61708 /* AyEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyEvent.swift; sourceTree = "<group>"; };
-		1B4F4C9A1AFEDDEA00C61708 /* AyUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyUser.swift; sourceTree = "<group>"; };
 		1B4F4C9C1AFEDDFA00C61708 /* AyRecommendation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyRecommendation.swift; sourceTree = "<group>"; };
 		1B4F4C9E1AFEDEF500C61708 /* AyConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyConstants.swift; sourceTree = "<group>"; };
 		1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				95DCA09E1B0EFAF40033D729 /* RepeatSettingViewController.swift */,
 				95DCA0A01B0F08580033D729 /* NotifyViewController.swift */,
 				95DCA0A41B0FF3790033D729 /* RepeatEndsViewController.swift */,
+				1B2AEBD61B144E8900B67450 /* PickParticipantTableViewController.swift */,
 			);
 			path = Ay;
 			sourceTree = "<group>";
@@ -376,8 +379,8 @@
 				1B4F4C9E1AFEDEF500C61708 /* AyConstants.swift */,
 				1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */,
 				1B4F4C981AFEDDBD00C61708 /* AyEvent.swift */,
-				1B4F4C9A1AFEDDEA00C61708 /* AyUser.swift */,
 				1B4F4C9C1AFEDDFA00C61708 /* AyRecommendation.swift */,
+				1B2AEBD41B14492500B67450 /* AyUser.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -497,10 +500,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B2AEBD51B14492600B67450 /* AyUser.swift in Sources */,
 				1B7210301B0AF48400E0D729 /* AddEventViewController.swift in Sources */,
 				1B04F0031B0ABD1100DF30B3 /* CVCalendarDayView.swift in Sources */,
 				1B72103B1B0AFAC600E0D729 /* StartDateCell.swift in Sources */,
-				1B4F4C9B1AFEDDEA00C61708 /* AyUser.swift in Sources */,
+				1B2AEBD71B144E8900B67450 /* PickParticipantTableViewController.swift in Sources */,
 				1B56220B1B124B08006426AD /* ChildInfoViewController.swift in Sources */,
 				1B04F0081B0ABD1100DF30B3 /* CVCalendarMonthView.swift in Sources */,
 				1B04F00D1B0ABD1100DF30B3 /* CVCalendarViewAppearance.swift in Sources */,
