@@ -56,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // User data is not already initialized
         if data_manager!.cur_user == nil {
+            println ("User is nil")
             // Do login procedure
             //self.window!.rootViewController!.performSegueWithIdentifier(login_segue_identifier, sender: self)
             if let window = window {
@@ -81,6 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        self.saveContext()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -149,6 +151,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Core Data Saving support
 
     func saveContext () {
+        println ("Save called")
         if let moc = self.managedObjectContext {
             var error: NSError? = nil
             if moc.hasChanges && !moc.save(&error) {

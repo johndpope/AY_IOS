@@ -58,12 +58,10 @@ class DataManager {
         let fetched_results = managedContext.executeFetchRequest(fetchRequest, error:&error) as? [NSManagedObject]
         
         if let results = fetched_results {
-            if results.count == 0 {return nil}
-            self.cur_user!.first_name = results[0].valueForKey("first_name") as! String
-            
-            self.cur_user!.last_name = results[0].valueForKey("last_name") as! String
-            self.cur_user!.object_id = results[0].valueForKey("object_id") as! String
-            self.cur_user!.familyMembers = results[0].valueForKey("familyMembers") as! NSMutableSet
+            if results.count == 0 {
+                return nil
+            }
+            self.cur_user = results[0] as? AyUser
         } else {
             println ("Could not fetch \(error), \(error?.userInfo)")
         }
