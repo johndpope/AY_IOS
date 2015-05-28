@@ -360,6 +360,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             addMonthlySchedule(date.month!, year: date.year!)
         }
         
+        // Scroll to presented Date
+        if section_index_to_date.count == 0 {
+            return
+        }
         let nearest_section = getNearestSection(date.month!, year: date.year!)
         var nearest_index_path: NSIndexPath
         if nearest_section == section_index_to_date.count {

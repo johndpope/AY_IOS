@@ -90,6 +90,11 @@
 		95DCA0A51B0FF3790033D729 /* RepeatEndsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0A41B0FF3790033D729 /* RepeatEndsViewController.swift */; };
 		95DCA0A71B1139D70033D729 /* ListEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0A61B1139D70033D729 /* ListEventCell.swift */; };
 		95DCA0AB1B1441CC0033D729 /* AllDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0AA1B1441CC0033D729 /* AllDayCell.swift */; };
+		95DCA0B11B170B410033D729 /* ImportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0B01B170B410033D729 /* ImportCell.swift */; };
+		95DCA0B31B171C9C0033D729 /* ChildNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0B21B171C9C0033D729 /* ChildNameCell.swift */; };
+		95DCA0B51B171CB00033D729 /* ChildAgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0B41B171CB00033D729 /* ChildAgeCell.swift */; };
+		95DCA0B71B171CC00033D729 /* ChildGenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0B61B171CC00033D729 /* ChildGenderCell.swift */; };
+		95DCA0B91B171CCC0033D729 /* ChildInterestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0B81B171CCC0033D729 /* ChildInterestCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,6 +196,11 @@
 		95DCA0A41B0FF3790033D729 /* RepeatEndsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatEndsViewController.swift; sourceTree = "<group>"; };
 		95DCA0A61B1139D70033D729 /* ListEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListEventCell.swift; sourceTree = "<group>"; };
 		95DCA0AA1B1441CC0033D729 /* AllDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllDayCell.swift; sourceTree = "<group>"; };
+		95DCA0B01B170B410033D729 /* ImportCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportCell.swift; sourceTree = "<group>"; };
+		95DCA0B21B171C9C0033D729 /* ChildNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildNameCell.swift; sourceTree = "<group>"; };
+		95DCA0B41B171CB00033D729 /* ChildAgeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildAgeCell.swift; sourceTree = "<group>"; };
+		95DCA0B61B171CC00033D729 /* ChildGenderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildGenderCell.swift; sourceTree = "<group>"; };
+		95DCA0B81B171CCC0033D729 /* ChildInterestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildInterestCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -376,6 +386,11 @@
 				95DCA0A61B1139D70033D729 /* ListEventCell.swift */,
 				1B56220C1B126502006426AD /* ChildInfoTableViewCell.swift */,
 				95DCA0AA1B1441CC0033D729 /* AllDayCell.swift */,
+				95DCA0B01B170B410033D729 /* ImportCell.swift */,
+				95DCA0B21B171C9C0033D729 /* ChildNameCell.swift */,
+				95DCA0B41B171CB00033D729 /* ChildAgeCell.swift */,
+				95DCA0B61B171CC00033D729 /* ChildGenderCell.swift */,
+				95DCA0B81B171CCC0033D729 /* ChildInterestCell.swift */,
 			);
 			name = CustomTableCells;
 			sourceTree = "<group>";
@@ -514,6 +529,7 @@
 				1B04F0031B0ABD1100DF30B3 /* CVCalendarDayView.swift in Sources */,
 				1B72103B1B0AFAC600E0D729 /* StartDateCell.swift in Sources */,
 				1B2AEBD71B144E8900B67450 /* PickParticipantTableViewController.swift in Sources */,
+				95DCA0B71B171CC00033D729 /* ChildGenderCell.swift in Sources */,
 				1B56220B1B124B08006426AD /* ChildInfoViewController.swift in Sources */,
 				1B04F0081B0ABD1100DF30B3 /* CVCalendarMonthView.swift in Sources */,
 				1B04F00D1B0ABD1100DF30B3 /* CVCalendarViewAppearance.swift in Sources */,
@@ -528,6 +544,7 @@
 				1B4284101B15C91D00254FC2 /* AyUser.swift in Sources */,
 				1B04F0101B0ABD1100DF30B3 /* CVCalendarWeekContentRecovery.swift in Sources */,
 				1B87B06D1B1186AC00A6C381 /* TutorialContentViewController.swift in Sources */,
+				95DCA0B11B170B410033D729 /* ImportCell.swift in Sources */,
 				1B72103D1B0AFAD700E0D729 /* EndDateCell.swift in Sources */,
 				1B42840E1B15C8E900254FC2 /* FamilyMember.swift in Sources */,
 				1B4F4C991AFEDDBD00C61708 /* AyEvent.swift in Sources */,
@@ -542,6 +559,7 @@
 				95DCA09F1B0EFAF40033D729 /* RepeatSettingViewController.swift in Sources */,
 				1B04F0051B0ABD1100DF30B3 /* CVCalendarManager.swift in Sources */,
 				1B4F4C9F1AFEDEF500C61708 /* AyConstants.swift in Sources */,
+				95DCA0B51B171CB00033D729 /* ChildAgeCell.swift in Sources */,
 				1B04F0131B0ABD1100DF30B3 /* CVCircleView.swift in Sources */,
 				1B04F0071B0ABD1100DF30B3 /* CVCalendarMonthContentView.swift in Sources */,
 				1B4F4C721AFEC79F00C61708 /* AppDelegate.swift in Sources */,
@@ -551,6 +569,7 @@
 				1B7210411B0AFB0300E0D729 /* NotesCell.swift in Sources */,
 				1B04F00A1B0ABD1100DF30B3 /* CVCalendarView.swift in Sources */,
 				1B4F4C9D1AFEDDFA00C61708 /* AyRecommendation.swift in Sources */,
+				95DCA0B91B171CCC0033D729 /* ChildInterestCell.swift in Sources */,
 				1B04F0091B0ABD1100DF30B3 /* CVCalendarRenderer.swift in Sources */,
 				1B4F4CA11AFEDF8F00C61708 /* DataManager.swift in Sources */,
 				1B87B06B1B1181AF00A6C381 /* TutorialViewController.swift in Sources */,
@@ -561,6 +580,7 @@
 				1B04F0041B0ABD1100DF30B3 /* CVCalendarDayViewControlCoordinator.swift in Sources */,
 				1B02710F1B11196F005AED86 /* SyncCalendarViewController.swift in Sources */,
 				1B04F00C1B0ABD1100DF30B3 /* CVCalendarViewAnimatorDelegate.swift in Sources */,
+				95DCA0B31B171C9C0033D729 /* ChildNameCell.swift in Sources */,
 				1B5D68241B0D171900BBB904 /* StartTimePickerCell.swift in Sources */,
 				95CF63C11AFEF32300F28153 /* ParseCoreService.swift in Sources */,
 				1B4F4C751AFEC79F00C61708 /* Ay.xcdatamodeld in Sources */,

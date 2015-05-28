@@ -9,18 +9,30 @@
 import UIKit
 import Foundation
 
-class ChildInfoViewController: UIViewController, UITextFieldDelegate {
-    @IBOutlet weak var name_textfield: UITextField!
+class ChildInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+    
+    @IBOutlet weak var childInfoTableView: UITableView!
+    private var nameCell: ChildNameCell!
+    private var ageCell: ChildAgeCell!
+    private var genderCell: ChildGenderCell!
+    private var interestCell: ChildInterestCell!
+    
+    let header_height = 24
+    
     var child = FamilyMember()
     
-    @IBOutlet weak var interest_textfield: UITextField!
     @IBAction func name_entered(sender: AnyObject) {
-        child.name = name_textfield.text
+        child.name = nameCell.nameView.text
         
     }
     
     @IBAction func age_entered(sender: AnyObject) {
-        child.age = age_textfield.text.toInt()!
+        if let age = ageCell.ageView.text.toInt() {
+            child.age = age
+            return
+        }
+        
+        child.age = 0
     }
     
     @IBAction func gender_entered(sender: AnyObject) {
@@ -39,7 +51,7 @@ class ChildInfoViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func interest_entered(sender: AnyObject) {
         println ("interest entered")
-        child.interests = interest_textfield.text
+        child.interests = interestCell.interestView.text
     }
     
     
@@ -56,9 +68,10 @@ class ChildInfoViewController: UIViewController, UITextFieldDelegate {
     }
     
     func infoComplete() -> Bool {
-        /*return (child.age > 0 ) &&(child.name != nil) && (child.interests != nil)*/
-        return true
-        
+        if (child.age as! Int) > 0{
+            return true
+        }
+        return false
     }
     
     @IBAction func done_pressed(sender: AnyObject) {
@@ -85,14 +98,11 @@ class ChildInfoViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    
-    @IBOutlet weak var genderswitch: UISegmentedControl!
-    @IBOutlet weak var age_textfield: UITextField!
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.childInfoTableView.delegate = self
+        self.childInfoTableView.dataSource = self
         
         child.gender = 1
         // Do any additional setup after loading the view.
@@ -106,6 +116,67 @@ class ChildInfoViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+    
+    // Table view Datasource / delegate methods
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 4
+    }
+    
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell : UITableViewCell?
+        if indexPath.section == 0 {
+            cell = tableView.dequeueReusableCellWithIdentifier(add_child_name_cell_identifier) as? ChildNameCell
+            nameCell = cell as! ChildNameCell
+        } else if indexPath.section == 1 {
+            cell = tableView.dequeueReusableCellWithIdentifier(add_child_age_cell_identifier) as? ChildAgeCell
+            ageCell = cell as! ChildAgeCell
+        } else if indexPath.section == 2{
+            cell = tableView.dequeueReusableCellWithIdentifier(add_child_gender_cell_identifier) as? ChildGenderCell
+            genderCell = cell as! ChildGenderCell
+        } else {
+            cell = tableView.dequeueReusableCellWithIdentifier(add_child_interest_cell_identifier) as? ChildInterestCell
+            interestCell = cell as! ChildInterestCell
+        }
+        
+        return cell!
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        return 35
+    }
+
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var labelView = UILabel(frame: CGRect(x: 15, y: 7, width: 200, height: header_height))
+        labelView.textAlignment = NSTextAlignment.Left
+        labelView.font = UIFont(name: labelView.font.fontName, size: 17)
+        labelView.textColor = UIColor.blackColor()
+        
+        if section == 0 {
+            labelView.text = "Name"
+        } else if section == 1 {
+            labelView.text = "Age"
+        } else if section == 2 {
+            labelView.text = "Gender"
+        } else {
+            labelView.text = "Interest"
+        }
+        
+        var headerView = UIView()
+        headerView.addSubview(labelView)
+        
+        return headerView
     }
     
 
