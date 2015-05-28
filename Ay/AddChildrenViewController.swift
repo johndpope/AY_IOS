@@ -35,8 +35,8 @@ class AddChildrenViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let app_delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let user = app_delegate.data_manager!.cur_user
-        if user != nil && user!.family_members.count != 0 {
-            return user!.family_members.count
+        if user != nil && user!.familyMembers.count != 0 {
+            return user!.familyMembers.count
         }
         return 0
     }
@@ -52,9 +52,10 @@ class AddChildrenViewController: UIViewController, UITableViewDelegate, UITableV
         
         var cell = tableView.dequeueReusableCellWithIdentifier(add_child_cell_identifier)as? ChildInfoTableViewCell
         let row = indexPath.row
-        cell!.name_label.text = user!.family_members![row]["first_name"] as? String
-        cell!.age_label.text = user!.family_members![row]["age"] as? String
-        cell!.contentView.backgroundColor = user!.color_for_family_member(user!.family_members![row])
+        let child = user!.familyMembers.allObjects[row] as! FamilyMember
+        cell!.name_label.text = child.name as String
+        cell!.age_label.text = "\(child.age)"
+        cell!.contentView.backgroundColor = child.assigned_color()
         
         return cell!
     }

@@ -26,7 +26,11 @@ class ParseCoreService {
             (result: AnyObject?, error: NSError?) -> Void in
             if ( error == nil) {
                 let new_id = result as! String
-                self.appDelegate.data_manager!.cur_user = AyUser(id: new_id, email: email, password: password, first_name: first_name, last_name: last_name, birth_date: birth, family_members: family_members)
+                let new_user = AyUser()
+                new_user.object_id = new_id
+                new_user.first_name = first_name
+                new_user.last_name  = last_name
+                self.appDelegate.data_manager!.cur_user = new_user
             }
             else if (error != nil) {
                 NSLog("error: \(error!.userInfo)")
@@ -34,9 +38,9 @@ class ParseCoreService {
         })
     }
     
-    func updateUser(first_name : String, last_name : String, birth: NSDate, family_members: Array<NSDictionary>) {
+    func updateUser(first_name : String, last_name : String, birth: NSDate, family_members: NSMutableSet) {
         let params = NSMutableDictionary()
-        params.setObject(appDelegate.data_manager!.cur_user!.Object_Id, forKey: "objectId" )
+        params.setObject(appDelegate.data_manager!.cur_user!.object_id, forKey: "objectId" )
         params.setObject(first_name, forKey: "First_Name" )
         params.setObject(last_name, forKey: "Last_Name" )
         params.setObject(birth, forKey: "Birth_Date" )
@@ -47,8 +51,7 @@ class ParseCoreService {
                 var curr_user = self.appDelegate.data_manager!.cur_user!
                 curr_user.first_name = first_name
                 curr_user.last_name = last_name
-                curr_user.birth_date = birth
-                curr_user.family_members = family_members
+                curr_user.familyMembers = family_members
             }
             else if (error != nil) {
                 NSLog("error: \(error!.userInfo)")
@@ -58,7 +61,7 @@ class ParseCoreService {
     
     func deleteUser(){
         let params = NSMutableDictionary()
-        params.setObject(appDelegate.data_manager!.cur_user!.Object_Id, forKey: "objectId" )
+        params.setObject(appDelegate.data_manager!.cur_user!.object_id, forKey: "objectId" )
         PFCloud.callFunctionInBackground("deleteUser", withParameters: params as [NSObject : AnyObject], block: {
             (result: AnyObject?, error: NSError?) -> Void in
             if ( error == nil) {
@@ -72,7 +75,7 @@ class ParseCoreService {
     
     func createEvent(target: String, title: String, start: NSDate, end: NSDate, alarm: NSDate?, recur_end: NSDate?, recur_freq: NSDictionary?, recur_occur: Int?){
         let params = NSMutableDictionary()
-        params.setObject(appDelegate.data_manager!.cur_user!.Object_Id, forKey: "User_Id" )
+        params.setObject(appDelegate.data_manager!.cur_user!.object_id, forKey: "User_Id" )
         params.setObject(target, forKey: "Target_Name" )
         params.setObject(title, forKey: "Title" )
         params.setObject(start, forKey: "Start_Time" )
@@ -169,7 +172,7 @@ class ParseCoreService {
                         event.alarm_time = alarm
                         event.recur_end = recur_end
                         event.recur_freq = recur_freq
-                        event.recur_occur = recur_occur
+                        event.recur_occur = recur_occur!
                     }
                 }
                 NSNotificationCenter.defaultCenter().postNotificationName(notification_event_updated, object: self)
@@ -182,7 +185,7 @@ class ParseCoreService {
     
     func getEvents(){
         let params = NSMutableDictionary()
-        params.setObject(appDelegate.data_manager!.cur_user!.Object_Id, forKey: "User_Id" )
+        params.setObject(appDelegate.data_manager!.cur_user!.object_id, forKey: "User_Id" )
         PFCloud.callFunctionInBackground("getEvents", withParameters: params as [NSObject : AnyObject], block: {
             (result: AnyObject?, error: NSError?) -> Void in
             if ( error == nil) {

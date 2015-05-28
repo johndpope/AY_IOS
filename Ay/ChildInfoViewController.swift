@@ -11,39 +11,35 @@ import Foundation
 
 class ChildInfoViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var name_textfield: UITextField!
-    var child = Dictionary<String,String>()
+    var child = FamilyMember()
     
     @IBOutlet weak var interest_textfield: UITextField!
     @IBAction func name_entered(sender: AnyObject) {
-        child["first_name"] = name_textfield.text
+        child.name = name_textfield.text
         
     }
+    
     @IBAction func age_entered(sender: AnyObject) {
-        child["age"] = age_textfield.text
-        // TODO : change AyUser model to include age
+        child.age = age_textfield.text.toInt()!
     }
+    
     @IBAction func gender_entered(sender: AnyObject) {
         let segmented_control = sender as! UISegmentedControl
-        println ("Goes in here")
         // Boy
         if(segmented_control.selectedSegmentIndex == 0) {
             println ("Boy selected")
-            
-            child["gender"] = "male"
+            child.gender = 1
         }
         // Girl
         else {
             println ("Girl selected")
-            
-            child["gender"] = "female"
+            child.gender = 0
         }
-        
-        // TODO : change AyUser model to include gender
     }
     
     @IBAction func interest_entered(sender: AnyObject) {
         println ("interest entered")
-        child["interest"] = interest_textfield.text
+        child.interests = interest_textfield.text
     }
     
     
@@ -56,11 +52,12 @@ class ChildInfoViewController: UIViewController, UITextFieldDelegate {
         let color_strs = ["blue", "green", "yellow", "gray", "orange", "purple"]
         
         let i : Int = Int(arc4random_uniform(6))
-        child["color"] = color_strs[i]
+        child.color = color_strs[i]
     }
     
     func infoComplete() -> Bool {
-        return child["gender"] != nil && child["age"] != nil && child["first_name"] != nil && child["interest"] != nil
+        /*return (child.age > 0 ) &&(child.name != nil) && (child.interests != nil)*/
+        return true
         
     }
     
@@ -82,7 +79,7 @@ class ChildInfoViewController: UIViewController, UITextFieldDelegate {
             // Assign a random color to the child
             assign_color ()
             // Add the child as a family member
-            appDelegate.data_manager!.cur_user!.family_members.append(child)
+            appDelegate.data_manager!.cur_user!.familyMembers.addObject(child)
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
@@ -97,7 +94,7 @@ class ChildInfoViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        child["gender"] = "male"
+        child.gender = 1
         // Do any additional setup after loading the view.
     }
 

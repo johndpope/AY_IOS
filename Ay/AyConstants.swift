@@ -52,6 +52,8 @@ let repeat_ends_end_date_picker_cell_identifier = "repeat_ends_end_date_picker_c
 
 /* Notification Constants */
 let notification_event_created = "notification_event_created"
+let notification_event_updated = "notification_event_updated"
+let notification_event_deleted = "notification_event_deleted"
 let notification_events_fetched = "notification_events_fetched"
 
 let pick_participant_cell_reuse_identifier = "pick_participant_cell_reuse_identifier"

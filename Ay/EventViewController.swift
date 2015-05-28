@@ -343,12 +343,12 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
                 if indexPath.row == 0{
                     cell = tableView.dequeueReusableCellWithIdentifier(add_event_participants_cell_identifier) as? ParticipantsCell
-                    var family_member_list = self.appDelegate.data_manager!.cur_user?.family_members as [NSDictionary]?
+                    var family_member_list = self.appDelegate.data_manager!.cur_user?.familyMembers.allObjects as! [FamilyMember]?
                     for var i = 0; i < family_member_list!.count; ++i{
                         var member = family_member_list![i]
                         var member_image = UIImageView(frame: CGRectMake(CGFloat(30 + 80 * i), 50, 50, 50))
                         member_image.layer.borderWidth = 1
-                        member_image.layer.borderColor = member["Color"] as! CGColorRef
+                        member_image.layer.borderColor = member.assigned_color().CGColor
                         member_image.layer.cornerRadius = member_image.frame.height / 2
                         member_image.clipsToBounds = true
                         member_image.userInteractionEnabled = true
@@ -377,11 +377,12 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func memberTapped(gestureRecognizer: UITapGestureRecognizer){
         let tappedImageView = gestureRecognizer.view!
-        var family_member_list = self.appDelegate.data_manager!.cur_user?.family_members
-        for var i = 0; i < family_member_list!.count; ++i{
-            var member = family_member_list![i]
-            if CGColorEqualToColor(tappedImageView.layer.borderColor, member["Color"] as! CGColorRef){
-                target = member["First_Name"] as! String
+        var family_member_list = self.appDelegate.data_manager!.cur_user?.familyMembers.allObjects
+        for var i = 0 ; i < family_member_list!.count; i++ {
+            let member = family_member_list![i] as! FamilyMember
+            let color = member.assigned_color() as UIColor
+            if CGColorEqualToColor(tappedImageView.layer.borderColor, color.CGColor ){
+                target = member.name as String
             }
         }
     }
@@ -403,7 +404,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         } else if row == Row.RepeatEnd && repeatEndHidden{
             return 0
-        } else if row == Row.Participants && self.appDelegate.data_manager!.cur_user?.family_members.count > 0 {
+        } else if row == Row.Participants && self.appDelegate.data_manager!.cur_user?.familyMembers.count > 0 {
             return 120
         } else if row == Row.Delete && event_id == nil {
             return 0

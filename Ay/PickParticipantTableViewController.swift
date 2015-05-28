@@ -10,7 +10,7 @@ import UIKit
 
 class PickParticipantTableViewController: UITableViewController {
 
-    weak var add_event_controller : AddEventViewController?
+    weak var add_event_controller : EventViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,7 @@ class PickParticipantTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        return appDelegate.data_manager!.cur_user!.family_members!.count
+        return appDelegate.data_manager!.cur_user!.familyMembers.count
     }
 
     
@@ -44,14 +44,14 @@ class PickParticipantTableViewController: UITableViewController {
         // Pick child
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
-        add_event_controller!.cur_event!.participants.append(appDelegate.data_manager!.cur_user!.family_members![indexPath.row])
+        /*add_event_controller!.cur_event!.participants.append(appDelegate.data_manager!.cur_user!.familyMembers.allObjects[indexPath.row])*/
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("pick_participant_cell_reuse_identifier", forIndexPath: indexPath) as! UITableViewCell
          let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        cell.textLabel!.text = appDelegate.data_manager!.cur_user!.family_members![indexPath.row]["first_name"] as? String
+        cell.textLabel!.text = appDelegate.data_manager!.cur_user!.familyMembers.allObjects[indexPath.row].name as String
         // Configure the cell...
 
         return cell

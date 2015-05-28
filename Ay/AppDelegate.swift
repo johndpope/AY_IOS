@@ -51,28 +51,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         data_manager = DataManager()
         core_service = ParseCoreService()
         
+        // retrieve current user
+        data_manager!.cur_user = data_manager!.getCurrentUser()
         
+        // User data is not already initialized
+        if data_manager!.cur_user == nil {
+            // Do login procedure
+            //self.window!.rootViewController!.performSegueWithIdentifier(login_segue_identifier, sender: self)
+            if let window = window {
+                
+                window.rootViewController = self.window!.rootViewController!.storyboard?.instantiateViewControllerWithIdentifier("TutorialViewController") as? UIViewController
+                
+            }
+        } else {
+           core_service!.getEvents()
+        }
+        /*data_manager!.cur_user = AyUser(id: "d1GsYlsY7B", email: "bjang1@stanford.edu", password: "stanford", first_name: "Brian", last_name: "Jang", birth_date: d!, family_members: list)*/
         
-        
-        // TODO: load back from core data Do a generic intialization for now
-        var list = Array<NSDictionary>()
-        var color = UIColor.redColor().CGColor
-        var member = ["First_Name": "Do", "Last_Name": "Kwon", "Type": "Child", "Color": color]
-        list.append(member)
-        var dateString = "1991-01-02"
-        let dateStringFormatter = NSDateFormatter()
-        dateStringFormatter.dateFormat = "yyyy-MM-dd"
-        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        var d = dateStringFormatter.dateFromString(dateString)
-        data_manager!.cur_user = AyUser(id: "d1GsYlsY7B", email: "bjang1@stanford.edu", password: "stanford", first_name: "Brian", last_name: "Jang", birth_date: d!, family_members: list)
-        
-        /*var event_date = "2015-05-20"
-        var ed = dateStringFormatter.dateFromString(event_date)*/
-        core_service!.getEvents()
         application.statusBarStyle = .LightContent
         return true
     }
-
+    
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

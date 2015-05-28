@@ -19,7 +19,7 @@ class DataManager {
     let weekday_list : [String] = ["Sunday", "Monday", "Tuesday", "Wednsday", "Thursday", "Friday", "Saturday"]
     
     
-    func saveCurrentUser(id:String, first_name : String, last_name : String, email :String) {
+    /*func saveCurrentUser(id:String, first_name : String, last_name : String, email :String) {
         let app_delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         let managedContext = app_delegate.managedObjectContext!
@@ -43,7 +43,7 @@ class DataManager {
             self.cur_user!.Object_Id = id
             println ("Current user successfully saved.")
         }
-    }
+    }*/
     
     
     func getCurrentUser() -> AyUser? {
@@ -62,8 +62,8 @@ class DataManager {
             self.cur_user!.first_name = results[0].valueForKey("first_name") as! String
             
             self.cur_user!.last_name = results[0].valueForKey("last_name") as! String
-            self.cur_user!.email = results[0].valueForKey("email") as! String
-            self.cur_user!.Object_Id = results[0].valueForKey("id") as! String
+            self.cur_user!.object_id = results[0].valueForKey("object_id") as! String
+            self.cur_user!.familyMembers = results[0].valueForKey("familyMembers") as! NSMutableSet
         } else {
             println ("Could not fetch \(error), \(error?.userInfo)")
         }
@@ -126,7 +126,7 @@ class DataManager {
                             // next event pass this month
                             } else if next_start_components.year > year || (next_start_components.year == year && next_start_components.month > month) {
                                 if event.recur_occur > 0 {
-                                    index = event.recur_occur!
+                                    index = event.recur_occur
                                 } else {
                                     index++
                                 }

@@ -44,7 +44,7 @@ class AyEvent {
         self.alarm_time = alarm
         self.recur_end = recur_end
         self.recur_freq = recur_freq
-        self.recur_occur = recur_occur
+        self.recur_occur = recur_occur!
     }
     
     func dateAsString(date : NSDate) ->String {

@@ -31,8 +31,10 @@
 		1B04F0141B0ABD1100DF30B3 /* CVDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B04F0001B0ABD1100DF30B3 /* CVDate.swift */; };
 		1B2AEBCD1B13EFA200B67450 /* AY_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B2AEBCC1B13EFA200B67450 /* AY_icon.png */; };
 		1B2AEBD11B13F54100B67450 /* Statusbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B2AEBD01B13F54100B67450 /* Statusbar.png */; };
-		1B2AEBD51B14492600B67450 /* AyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AEBD41B14492500B67450 /* AyUser.swift */; };
+		1B2AEBD51B14492600B67450 /* AyUser2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AEBD41B14492500B67450 /* AyUser2.swift */; };
 		1B2AEBD71B144E8900B67450 /* PickParticipantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AEBD61B144E8900B67450 /* PickParticipantTableViewController.swift */; };
+		1B42840E1B15C8E900254FC2 /* FamilyMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B42840D1B15C8E800254FC2 /* FamilyMember.swift */; };
+		1B4284101B15C91D00254FC2 /* AyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B42840F1B15C91D00254FC2 /* AyUser.swift */; };
 		1B4F4C721AFEC79F00C61708 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C711AFEC79F00C61708 /* AppDelegate.swift */; };
 		1B4F4C751AFEC79F00C61708 /* Ay.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C731AFEC79F00C61708 /* Ay.xcdatamodeld */; };
 		1B4F4C771AFEC79F00C61708 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F4C761AFEC79F00C61708 /* ViewController.swift */; };
@@ -125,8 +127,10 @@
 		1B04F0001B0ABD1100DF30B3 /* CVDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVDate.swift; sourceTree = "<group>"; };
 		1B2AEBCC1B13EFA200B67450 /* AY_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AY_icon.png; sourceTree = "<group>"; };
 		1B2AEBD01B13F54100B67450 /* Statusbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Statusbar.png; sourceTree = "<group>"; };
-		1B2AEBD41B14492500B67450 /* AyUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyUser.swift; sourceTree = "<group>"; };
+		1B2AEBD41B14492500B67450 /* AyUser2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyUser2.swift; sourceTree = "<group>"; };
 		1B2AEBD61B144E8900B67450 /* PickParticipantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickParticipantTableViewController.swift; sourceTree = "<group>"; };
+		1B42840D1B15C8E800254FC2 /* FamilyMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyMember.swift; sourceTree = "<group>"; };
+		1B42840F1B15C91D00254FC2 /* AyUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyUser.swift; sourceTree = "<group>"; };
 		1B4F4C6C1AFEC79F00C61708 /* Ay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B4F4C701AFEC79F00C61708 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B4F4C711AFEC79F00C61708 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -383,7 +387,9 @@
 				1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */,
 				1B4F4C981AFEDDBD00C61708 /* AyEvent.swift */,
 				1B4F4C9C1AFEDDFA00C61708 /* AyRecommendation.swift */,
-				1B2AEBD41B14492500B67450 /* AyUser.swift */,
+				1B2AEBD41B14492500B67450 /* AyUser2.swift */,
+				1B42840D1B15C8E800254FC2 /* FamilyMember.swift */,
+				1B42840F1B15C91D00254FC2 /* AyUser.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -503,8 +509,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B2AEBD51B14492600B67450 /* AyUser.swift in Sources */,
-				1B7210301B0AF48400E0D729 /* AddEventViewController.swift in Sources */,
+				1B2AEBD51B14492600B67450 /* AyUser2.swift in Sources */,
+				1B7210301B0AF48400E0D729 /* EventViewController.swift in Sources */,
 				1B04F0031B0ABD1100DF30B3 /* CVCalendarDayView.swift in Sources */,
 				1B72103B1B0AFAC600E0D729 /* StartDateCell.swift in Sources */,
 				1B2AEBD71B144E8900B67450 /* PickParticipantTableViewController.swift in Sources */,
@@ -519,9 +525,11 @@
 				1B4F4C771AFEC79F00C61708 /* ViewController.swift in Sources */,
 				95DCA0A31B0FEE890033D729 /* RepeatEndCell.swift in Sources */,
 				1B04F00B1B0ABD1100DF30B3 /* CVCalendarViewAnimator.swift in Sources */,
+				1B4284101B15C91D00254FC2 /* AyUser.swift in Sources */,
 				1B04F0101B0ABD1100DF30B3 /* CVCalendarWeekContentRecovery.swift in Sources */,
 				1B87B06D1B1186AC00A6C381 /* TutorialContentViewController.swift in Sources */,
 				1B72103D1B0AFAD700E0D729 /* EndDateCell.swift in Sources */,
+				1B42840E1B15C8E900254FC2 /* FamilyMember.swift in Sources */,
 				1B4F4C991AFEDDBD00C61708 /* AyEvent.swift in Sources */,
 				1B04F0011B0ABD1100DF30B3 /* CVCalendarContentDelegate.swift in Sources */,
 				1B7210391B0AFAB300E0D729 /* NotifyCell.swift in Sources */,
@@ -694,7 +702,7 @@
 				INFOPLIST_FILE = Ay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "db7afcd9-61e5-49c7-bc21-468f8ec99a07";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = Ay/SwiftHeader.h;
 			};
 			name = Debug;
@@ -712,7 +720,7 @@
 				INFOPLIST_FILE = Ay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "db7afcd9-61e5-49c7-bc21-468f8ec99a07";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = Ay/SwiftHeader.h;
 			};
 			name = Release;
