@@ -24,6 +24,7 @@ class AyUser: NSManagedObject {
         self.init(entity: entityDescription, insertIntoManagedObjectContext: appDelegate.managedObjectContext!)
     }
     
+    
     func getFullName() -> String! {
         return self.first_name + " " + self.last_name
     }
