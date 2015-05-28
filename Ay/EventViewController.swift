@@ -43,6 +43,8 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var onDataAvailable : ((data: String) -> ())?
     var event_id: String?
     
+    let header_height = 24
+    
     @IBAction func cancelPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -77,6 +79,9 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
 
         } else {
+            if target == nil {
+                target = ""
+            }
             // TODO : add event to global or local array
             var recur_freq = getRecurStructure()
             if event_id == nil {
@@ -104,10 +109,13 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidAppear(animated)
         
         if event_id == nil {
-            viewTitleView.text = "Add Event"
+            viewTitleView.text = "New Event"
             var date_picker = UIDatePicker()
-            start_date_cell.dateView.text = NSDateFormatter.localizedStringFromDate(date_picker.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
-            end_date_cell.dateView.text = NSDateFormatter.localizedStringFromDate(date_picker.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+            if first_load {
+                start_date_cell.dateView.text = NSDateFormatter.localizedStringFromDate(date_picker.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+                end_date_cell.dateView.text = NSDateFormatter.localizedStringFromDate(date_picker.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+                first_load = false
+            }
         } else {
             viewTitleView.text = "Update Event"
             if first_load{
@@ -284,9 +292,9 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             case 0 :
                 return 2
             case 1 :
-                return 7
+                return self.appDelegate.data_manager!.cur_user!.familyMembers.allObjects.count
             case 2 :
-                return 1
+                return 7
             case 3 :
                 return 1
             default :
@@ -312,8 +320,25 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     loc_cell = cell as! LocationCell
                 }
                 break
+        
             case 1 :
+        
+                cell = tableView.dequeueReusableCellWithIdentifier(add_event_participants_cell_identifier) as? ParticipantsCell
+                var family_member_list = self.appDelegate.data_manager!.cur_user?.familyMembers.allObjects as! [FamilyMember]?
+                var member = family_member_list![indexPath.row]
+                var member_image = UIImageView(frame: CGRectMake(15, 7, 30, 30))
+                member_image.layer.borderWidth = 1
+                member_image.layer.borderColor = member.assigned_color().CGColor
+                member_image.layer.cornerRadius = member_image.frame.height / 2
+                member_image.clipsToBounds = true
+                member_image.backgroundColor = member.assigned_color() as UIColor
                 
+                (cell as! ParticipantsCell).nameView.text = member.name
+                cell?.addSubview(member_image)
+            
+            
+            case 2 :
+            
                 if indexPath.row == 0 {
                     cell = tableView.dequeueReusableCellWithIdentifier(add_event_start_cell_identifier) as? StartDateCell
                     start_date_cell = cell as! StartDateCell
@@ -336,29 +361,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     cell = tableView.dequeueReusableCellWithIdentifier(add_event_notify_cell_identifier) as? NotifyCell
                     notify_cell = cell as! NotifyCell
                 }
-                    
-            
-        
-            case 2 :
-        
-                if indexPath.row == 0{
-                    cell = tableView.dequeueReusableCellWithIdentifier(add_event_participants_cell_identifier) as? ParticipantsCell
-                    var family_member_list = self.appDelegate.data_manager!.cur_user?.familyMembers.allObjects as! [FamilyMember]?
-                    for var i = 0; i < family_member_list!.count; ++i{
-                        var member = family_member_list![i]
-                        var member_image = UIImageView(frame: CGRectMake(CGFloat(30 + 80 * i), 50, 50, 50))
-                        member_image.layer.borderWidth = 1
-                        member_image.layer.borderColor = member.assigned_color().CGColor
-                        member_image.layer.cornerRadius = member_image.frame.height / 2
-                        member_image.clipsToBounds = true
-                        member_image.userInteractionEnabled = true
-                        
-                        let tapRecognizer = UITapGestureRecognizer(target: self, action: Selector("memberTapped:"))
-                        member_image.addGestureRecognizer(tapRecognizer)
-                        
-                        cell?.addSubview(member_image)
-                    }
-                }
+
             
             case 3 :
             
@@ -375,16 +378,10 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell!
     }
     
-    func memberTapped(gestureRecognizer: UITapGestureRecognizer){
-        let tappedImageView = gestureRecognizer.view!
+    func memberTapped(rowIndex : Int){
         var family_member_list = self.appDelegate.data_manager!.cur_user?.familyMembers.allObjects
-        for var i = 0 ; i < family_member_list!.count; i++ {
-            let member = family_member_list![i] as! FamilyMember
-            let color = member.assigned_color() as UIColor
-            if CGColorEqualToColor(tappedImageView.layer.borderColor, color.CGColor ){
-                target = member.name as String
-            }
-        }
+        let member = family_member_list![rowIndex] as! FamilyMember
+        target = member.name as String
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -404,8 +401,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         } else if row == Row.RepeatEnd && repeatEndHidden{
             return 0
-        } else if row == Row.Participants && self.appDelegate.data_manager!.cur_user?.familyMembers.count > 0 {
-            return 120
         } else if row == Row.Delete && event_id == nil {
             return 0
         }
@@ -437,9 +432,43 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             toggleEndDatePicker()
         }
         
+        if row == Row.Participants{
+            memberTapped(indexPath.row)
+        }
+        
         if row == Row.Delete{
             ParseCoreService().deleteEvent(event_id!)
         }
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 0
+        }
+        if section == 1{
+            if self.appDelegate.data_manager!.cur_user!.familyMembers.allObjects.count > 0{
+                return 35
+            } else {
+                return 0
+            }
+        }
+        return CGFloat(header_height)
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section != 1 || self.appDelegate.data_manager!.cur_user!.familyMembers.allObjects.count == 0{
+            return nil
+        }
+        var labelView = UILabel(frame: CGRect(x: 15, y: 7, width: 200, height: header_height))
+        labelView.text = "FAMILY MEMBERS"
+        labelView.textAlignment = NSTextAlignment.Left
+        labelView.font = UIFont(name: labelView.font.fontName, size: 17)
+        labelView.textColor = UIColor.blackColor()
+        
+        var headerView = UIView()
+        headerView.addSubview(labelView)
+        
+        return headerView
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -587,31 +616,33 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         init(indexPath: NSIndexPath) {
             var row = Row.Unknown
             
-            switch (indexPath.section, indexPath.row) {
-            case (0, 0):
-                row = Row.Title
-            case (0, 1):
-                row = Row.Location
-            case (1, 0):
-                row = Row.StartDate
-            case (1, 1):
-                row = Row.StartDatePicker
-            case (1, 2):
-                row = Row.EndDate
-            case (1, 3):
-                row = Row.EndDatePicker
-            case (1, 4):
-                row = Row.Repeat
-            case (1, 5):
-                row = Row.RepeatEnd
-            case (1, 6):
-                row = Row.Notify
-            case (2, 0):
+            if indexPath.section == 1{
                 row = Row.Participants
-            case (3, 0):
-                row = Row.Delete
-            default:
-                ()
+            } else {
+                switch (indexPath.section, indexPath.row) {
+                case (0, 0):
+                    row = Row.Title
+                case (0, 1):
+                    row = Row.Location
+                case (2, 0):
+                    row = Row.StartDate
+                case (2, 1):
+                    row = Row.StartDatePicker
+                case (2, 2):
+                    row = Row.EndDate
+                case (2, 3):
+                    row = Row.EndDatePicker
+                case (2, 4):
+                    row = Row.Repeat
+                case (2, 5):
+                    row = Row.RepeatEnd
+                case (2, 6):
+                    row = Row.Notify
+                case (3, 0):
+                    row = Row.Delete
+                default:
+                    ()
+                }
             }
             
             assert(row != Row.Unknown)

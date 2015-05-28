@@ -197,6 +197,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell!.start_time_label.text = NSDateFormatter.localizedStringFromDate(event.start_time!, dateStyle: .NoStyle, timeStyle: .ShortStyle)
         
         cell!.end_time_label.text = NSDateFormatter.localizedStringFromDate(event.end_time!, dateStyle: .NoStyle, timeStyle: .ShortStyle)
+        
+        var family_member_list = self.appDelegate.data_manager!.cur_user?.familyMembers.allObjects
+        var color: UIColor?
+        for var i = 0 ; i < family_member_list!.count; i++ {
+            let member = family_member_list![i] as! FamilyMember
+            let name = member.name
+            if name == event.target_name{
+                color = member.assigned_color() as UIColor
+                break
+            }
+        }
+        if color != nil {
+            cell!.colorImageView.backgroundColor = color
+        }
         return cell!
     }
     

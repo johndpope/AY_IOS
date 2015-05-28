@@ -48,6 +48,17 @@ class FamilyMember: NSManagedObject {
         }
         
     }
+    
+    func toDictionary() -> NSDictionary {
+        var dict = NSMutableDictionary()
+        dict.setObject(age, forKey: "age")
+        dict.setObject(color, forKey: "color")
+        dict.setObject(gender, forKey: "gender")
+        dict.setObject(interests, forKey: "interests")
+        dict.setObject(name, forKey: "name")
+        
+        return dict
+    }
 
 
 }
