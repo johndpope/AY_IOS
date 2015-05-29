@@ -12,14 +12,15 @@ class ParseCoreService {
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
-    func createUser(email: String, password: String, first_name : String, last_name : String, birth : NSDate, family_members: Array<NSDictionary>) {
+    func createUser(first_name : String, last_name : String, family_members: NSMutableSet) {
         let params = NSMutableDictionary()
-        params.setObject(email, forKey: "Email" )
-        params.setObject(password, forKey: "Password" )
         params.setObject(first_name, forKey: "First_Name" )
         params.setObject(last_name, forKey: "Last_Name" )
-        params.setObject(birth, forKey: "Birth_Date" )
-        params.setObject(family_members, forKey: "Fam_Members" )
+        var family_json_array = Array<NSDictionary>()
+        for object in family_members.allObjects{
+            family_json_array.append((object as! FamilyMember).toDictionary())
+        }
+        params.setObject(family_json_array, forKey: "Fam_Members" )
         let installation = PFInstallation.currentInstallation()
         params.setObject(installation.installationId, forKey: "Device_Token")
         PFCloud.callFunctionInBackground("createUser", withParameters: params as [NSObject : AnyObject], block: {
@@ -38,13 +39,16 @@ class ParseCoreService {
         })
     }
     
-    func updateUser(first_name : String, last_name : String, birth: NSDate, family_members: NSMutableSet) {
+    func updateUser(first_name : String, last_name : String, family_members: NSMutableSet) {
         let params = NSMutableDictionary()
         params.setObject(appDelegate.data_manager!.cur_user!.object_id, forKey: "objectId" )
         params.setObject(first_name, forKey: "First_Name" )
         params.setObject(last_name, forKey: "Last_Name" )
-        params.setObject(birth, forKey: "Birth_Date" )
-        params.setObject(family_members, forKey: "Fam_Members" )
+        var family_json_array = Array<NSDictionary>()
+        for object in family_members.allObjects{
+            family_json_array.append((object as! FamilyMember).toDictionary())
+        }
+        params.setObject(family_json_array, forKey: "Fam_Members" )
         PFCloud.callFunctionInBackground("updateUser", withParameters: params as [NSObject : AnyObject], block: {
             (result: AnyObject?, error: NSError?) -> Void in
             if ( error == nil) {

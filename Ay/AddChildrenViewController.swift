@@ -10,6 +10,8 @@ import UIKit
 
 class AddChildrenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    let app_delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidAppear(animated: Bool){
@@ -26,6 +28,15 @@ class AddChildrenViewController: UIViewController, UITableViewDelegate, UITableV
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        // When preparing for the segue, have viewController1 provide a closure for
+        // onDataAvailable
+        if let viewController = segue.destinationViewController as? ViewController {
+            ParseCoreService().updateUser(app_delegate.data_manager!.cur_user!.first_name, last_name: app_delegate.data_manager!.cur_user!.last_name, family_members: app_delegate.data_manager!.cur_user!.familyMembers)
+        }
+    }
+
+    
     
     // Table view Datasource / delegate methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -41,12 +52,7 @@ class AddChildrenViewController: UIViewController, UITableViewDelegate, UITableV
         return 0
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 80
-    }
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let app_delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let user = app_delegate.data_manager!.cur_user
 
         
@@ -54,8 +60,16 @@ class AddChildrenViewController: UIViewController, UITableViewDelegate, UITableV
         let row = indexPath.row
         let child = user!.familyMembers.allObjects[row] as! FamilyMember
         cell!.name_label.text = child.name as String
-        cell!.age_label.text = "\(child.age)"
-        cell!.contentView.backgroundColor = child.assigned_color()
+        cell!.age_label.text = "Age: " + "\(child.age)"
+        
+        var member_image = UIImageView(frame: CGRectMake(15, 7, 30, 30))
+        member_image.layer.borderWidth = 1
+        member_image.layer.borderColor = child.assigned_color().CGColor
+        member_image.layer.cornerRadius = member_image.frame.height / 2
+        member_image.clipsToBounds = true
+        member_image.backgroundColor = child.assigned_color() as UIColor
+        
+        cell?.addSubview(member_image)
         
         return cell!
     }

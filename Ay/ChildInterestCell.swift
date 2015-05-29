@@ -1,25 +1,25 @@
 //
-//  ParticipantsCell.swift
+//  ChildInterestCell.swift
 //  Ay
 //
-//  Created by Do Kwon on 5/18/15.
+//  Created by Ki Suk Jang on 5/28/15.
 //  Copyright (c) 2015 Do Kwon. All rights reserved.
 //
 
 import UIKit
 
-class ParticipantsCell: UITableViewCell {
-
-    @IBOutlet weak var nameView: UILabel!
+class ChildInterestCell: UITableViewCell {
+    
+    @IBOutlet weak var interestView: UITextField!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

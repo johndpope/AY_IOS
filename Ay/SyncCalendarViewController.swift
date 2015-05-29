@@ -9,8 +9,9 @@
 import UIKit
 import EventKit
 
-class SyncCalendarViewController: UIViewController {
+class SyncCalendarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var importTableView: UITableView!
     var events_access_granted : Bool = false
     
     @IBAction func facebook_sync_pressed(sender: AnyObject) {
@@ -70,14 +71,48 @@ class SyncCalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.importTableView.delegate = self
+        self.importTableView.dataSource = self
         
         // Add to db using parsecoreservice
-        ParseCoreService().createUser("actual_user", password: "", first_name : "", last_name : "", birth : NSDate(), family_members: Array<NSDictionary>())
+        ParseCoreService().createUser("", last_name : "", family_members: NSMutableSet())
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // Table view Datasource / delegate methods
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell : UITableViewCell?
+        if indexPath.row == 0 {
+            cell = tableView.dequeueReusableCellWithIdentifier(import_ical_cell_identifier) as? UITableViewCell
+        } else if indexPath.row == 1 {
+            cell = tableView.dequeueReusableCellWithIdentifier(import_google_cal_cell_identifier) as? UITableViewCell
+        } else if indexPath.row == 2{
+            cell = tableView.dequeueReusableCellWithIdentifier(import_paper_cell_identifier) as? UITableViewCell
+        } else if indexPath.row == 3 {
+            cell = tableView.dequeueReusableCellWithIdentifier(import_facebook_cell_identifier) as? UITableViewCell
+        } else {
+            cell = tableView.dequeueReusableCellWithIdentifier(import_none_cell_identifier) as? UITableViewCell
+        }
+        
+        return cell!
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
     }
     
 
