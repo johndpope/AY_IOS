@@ -197,7 +197,7 @@ class CVCalendarDayView: UIView {
                 if let appearance = self.weekView!.monthView!.calendarView!.appearanceDelegate {
                     yOffset = appearance.dotMarkerOffset
                 }
-                let y = CGRectGetMaxY(self.frame) - self.frame.height / yOffset!
+                let y = CGRectGetMaxY(self.frame) - self.frame.height / yOffset! + 10
                 
                 let frame = CGRectMake(0, 0, width, height)
                 
