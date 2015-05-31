@@ -20,7 +20,7 @@ class SyncCalendarViewController: UIViewController, UITableViewDelegate, UITable
     }
     @IBAction func sync_gcal_pressed(sender: AnyObject) {
     }
-    @IBAction func sync_ical_pressed(sender: AnyObject) {
+    func sync_ical_pressed() {
         // Ask for user permission first
         
         let event_defaults_key = "eventkit_events_access_granted"
@@ -30,26 +30,144 @@ class SyncCalendarViewController: UIViewController, UITableViewDelegate, UITable
         let user_defaults = NSUserDefaults.standardUserDefaults()
         
         if user_defaults.valueForKey( event_defaults_key) != nil {
-            self.events_access_granted = (user_defaults.valueForKey(event_defaults_key) as! String).toInt() == 1 ? true : false
+            
+            println("Debug!!")
+            self.events_access_granted = user_defaults.valueForKey(event_defaults_key) as! Bool
         }
+        
+        var schedules = NSMutableDictionary()
+        
+        
+        
+
         
         // Ask for permission again for some other crap
         event_store.requestAccessToEntityType(EKEntityTypeEvent, completion:{
             granted, error in
             if error == nil {
                 self.events_access_granted = granted
+                
+                // Set permission in user defaults
+                user_defaults.setValue(NSNumber(bool: self.events_access_granted), forKey: event_defaults_key)
+                
+                // get calendars
+                let all_calendars = event_store.calendarsForEntityType(EKEntityTypeEvent)
+                
+                
+                let start_date = NSCalendar.currentCalendar().dateByAddingUnit(
+                    NSCalendarUnit.CalendarUnitYear,
+                    value: -1,
+                    toDate: NSDate(),
+                    options: NSCalendarOptions.WrapComponents)
+                let end_date = NSCalendar.currentCalendar().dateByAddingUnit(
+                    NSCalendarUnit.CalendarUnitYear,
+                    value: +1,
+                    toDate: NSDate(),
+                    options: NSCalendarOptions.WrapComponents)
+                
+                let predicate = event_store.predicateForEventsWithStartDate(start_date, endDate: end_date, calendars: all_calendars)
+                
+                event_store.enumerateEventsMatchingPredicate(predicate, usingBlock:{
+                    (event:EKEvent!, stop:UnsafeMutablePointer<ObjCBool>) in
+                    
+                    if (event.title != nil
+                        && event.calendar != nil
+                        
+                        && event.calendar.calendarIdentifier != nil
+                        && event.lastModifiedDate != nil
+                        ){
+                            println (event)
+                            var new_event = AyEvent()
+                            
+                            
+                            new_event.title = event.title
+                            
+                            if event.alarms != nil {
+                                
+                            }
+                            /*if event.location != nil {
+                                new_event.location = event.location
+                            }*/
+                            
+                            if event.startDate != nil {
+                                new_event.start_time = event.startDate
+                            }
+                            if event.endDate != nil {
+                                new_event.end_time = event.endDate
+                            }
+                            
+                            
+                            
+                            
+                            /*id : String = ""
+                            var target_name : String = ""
+                            var start_time : NSDate?
+                            var end_time : NSDate?
+                            var title : String = ""
+                            var alarm_time : NSDate?
+                            var recur_end : NSDate?
+                            var recur_freq : NSDictionary?
+                            var recur_occur : Int
+                            var participants : NSMutableSet?
+                            var type : String?*/
+                            
+                            ParseCoreService().createEvent(new_event.target_name, title: new_event.title, start: new_event.start_time!, end: new_event.end_time!, alarm: nil, recur_end: nil, recur_freq: nil, recur_occur: 0)
+                            
+                            
+                    }
+                    
+                    //......
+                })// end block
+                /*
+                // Start date of schedules to be imported ; for now, we just do a year prior.
+                let start_date = NSCalendar.currentCalendar().dateByAddingUnit(
+                    NSCalendarUnit.CalendarUnitYear,
+                    value: -1,
+                    toDate: NSDate(),
+                    options: NSCalendarOptions.WrapComponents)
+                let end_date = NSCalendar.currentCalendar().dateByAddingUnit(
+                    NSCalendarUnit.CalendarUnitYear,
+                    value: +1,
+                    toDate: NSDate(),
+                    options: NSCalendarOptions.WrapComponents)
+                
+                
+                
+                
+                
+                //println (all_calendars)
+                let current = NSDate(timeInterval: 0, sinceDate: start_date!)
+                
+                // enumerate events by one year segment because ios does not support predicate longer than 4 years
+                while (current.compare(end_date!) == NSComparisonResult.OrderedAscending) {
+                    
+                    let num_days_in_year = NSCalendar.currentCalendar().rangeOfUnit(.CalendarUnitDay, inUnit: .CalendarUnitYear, forDate: current)
+                    let seconds_in_year = 60 * 60 * Int(num_days_in_year)
+                    
+                    
+                    let predicate = event_store.predicateForEventsWithStartDate(current, endDate: end_date, calendars: all_calendars)
+                    
+                    event_store.enumerateEventsMatchingPredicate(predicate, usingBlock:{
+                        (event:EKEvent!, stop:UnsafeMutablePointer<ObjCBool>) in
+                        if event != nil {
+                            schedules.addObject(event, forKey: event.eventIdentifier)
+                        }
+                        println(event)
+                    
+                    })
+                    
+                    current = NSDate(timeInterval: seconds_in_year + 1, sinceDate: start_date!)
+                }
+                
+                
+             */
+
+                
             } else {
                 println (error.localizedDescription)
             }
         })
         
-        // Set permission in user defaults
-        user_defaults.setValue(NSNumber(bool: events_access_granted), forKey: event_defaults_key)
-        
-        // get calendars
-        let all_calendars = event_store.calendarsForEntityType(EKEntityTypeEvent)
-        
-        println (all_calendars)
         
         
         
@@ -112,7 +230,21 @@ class SyncCalendarViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        if indexPath.row == 0 {
+            // ICAL
+            sync_ical_pressed()
+            
+        } else if indexPath.row == 1 {
+            // GCAL
+        } else if indexPath.row == 2{
+            // PAPER
+        } else if indexPath.row == 3 {
+            // FACEBOOK
+            
+        } else {
+            // DO NOTHING
+        }
+
     }
     
 

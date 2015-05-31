@@ -96,7 +96,7 @@ class CVCalendarDayView: UIView {
         self.date = CVDate(day: day!, month: month!, week: self.weekView!.index!, year: year)
         
         self.labelSetup()
-        self.topMarkerSetup()
+        //self.topMarkerSetup()
         self.setupGestures()
         self.setupDotMarker()
     }
@@ -184,10 +184,95 @@ class CVCalendarDayView: UIView {
             }
         }
     }
+    /*
+    func setUpDotMarkers() {
+            if let delegate = self.weekView!.monthView!.calendarView!.delegate {
+                
+                let colors = delegate.dotMarker(shouldShowOnDayView: self)
+                var color = UIColor.grayColor()
+                let start = -12 * (colors.count - 1)
+                let offset = 10
+                
+                var i : Int = 0
+                for _color in colors {
+                    //var color = delegate.dotMarker(colorOnDayView: self)
+                    let width: CGFloat = 13
+                    let height = width
+                    
+                    let x = self.frame.width / 2
+                    var yOffset: CGFloat? = 5
+                    if let appearance = self.weekView!.monthView!.calendarView!.appearanceDelegate {
+                        yOffset = appearance.dotMarkerOffset
+                    }
+                    let y = CGRectGetMaxY(self.frame) - self.frame.height / yOffset! + 5
+                    
+                    let frame = CGRectMake(0, 0, width, height)
+                    
+                    if !self.isOut {
+                        color = _color
+                    }
+                    
+                    let dot = CVCircleView(frame: frame, color: color, _alpha: 1)
+                    self.dotMarker?.center = CGPointMake(CGFloat(start + offset * i), y)
+                    i += 1
+                    self.insertSubview(self.dotMarker!, atIndex: 0)
+                    
+                    let coordinator = CVCalendarDayViewControlCoordinator.sharedControlCoordinator
+                    if self == coordinator.selectedDayView {
+                        self.moveDotMarker(false)
+                    }
+                }
+            }
+   
+    }*/
+    
     
     func setupDotMarker() {
         if let delegate = self.weekView!.monthView!.calendarView!.delegate {
-            if delegate.dotMarker(shouldShowOnDayView: self) {
+            
+            let colors = delegate.dotMarker(shouldShowOnDayView: self)
+            var color = UIColor.grayColor()
+            let start = self.frame.width / 2 - CGFloat(6 * (colors.count - 1)) / 2
+            let offset = 7
+            
+            var i : Int = 0
+            for _color in colors {
+                //var color = delegate.dotMarker(colorOnDayView: self)
+                let width: CGFloat = 13
+                let height = width
+                
+                
+                var yOffset: CGFloat? = 5
+                if let appearance = self.weekView!.monthView!.calendarView!.appearanceDelegate {
+                    yOffset = appearance.dotMarkerOffset
+                }
+                let y = CGRectGetMaxY(self.frame) - self.frame.height / yOffset! + 5
+                
+                let frame = CGRectMake(0, 0, width, height)
+                
+                if !self.isOut {
+                    color = _color
+                }
+                
+                let dot = CVCircleView(frame: frame, color: color, _alpha: 1)
+                dot.center = CGPointMake(start + CGFloat(offset * i), y)
+                i += 1
+                self.insertSubview(dot, atIndex: 0)
+                
+                let coordinator = CVCalendarDayViewControlCoordinator.sharedControlCoordinator
+                /*if self == coordinator.selectedDayView {
+                    self.moveDotMarker(false)
+                }*/
+            }
+        }
+
+    }
+    
+    
+    /*
+    func setupDotMarker() {
+        if let delegate = self.weekView!.monthView!.calendarView!.delegate {
+            if delegate.dotMarker(shouldShowOnDayView: self).count > 0 {
                 var color = delegate.dotMarker(colorOnDayView: self)
                 let width: CGFloat = 13
                 let height = width
@@ -197,7 +282,7 @@ class CVCalendarDayView: UIView {
                 if let appearance = self.weekView!.monthView!.calendarView!.appearanceDelegate {
                     yOffset = appearance.dotMarkerOffset
                 }
-                let y = CGRectGetMaxY(self.frame) - self.frame.height / yOffset! + 10
+                let y = CGRectGetMaxY(self.frame) - self.frame.height / yOffset! + 5
                 
                 let frame = CGRectMake(0, 0, width, height)
                 
@@ -216,7 +301,7 @@ class CVCalendarDayView: UIView {
                 }
             }
         }
-    }
+    }*/
     
     // MARK: - Events handling
     
