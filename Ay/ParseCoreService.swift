@@ -77,10 +77,16 @@ class ParseCoreService {
         })
     }
     
-    func createEvent(target: String, title: String, start: NSDate, end: NSDate, alarm: NSDate?, recur_end: NSDate?, recur_freq: NSDictionary?, recur_occur: Int?){
+    func createEvent(participants: NSMutableSet?, title: String, start: NSDate, end: NSDate, alarm: NSDate?, recur_end: NSDate?, recur_freq: NSDictionary?, recur_occur: Int?, latitude: Double?, longitude: Double?){
         let params = NSMutableDictionary()
         params.setObject(appDelegate.data_manager!.cur_user!.object_id, forKey: "User_Id" )
-        params.setObject(target, forKey: "Target_Name" )
+        if participants != nil {
+            var participants_json_array = Array<NSDictionary>()
+            for object in participants!.allObjects{
+                participants_json_array.append((object as! FamilyMember).toDictionary())
+            }
+            params.setObject(participants_json_array, forKey: "Participants" )
+        }
         params.setObject(title, forKey: "Title" )
         params.setObject(start, forKey: "Start_Time" )
         params.setObject(end, forKey: "End_Time" )
@@ -96,11 +102,17 @@ class ParseCoreService {
         if recur_occur != nil {
             params.setObject(recur_occur!, forKey: "Recur_Occur" )
         }
+        if latitude != nil {
+            params.setObject(latitude!, forKey: "Latitude")
+        }
+        if longitude != nil {
+            params.setObject(longitude!, forKey: "Longitude")
+        }
         PFCloud.callFunctionInBackground("createEvent", withParameters: params as [NSObject : AnyObject], block: {
             (result: AnyObject?, error: NSError?) -> Void in
             if ( error == nil) {
                 let new_id = result as! String
-                var new_event = AyEvent(id: new_id, target_name: target, start: start, end: end, title: title, alarm: alarm, recur_end: recur_end, recur_freq: recur_freq, recur_occur: recur_occur)
+                var new_event = AyEvent(id: new_id, participants: participants, start: start, end: end, title: title, alarm: alarm, recur_end: recur_end, recur_freq: recur_freq, recur_occur: recur_occur, latitude: latitude, longitude: longitude)
                 self.appDelegate.data_manager!.events.append(new_event)
                 NSNotificationCenter.defaultCenter().postNotificationName(notification_event_created, object: self)
             }
@@ -135,10 +147,16 @@ class ParseCoreService {
         })
     }
     
-    func updateEvent(event_id: String, target: String, title: String, start: NSDate, end: NSDate, alarm: NSDate?, recur_end: NSDate?, recur_freq: NSDictionary?, recur_occur: Int?){
+    func updateEvent(event_id: String, participants: NSMutableSet?, title: String, start: NSDate, end: NSDate, alarm: NSDate?, recur_end: NSDate?, recur_freq: NSDictionary?, recur_occur: Int?){
         let params = NSMutableDictionary()
         params.setObject(event_id, forKey: "objectId" )
-        params.setObject(target, forKey: "Target_Name" )
+        if participants != nil {
+            var participants_json_array = Array<NSDictionary>()
+            for object in participants!.allObjects{
+                participants_json_array.append((object as! FamilyMember).toDictionary())
+            }
+            params.setObject(participants_json_array, forKey: "Participants" )
+        }
         params.setObject(title, forKey: "Title" )
         params.setObject(start, forKey: "Start_Time" )
         params.setObject(end, forKey: "End_Time" )
@@ -169,7 +187,7 @@ class ParseCoreService {
                 let update_id = result as! String
                 for (index,event) in enumerate(self.appDelegate.data_manager!.events){
                     if event.id == update_id {
-                        event.target_name = target
+                        event.participants = participants
                         event.title = title
                         event.start_time = start
                         event.end_time = end
@@ -199,7 +217,20 @@ class ParseCoreService {
                 for (var i = 0; i < event_list.count; i++){
                     var event = event_list[i] as! PFObject
                     var new_id = event.objectId!
-                    var target = event["Target_Name"] as! String
+                    var participants : NSMutableSet?
+                    if event["Participants"] != nil {
+                        participants = NSMutableSet()
+                        for object in (event["Participants"] as! Array<NSDictionary>){
+                            var dict_obj = object as NSDictionary
+                            var participant = FamilyMember()
+                            participant.age = dict_obj["age"] as! NSNumber
+                            participant.color = dict_obj["color"] as! String
+                            participant.gender = dict_obj["gender"] as! NSNumber
+                            participant.interests = dict_obj["interests"] as! String
+                            participant.name = dict_obj["name"] as! String
+                            participants?.addObject(participant)
+                        }
+                    }
                     var start = event["Start_Time"] as! NSDate
                     var end = event["End_Time"] as! NSDate
                     var title = event["Title"] as! String
@@ -219,7 +250,15 @@ class ParseCoreService {
                     if event["Recur_Occur"] != nil {
                         recur_occur = event["Recur_Occur"] as? Int
                     }
-                    var new_event = AyEvent(id: new_id, target_name: target, start: start, end: end, title: title, alarm: alarm, recur_end: recur_end, recur_freq: recur_freq, recur_occur: recur_occur!)
+                    var latitude : Double?
+                    if event["Latitude"] != nil {
+                        latitude = event["Latitude"] as? Double
+                    }
+                    var longitude : Double?
+                    if event["Longitude"] != nil {
+                        longitude = event["Longitude"] as? Double
+                    }
+                    var new_event = AyEvent(id: new_id, participants: participants, start: start, end: end, title: title, alarm: alarm, recur_end: recur_end, recur_freq: recur_freq, recur_occur: recur_occur!, latitude: latitude, longitude: longitude)
                     self.appDelegate.data_manager!.events.append(new_event)
                 }
                 NSNotificationCenter.defaultCenter().postNotificationName(notification_events_fetched, object: self)

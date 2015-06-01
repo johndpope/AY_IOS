@@ -34,7 +34,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     private var repeat_option : NSMutableDictionary!
     private var repeat_end_time: NSDate!
     private var notify_time: NSDate!
-    private var target: String!
+    private var participants: NSMutableSet?
     
     private var first_load = true
     
@@ -79,15 +79,15 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
 
         } else {
-            if target == nil {
-                target = ""
-            }
             // TODO : add event to global or local array
+            if participants != nil && participants?.allObjects.count == 0{
+                participants = nil
+            }
             var recur_freq = getRecurStructure()
             if event_id == nil {
-                ParseCoreService().createEvent(target, title: title_cell.titleTextField.text, start: start_date_picker_cell.datePicker.date, end: end_date_picker_cell.datePicker.date, alarm: notify_time, recur_end: repeat_end_time, recur_freq: recur_freq, recur_occur: 0)
+                ParseCoreService().createEvent(participants, title: title_cell.titleTextField.text, start: start_date_picker_cell.datePicker.date, end: end_date_picker_cell.datePicker.date, alarm: notify_time, recur_end: repeat_end_time, recur_freq: recur_freq, recur_occur: 0, latitude: 3.0001, longitude: nil)
             } else {
-                ParseCoreService().updateEvent(event_id!, target: target, title: title_cell.titleTextField.text, start: start_date_picker_cell.datePicker.date, end: end_date_picker_cell.datePicker.date, alarm: notify_time, recur_end: repeat_end_time, recur_freq: recur_freq, recur_occur: 0)
+                ParseCoreService().updateEvent(event_id!, participants: participants, title: title_cell.titleTextField.text, start: start_date_picker_cell.datePicker.date, end: end_date_picker_cell.datePicker.date, alarm: notify_time, recur_end: repeat_end_time, recur_freq: recur_freq, recur_occur: 0)
             }
         }
     }
@@ -185,7 +185,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
-        target = cur_event.target_name
+        participants = cur_event.participants
         
         tableView.endUpdates()
     }
@@ -381,7 +381,17 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func memberTapped(rowIndex : Int){
         var family_member_list = self.appDelegate.data_manager!.cur_user?.familyMembers.allObjects
         let member = family_member_list![rowIndex] as! FamilyMember
-        target = member.name as String
+        if participants == nil {
+            participants = NSMutableSet()
+        }
+        for object in participants!.allObjects{
+            var cur_member = object as! FamilyMember
+            if cur_member.age == member.age && cur_member.name == member.age{
+                participants!.removeObject(object)
+                return
+            }
+        }
+        participants!.addObject(member)
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

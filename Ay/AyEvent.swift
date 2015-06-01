@@ -13,10 +13,11 @@ import Foundation
 
 class AyEvent {
     var id : String = ""
-    var target_name : String = ""
     var start_time : NSDate?
     var end_time : NSDate?
     var title : String = ""
+    var latitude: Double?
+    var longitude: Double?
     var alarm_time : NSDate?
     var recur_end : NSDate?
     var recur_freq : NSDictionary?
@@ -27,7 +28,7 @@ class AyEvent {
     
     init () {
         self.id = ""
-        self.target_name = ""
+        self.participants = nil
         self.start_time = nil
         self.end_time = nil
         self.title = ""
@@ -37,9 +38,8 @@ class AyEvent {
         self.recur_occur = -1
     }
     
-    init(id: String, target_name: String, start: NSDate, end: NSDate, title: String, alarm: NSDate?, recur_end: NSDate?, recur_freq: NSDictionary?, recur_occur: Int?){
+    init(id: String, participants: NSMutableSet?, start: NSDate, end: NSDate, title: String, alarm: NSDate?, recur_end: NSDate?, recur_freq: NSDictionary?, recur_occur: Int?, latitude: Double?, longitude: Double?){
         self.id = id
-        self.target_name = target_name
         self.start_time = start
         self.end_time = end
         self.title = title
@@ -47,7 +47,9 @@ class AyEvent {
         self.recur_end = recur_end
         self.recur_freq = recur_freq
         self.recur_occur = recur_occur!
-        self.participants = NSMutableSet()
+        self.participants = participants
+        self.latitude = latitude
+        self.longitude = longitude
     }
     
     
