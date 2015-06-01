@@ -77,7 +77,7 @@ class ParseCoreService {
         })
     }
     
-    func createEvent(target: String, title: String, start: NSDate, end: NSDate, alarm: NSDate?, recur_end: NSDate?, recur_freq: NSDictionary?, recur_occur: Int?){
+    func createEvent(target: String, title: String, start: NSDate, end: NSDate, alarm: NSDate?, recur_end: NSDate?, recur_freq: NSDictionary?, recur_occur: Int?, location : String?, num_location : CGPoint?, type: String?){
         let params = NSMutableDictionary()
         params.setObject(appDelegate.data_manager!.cur_user!.object_id, forKey: "User_Id" )
         params.setObject(target, forKey: "Target_Name" )
@@ -100,7 +100,7 @@ class ParseCoreService {
             (result: AnyObject?, error: NSError?) -> Void in
             if ( error == nil) {
                 let new_id = result as! String
-                var new_event = AyEvent(id: new_id, target_name: target, start: start, end: end, title: title, alarm: alarm, recur_end: recur_end, recur_freq: recur_freq, recur_occur: recur_occur)
+                var new_event = AyEvent(id: new_id, target_name: target, start: start, end: end, title: title, alarm: alarm, recur_end: recur_end, recur_freq: recur_freq, recur_occur: recur_occur, participants : nil, type : type, loc : location)
                 self.appDelegate.data_manager!.events.append(new_event)
                 NSNotificationCenter.defaultCenter().postNotificationName(notification_event_created, object: self)
             }
@@ -219,7 +219,7 @@ class ParseCoreService {
                     if event["Recur_Occur"] != nil {
                         recur_occur = event["Recur_Occur"] as? Int
                     }
-                    var new_event = AyEvent(id: new_id, target_name: target, start: start, end: end, title: title, alarm: alarm, recur_end: recur_end, recur_freq: recur_freq, recur_occur: recur_occur!)
+                    var new_event = AyEvent(id: new_id, target_name: target, start: start, end: end, title: title, alarm: alarm, recur_end: recur_end, recur_freq: recur_freq, recur_occur: recur_occur!, participants : nil, type : "", loc : "location")
                     self.appDelegate.data_manager!.events.append(new_event)
                 }
                 NSNotificationCenter.defaultCenter().postNotificationName(notification_events_fetched, object: self)

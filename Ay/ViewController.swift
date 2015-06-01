@@ -53,6 +53,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         calendarView.delegate = self
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshSchedule:", name: notification_events_fetched, object: nil)
+        
+        //let no_event_label =
+        no_event_label = UILabel(frame: CGRectMake(0, 0, 200, 21))
+        no_event_label!.center = CGPointMake(189, (self.scheduleTableView.frame.height - no_event_label!.frame.height) / 2)
+        no_event_label!.textAlignment = NSTextAlignment.Center
+        no_event_label!.text = "No Events"
+        self.scheduleTableView.addSubview(no_event_label!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,7 +72,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // Load the calendar view
         self.menuView.commitMenuViewUpdate()
-        self.calendarView.commitCalendarViewUpdate()
+        //self.calendarView.commitCalendarViewUpdate()
+        
+        refreshSchedule()
         
        self.dateLabel.text = self.calendarView.presentedDate?.description_str()
         
@@ -105,6 +114,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         refreshSchedule()
     }
     
+    var no_event_label : UILabel?
+    
     func refreshSchedule(){
         initializeDate()
         schedules.removeAllObjects()
@@ -112,6 +123,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         scheduleTableView.reloadData()
         
         addMonthlySchedule(first_month_available % 100, year: first_month_available / 100)
+        
+        if schedules.count != 0 {
+            // Need to remove label
+            no_event_label!.textColor = UIColor.clearColor()
+        } else {
+            /* Add UILabel that shows that there are no events at the moment */
+            no_event_label!.textColor = UIColor.blackColor()
+        }
         
         /* Change calendar appearance based on what we  get from server */
         self.calendarView.commitCalendarViewUpdate()
@@ -241,7 +260,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         weekDayView.textColor =  UIColor(red:0.298, green:0.564,blue:0.886,alpha:1.0)
 
         
-        var dateView = UILabel(frame: CGRect(x: Int(weekDayView.frame.origin.x + weekDayView.frame.width + 10), y: 0, width: 200, height: header_height))
+        var dateView = UILabel(frame: CGRect(x: Int(weekDayView.frame.origin.x  + 90), y: 0, width: 200, height: header_height))
         dateView.text = cal_date
         dateView.textAlignment = NSTextAlignment.Left
         dateView.font = UIFont(name: dateView.font.fontName, size: 15)

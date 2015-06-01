@@ -21,8 +21,12 @@ class AyEvent {
     var recur_end : NSDate?
     var recur_freq : NSDictionary?
     var recur_occur : Int
+    
+    
+    // TODO: add to parsecoreservice
     var participants : NSMutableSet?
     var type : String?
+    var location : String?
     
     
     init () {
@@ -37,7 +41,7 @@ class AyEvent {
         self.recur_occur = -1
     }
     
-    init(id: String, target_name: String, start: NSDate, end: NSDate, title: String, alarm: NSDate?, recur_end: NSDate?, recur_freq: NSDictionary?, recur_occur: Int?){
+    init(id: String, target_name: String, start: NSDate, end: NSDate, title: String, alarm: NSDate?, recur_end: NSDate?, recur_freq: NSDictionary?, recur_occur: Int?, participants : NSMutableSet?, type : String?, loc: String?){
         self.id = id
         self.target_name = target_name
         self.start_time = start
@@ -48,6 +52,7 @@ class AyEvent {
         self.recur_freq = recur_freq
         self.recur_occur = recur_occur!
         self.participants = NSMutableSet()
+        self.location = loc
     }
     
     
