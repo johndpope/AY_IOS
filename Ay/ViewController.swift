@@ -228,11 +228,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         var family_member_list = self.appDelegate.data_manager!.cur_user?.familyMembers.allObjects
         var color: UIColor?
-        for var i = 0 ; i < family_member_list!.count; i++ {
-            let member = family_member_list![i] as! FamilyMember
-            let name = member.name
-            if name == event.target_name{
-                color = member.assigned_color() as UIColor
+        if event.participants != nil {
+            for member in event.participants!.allObjects{
+                color = (member as! FamilyMember).assigned_color() as UIColor
                 break
             }
         }
@@ -295,10 +293,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 next_month += 88
             }
             last_month_available = next_month
-            addMonthlySchedule(next_month % 100, year: next_month / 100)
+            var timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("updateScheduleList"), userInfo: nil, repeats: false)
             
-            loading_next_month = false
         }
+    }
+    
+    func updateScheduleList(){
+        addMonthlySchedule(last_month_available % 100, year: last_month_available / 100)
+        loading_next_month = false
     }
     
     
@@ -450,16 +452,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if event_list != nil {
             for event in event_list! {
-                var color =  UIColor.blueColor()
-                for var i = 0 ; i < family_member_list!.count; i++ {
-                    let member = family_member_list![i] as! FamilyMember
-                    let name = member.name
-                    if name == event.target_name{
-                        color = member.assigned_color() as UIColor
-                        break
+                if event.participants != nil {
+                    for member in event.participants!.allObjects {
+                        var color = (member as! FamilyMember).assigned_color() as UIColor
+                        colors.append (color)
                     }
+                } else {
+                    colors.append(UIColor.blueColor())
                 }
-                colors.append (color)
                 
                 /*if event.participants != nil {
                     union.unionSet(event.participants! as Set<NSObject>)
