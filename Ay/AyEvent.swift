@@ -21,7 +21,9 @@ class AyEvent {
     var recur_end : NSDate?
     var recur_freq : NSDictionary?
     var recur_occur : Int
-    var participants : [NSDictionary] = []
+    var participants : NSMutableSet?
+    var type : String?
+    
     
     init () {
         self.id = ""
@@ -45,7 +47,10 @@ class AyEvent {
         self.recur_end = recur_end
         self.recur_freq = recur_freq
         self.recur_occur = recur_occur!
+        self.participants = NSMutableSet()
     }
+    
+    
     
     func dateAsString(date : NSDate) ->String {
         return  NSDateFormatter.localizedStringFromDate(date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)

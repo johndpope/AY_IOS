@@ -89,7 +89,6 @@ class CVCalendarMenuView: UIView {
             let symbol = UILabel(frame: CGRectMake(x, y, width, height))
             symbol.textAlignment = .Center
             symbol.text = (self.symbols[i]).uppercaseString
-            println (symbol.text)
             symbol.font = UIFont.boldSystemFontOfSize(12) // may be provided as a delegate property
             symbol.textColor = UIColor.darkGrayColor()
             

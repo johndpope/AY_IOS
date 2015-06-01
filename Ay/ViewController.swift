@@ -13,8 +13,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     // The titlebar pressed, shoudl return to today
     @IBAction func return_today_button_pressed(sender: AnyObject) {
-        
-        
+        let cv_today = CVDate(date: NSDate())
+        presentedDateUpdated(cv_today)
+        self.calendarView.toggleMonthViewWithDate(NSDate())
+        self.calendarView.commitCalendarViewUpdate()
+        //self.menuView.commitMenuViewUpdate()
     }
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -61,8 +64,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidAppear(animated)
         
         // Load the calendar view
-        self.calendarView.commitCalendarViewUpdate()
         self.menuView.commitMenuViewUpdate()
+        self.calendarView.commitCalendarViewUpdate()
         
        self.dateLabel.text = self.calendarView.presentedDate?.description_str()
         
@@ -107,7 +110,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         schedules.removeAllObjects()
         section_index_to_date.removeAll(keepCapacity: false)
         scheduleTableView.reloadData()
+        
         addMonthlySchedule(first_month_available % 100, year: first_month_available / 100)
+        
+        /* Change calendar appearance based on what we  get from server */
+        self.calendarView.commitCalendarViewUpdate()
     }
     
     func addMonthlySchedule(month: Int, year: Int) {
@@ -186,7 +193,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if (cell == nil) {
             cell = ListEventCell (style: UITableViewCellStyle.Default, reuseIdentifier: list_event_cell_identifier)
         }
+        
         let date = section_index_to_date[indexPath.section]
+        
         let event_list = schedules.objectForKey(date) as! Array<AyEvent>
         let event = event_list[indexPath.row]
         cell!.titleView.text = event.title
@@ -217,7 +226,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return CGFloat(header_height)
     }
-
+    
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyyMMdd"
@@ -226,16 +235,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var cal_date : String = String(date_components.month) + "/" + String(date_components.day) + "/" + String(date_components.year % 100)
         
         var weekDayView = UILabel(frame: CGRect(x: 15, y: 0, width: 200, height: header_height))
-        weekDayView.text = self.appDelegate.data_manager!.weekday_list[date_components.weekday-1]
+        weekDayView.text = (self.appDelegate.data_manager!.weekday_list[date_components.weekday-1]).uppercaseString
         weekDayView.textAlignment = NSTextAlignment.Left
         weekDayView.font = UIFont.boldSystemFontOfSize(16.0)
-        weekDayView.textColor = UIColor.blackColor()
+        weekDayView.textColor =  UIColor(red:0.298, green:0.564,blue:0.886,alpha:1.0)
+
         
-        var dateView = UILabel(frame: CGRect(x: 100, y: 0, width: 200, height: header_height))
+        var dateView = UILabel(frame: CGRect(x: Int(weekDayView.frame.origin.x + weekDayView.frame.width + 10), y: 0, width: 200, height: header_height))
         dateView.text = cal_date
         dateView.textAlignment = NSTextAlignment.Left
         dateView.font = UIFont(name: dateView.font.fontName, size: 15)
-        dateView.textColor = UIColor.blackColor()
+        dateView.textColor = UIColor(red:0.298, green:0.564,blue:0.886,alpha:1.0)
+
         
         var headerView = UIView()
         headerView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
@@ -373,7 +384,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             nearest_index_path = NSIndexPath(forRow: 0, inSection: nearest_section)
             scheduleTableView.scrollToRowAtIndexPath(nearest_index_path, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
         }
-        
     }
     
     func getNearestSection(month: Int, year: Int) -> Int{
@@ -410,8 +420,38 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     /* Determines whether a specific day view should be marked with dot marker or not. */
-    func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> Bool {
-        return true
+    func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> [UIColor] {
+        let date_key = dayView.date!.date_key()
+        
+        let event_list = schedules.objectForKey(date_key) as? Array<AyEvent>
+        var family_member_list = self.appDelegate.data_manager!.cur_user?.familyMembers.allObjects
+        
+        let union = NSMutableSet()
+        var colors : [UIColor] = []
+        
+        if event_list != nil {
+            for event in event_list! {
+                var color =  UIColor.blueColor()
+                for var i = 0 ; i < family_member_list!.count; i++ {
+                    let member = family_member_list![i] as! FamilyMember
+                    let name = member.name
+                    if name == event.target_name{
+                        color = member.assigned_color() as UIColor
+                        break
+                    }
+                }
+                colors.append (color)
+                
+                /*if event.participants != nil {
+                    union.unionSet(event.participants! as Set<NSObject>)
+                }*/
+            }
+            
+            /*for person in union {
+                colors.append (person.assigned_color())
+            }*/
+        }
+        return colors
     }
     
      /* Determines a color for dot marker for a specific day view. */

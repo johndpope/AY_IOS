@@ -31,7 +31,6 @@
 		1B04F0141B0ABD1100DF30B3 /* CVDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B04F0001B0ABD1100DF30B3 /* CVDate.swift */; };
 		1B2AEBCD1B13EFA200B67450 /* AY_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B2AEBCC1B13EFA200B67450 /* AY_icon.png */; };
 		1B2AEBD11B13F54100B67450 /* Statusbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B2AEBD01B13F54100B67450 /* Statusbar.png */; };
-		1B2AEBD51B14492600B67450 /* AyUser2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AEBD41B14492500B67450 /* AyUser2.swift */; };
 		1B2AEBD71B144E8900B67450 /* PickParticipantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AEBD61B144E8900B67450 /* PickParticipantTableViewController.swift */; };
 		1B42840E1B15C8E900254FC2 /* FamilyMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B42840D1B15C8E800254FC2 /* FamilyMember.swift */; };
 		1B4284101B15C91D00254FC2 /* AyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B42840F1B15C91D00254FC2 /* AyUser.swift */; };
@@ -131,7 +130,6 @@
 		1B04F0001B0ABD1100DF30B3 /* CVDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVDate.swift; sourceTree = "<group>"; };
 		1B2AEBCC1B13EFA200B67450 /* AY_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AY_icon.png; sourceTree = "<group>"; };
 		1B2AEBD01B13F54100B67450 /* Statusbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Statusbar.png; sourceTree = "<group>"; };
-		1B2AEBD41B14492500B67450 /* AyUser2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyUser2.swift; sourceTree = "<group>"; };
 		1B2AEBD61B144E8900B67450 /* PickParticipantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickParticipantTableViewController.swift; sourceTree = "<group>"; };
 		1B42840D1B15C8E800254FC2 /* FamilyMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyMember.swift; sourceTree = "<group>"; };
 		1B42840F1B15C91D00254FC2 /* AyUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyUser.swift; sourceTree = "<group>"; };
@@ -399,7 +397,6 @@
 				1B4F4CA01AFEDF8F00C61708 /* DataManager.swift */,
 				1B4F4C981AFEDDBD00C61708 /* AyEvent.swift */,
 				1B4F4C9C1AFEDDFA00C61708 /* AyRecommendation.swift */,
-				1B2AEBD41B14492500B67450 /* AyUser2.swift */,
 				1B42840D1B15C8E800254FC2 /* FamilyMember.swift */,
 				1B42840F1B15C91D00254FC2 /* AyUser.swift */,
 			);
@@ -521,7 +518,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B2AEBD51B14492600B67450 /* AyUser2.swift in Sources */,
 				1B7210301B0AF48400E0D729 /* EventViewController.swift in Sources */,
 				1B04F0031B0ABD1100DF30B3 /* CVCalendarDayView.swift in Sources */,
 				1B72103B1B0AFAC600E0D729 /* StartDateCell.swift in Sources */,
@@ -709,8 +705,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
@@ -718,7 +714,7 @@
 				INFOPLIST_FILE = Ay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "db7afcd9-61e5-49c7-bc21-468f8ec99a07";
+				PROVISIONING_PROFILE = "f6aa0277-70c4-4889-81ce-34e5d6298e99";
 				SWIFT_OBJC_BRIDGING_HEADER = Ay/SwiftHeader.h;
 			};
 			name = Debug;
@@ -727,8 +723,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
@@ -736,7 +732,7 @@
 				INFOPLIST_FILE = Ay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "db7afcd9-61e5-49c7-bc21-468f8ec99a07";
+				PROVISIONING_PROFILE = "f6aa0277-70c4-4889-81ce-34e5d6298e99";
 				SWIFT_OBJC_BRIDGING_HEADER = Ay/SwiftHeader.h;
 			};
 			name = Release;

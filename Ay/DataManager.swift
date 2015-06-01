@@ -46,6 +46,34 @@ class DataManager {
     }*/
     
     
+    
+    func getFamilyMembers () {
+        let app_delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = app_delegate.managedObjectContext!
+        
+        let fetchRequest = NSFetchRequest(entityName:"FamilyMember")
+        
+        var error : NSError?
+        
+        let fetched_results = managedContext.executeFetchRequest(fetchRequest, error:&error) as? [NSManagedObject]
+        
+        if let results = fetched_results {
+            
+            if results.count == 0 {
+                return
+            }
+            for member in results {
+                 self.cur_user!.familyMembers.addObject(member)
+            }
+            
+        } else {
+            println ("Could not fetch \(error), \(error?.userInfo)")
+        }
+    }
+    
+        
+    
     func getCurrentUser() -> AyUser? {
         let app_delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
@@ -58,10 +86,13 @@ class DataManager {
         let fetched_results = managedContext.executeFetchRequest(fetchRequest, error:&error) as? [NSManagedObject]
         
         if let results = fetched_results {
+            
             if results.count == 0 {
                 return nil
             }
             self.cur_user = results[0] as? AyUser
+            getFamilyMembers()
+            
         } else {
             println ("Could not fetch \(error), \(error?.userInfo)")
         }

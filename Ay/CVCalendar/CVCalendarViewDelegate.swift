@@ -18,6 +18,6 @@ protocol CVCalendarViewDelegate {
     func topMarker(shouldDisplayOnDayView dayView: CVCalendarDayView) -> Bool
     
     func dotMarker(shouldMoveOnHighlightingOnDayView dayView: CVCalendarDayView) -> Bool
-    func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> Bool
+    func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> [UIColor]
     func dotMarker(colorOnDayView dayView: CVCalendarDayView) -> UIColor
 }
