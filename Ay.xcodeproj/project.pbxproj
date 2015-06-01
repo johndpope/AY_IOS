@@ -90,7 +90,6 @@
 		95DCA0A51B0FF3790033D729 /* RepeatEndsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0A41B0FF3790033D729 /* RepeatEndsViewController.swift */; };
 		95DCA0A71B1139D70033D729 /* ListEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0A61B1139D70033D729 /* ListEventCell.swift */; };
 		95DCA0AB1B1441CC0033D729 /* AllDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0AA1B1441CC0033D729 /* AllDayCell.swift */; };
-		95DCA0B11B170B410033D729 /* ImportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0B01B170B410033D729 /* ImportCell.swift */; };
 		95DCA0B31B171C9C0033D729 /* ChildNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0B21B171C9C0033D729 /* ChildNameCell.swift */; };
 		95DCA0B51B171CB00033D729 /* ChildAgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0B41B171CB00033D729 /* ChildAgeCell.swift */; };
 		95DCA0B71B171CC00033D729 /* ChildGenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0B61B171CC00033D729 /* ChildGenderCell.swift */; };
@@ -196,7 +195,6 @@
 		95DCA0A41B0FF3790033D729 /* RepeatEndsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatEndsViewController.swift; sourceTree = "<group>"; };
 		95DCA0A61B1139D70033D729 /* ListEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListEventCell.swift; sourceTree = "<group>"; };
 		95DCA0AA1B1441CC0033D729 /* AllDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllDayCell.swift; sourceTree = "<group>"; };
-		95DCA0B01B170B410033D729 /* ImportCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportCell.swift; sourceTree = "<group>"; };
 		95DCA0B21B171C9C0033D729 /* ChildNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildNameCell.swift; sourceTree = "<group>"; };
 		95DCA0B41B171CB00033D729 /* ChildAgeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildAgeCell.swift; sourceTree = "<group>"; };
 		95DCA0B61B171CC00033D729 /* ChildGenderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildGenderCell.swift; sourceTree = "<group>"; };
@@ -386,7 +384,6 @@
 				95DCA0A61B1139D70033D729 /* ListEventCell.swift */,
 				1B56220C1B126502006426AD /* ChildInfoTableViewCell.swift */,
 				95DCA0AA1B1441CC0033D729 /* AllDayCell.swift */,
-				95DCA0B01B170B410033D729 /* ImportCell.swift */,
 				95DCA0B21B171C9C0033D729 /* ChildNameCell.swift */,
 				95DCA0B41B171CB00033D729 /* ChildAgeCell.swift */,
 				95DCA0B61B171CC00033D729 /* ChildGenderCell.swift */,
@@ -544,7 +541,6 @@
 				1B4284101B15C91D00254FC2 /* AyUser.swift in Sources */,
 				1B04F0101B0ABD1100DF30B3 /* CVCalendarWeekContentRecovery.swift in Sources */,
 				1B87B06D1B1186AC00A6C381 /* TutorialContentViewController.swift in Sources */,
-				95DCA0B11B170B410033D729 /* ImportCell.swift in Sources */,
 				1B72103D1B0AFAD700E0D729 /* EndDateCell.swift in Sources */,
 				1B42840E1B15C8E900254FC2 /* FamilyMember.swift in Sources */,
 				1B4F4C991AFEDDBD00C61708 /* AyEvent.swift in Sources */,
