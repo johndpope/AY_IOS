@@ -42,7 +42,7 @@ class AyEvent {
         self.recur_occur = -1
     }
     
-    init(id: String, target_name: String, start: NSDate, end: NSDate, title: String, alarm: NSDate?, recur_end: NSDate?, recur_freq: NSDictionary?, recur_occur: Int?, participants : NSMutableSet?, type : String?, loc: String?){
+    init(id: String, participants: NSMutableSet?, start: NSDate, end: NSDate, title: String, alarm: NSDate?, recur_end: NSDate?, recur_freq: NSDictionary?, recur_occur: Int?, latitude: Double?, longitude: Double?){
         self.id = id
         self.start_time = start
         self.end_time = end
@@ -51,8 +51,9 @@ class AyEvent {
         self.recur_end = recur_end
         self.recur_freq = recur_freq
         self.recur_occur = recur_occur!
-        self.participants = NSMutableSet()
-        self.location = loc
+        self.participants = participants
+        self.latitude = latitude
+        self.longitude = longitude
     }
     
     

@@ -85,7 +85,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             var recur_freq = getRecurStructure()
             if event_id == nil {
-                ParseCoreService().createEvent(target, title: title_cell.titleTextField.text, start: start_date_picker_cell.datePicker.date, end: end_date_picker_cell.datePicker.date, alarm: notify_time, recur_end: repeat_end_time, recur_freq: recur_freq, recur_occur: 0, location : loc_cell.locationTextField.text, num_location : nil, type: "")
+                ParseCoreService().createEvent(participants, title: title_cell.titleTextField.text, start: start_date_picker_cell.datePicker.date, end: end_date_picker_cell.datePicker.date, alarm: notify_time, recur_end: repeat_end_time, recur_freq: recur_freq, recur_occur: 0, latitude: 3.0001, longitude: nil)
             } else {
                 ParseCoreService().updateEvent(event_id!, participants: participants, title: title_cell.titleTextField.text, start: start_date_picker_cell.datePicker.date, end: end_date_picker_cell.datePicker.date, alarm: notify_time, recur_end: repeat_end_time, recur_freq: recur_freq, recur_occur: 0)
             }

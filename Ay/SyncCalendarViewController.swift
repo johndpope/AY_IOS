@@ -111,7 +111,7 @@ class SyncCalendarViewController: UIViewController, UITableViewDelegate, UITable
                             var participants : NSMutableSet?
                             var type : String?*/
                             
-                            ParseCoreService().createEvent(new_event.target_name, title: new_event.title, start: new_event.start_time!, end: new_event.end_time!, alarm: nil, recur_end: nil, recur_freq: nil, recur_occur: 0, location: "", num_location : nil, type : "")
+                            ParseCoreService().createEvent(new_event.participants, title: new_event.title, start: new_event.start_time!, end: new_event.end_time!, alarm: nil, recur_end: nil, recur_freq: nil, recur_occur: 0, latitude: new_event.latitude, longitude: new_event.longitude)
                             
                             
                     }
