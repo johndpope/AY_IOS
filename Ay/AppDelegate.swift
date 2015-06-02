@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         core_service = ParseCoreService()
         
         // retrieve current user
-        data_manager!.cur_user = nil //data_manager!.getCurrentUser()
+        data_manager!.getCurrentUser()
         
         // User data is not already initialized
         if data_manager!.cur_user == nil {
