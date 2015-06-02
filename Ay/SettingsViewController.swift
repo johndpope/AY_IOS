@@ -19,9 +19,9 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.backgroundColor = UIColor(red: 0.68, green: 0.68 ,blue:0.68, alpha: 1.0)
         // Do any additional setup after loading the view.
-    }
+    } 
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -33,7 +33,11 @@ class SettingsViewController: UIViewController {
 
     // Table view Datasource / delegate methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 4
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        if appDelegate.data_manager!.cur_user!.familyMembers.count == 0 {
+            return 2
+        }
+        return 3
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,42 +47,58 @@ class SettingsViewController: UIViewController {
         var rval : Int = 0
         switch section {
             case 0: rval = 2; break;
-            case 1: rval = 3; break;
+            case 1: rval = 1; break;
             case 2: rval = appDelegate.data_manager!.cur_user!.familyMembers.count; break;
-            case 3: rval = 2; break;
             default : rval = 2; break;
         }
         return rval
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+   /* func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 48
-    }
+    }*/
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(list_event_cell_identifier, forIndexPath: indexPath) as? ListEventCell
-        if (cell == nil) {
-            cell = ListEventCell (style: UITableViewCellStyle.Default, reuseIdentifier: list_event_cell_identifier)
+        var cell : UITableViewCell?
+        
+        if indexPath.section == 0 {
+            cell = tableView.dequeueReusableCellWithIdentifier(general_cell_identifier, forIndexPath: indexPath) as? UITableViewCell
+            if indexPath.row == 0 {
+                cell!.textLabel!.text = "About"
+            }  else {
+                cell!.textLabel!.text = "Logout"
+            }
+        } else if indexPath.section == 1 {
+             cell = tableView.dequeueReusableCellWithIdentifier(integration_cell_identifier, forIndexPath: indexPath) as? UITableViewCell
+        } else {
+             cell = tableView.dequeueReusableCellWithIdentifier(family_name_cell_identifier, forIndexPath: indexPath) as? UITableViewCell
+            
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let child  = appDelegate.data_manager!.cur_user!.familyMembers.allObjects[indexPath.row] as! FamilyMember
+            
+            
+            
+            cell!.textLabel!.text = child.name
+            
         }
+        
+        
+        
         
         return cell!
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    /*func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return CGFloat(25)
-    }
+    }*/
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var header_view = UIView()
-        var header_label = UILabel(frame: CGRectMake(10, 10, 200, 21))
-        return header_view
-        /*switch section {
-        case 0: rval = 2; break;
-        case 1: rval = 3; break;
-        case 2: rval = appDelegate.data_manager!.cur_user!.familyMembers.count; break;
-        case 3: rval = 2; break;
-        default : rval = 2; break;
-        }*/
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "General"
+        } else if section == 1 {
+            return "Integrations"
+        }
+        return "Edit Family Members"
     }
     
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -86,9 +106,7 @@ class SettingsViewController: UIViewController {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
-    
-    
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
     

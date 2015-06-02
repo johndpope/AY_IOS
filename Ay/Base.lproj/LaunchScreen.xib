@@ -10,8 +10,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AY_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="D9A-qm-aWb">
-                    <rect key="frame" x="105" y="235" width="165" height="197"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="D9A-qm-aWb">
+                    <rect key="frame" x="129" y="142" width="116" height="139"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -21,6 +21,6 @@
         </view>
     </objects>
     <resources>
-        <image name="AY_icon.png" width="1371" height="1640"/>
+        <image name="logo.png" width="465" height="558"/>
     </resources>
 </document>

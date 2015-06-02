@@ -12,7 +12,7 @@ let import_ical_cell_identifier = "import_ical_cell_identifier"
 let import_google_cal_cell_identifier = "import_google_cal_cell_identifier"
 let import_paper_cell_identifier = "import_paper_cell_identifier"
 let import_facebook_cell_identifier = "import_facebook_cell_identifier"
-let import_none_cell_identifier = "import_none_cell_identifier"
+let integration_cell_identifier = "integration_cell_identifier"
 
 let add_child_first_name_cell_identifier = "add_child_first_name_cell_identifier"
 let add_child_last_name_cell_identifier = "add_child_last_name_cell_identifier"
@@ -54,6 +54,7 @@ let notify_option_cell = "notify_option_cell"
 
 // Login Segue
 let login_segue_identifier = "login_segue_identifier"
+let account_sync_complete_segue_identifier = "account_sync_complete_segue_identifier"
 
 
 // Add children cell
@@ -72,3 +73,5 @@ let notification_event_deleted = "notification_event_deleted"
 let notification_events_fetched = "notification_events_fetched"
 
 let pick_participant_cell_reuse_identifier = "pick_participant_cell_reuse_identifier"
+let general_cell_identifier = "general_cell_identifier"
+let family_name_cell_identifier = "family_name_cell_identifier"
