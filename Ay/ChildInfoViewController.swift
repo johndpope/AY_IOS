@@ -134,6 +134,7 @@ class ChildInfoViewController: UIViewController, UITableViewDelegate, UITableVie
             member = FamilyMember()
             member.gender = 1
             member.color = ""
+            member.interests = ""
         } else {
             viewTitleView.text = member.first_name + " " + member.last_name
             populateTableView()

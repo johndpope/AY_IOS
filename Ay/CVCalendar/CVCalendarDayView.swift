@@ -240,11 +240,20 @@ class CVCalendarDayView: UIView {
                 let start = self.frame.width / 2 - CGFloat(6 * (colors.count - 1)) / 2
                 let offset = 7
                 
+                if self.dotMarkers != nil {
+                    for marker in self.dotMarkers! {
+                        marker.removeFromSuperview()
+                    }
+                    self.dotMarkers = []
+                }
+                
                 var i : Int = 0
                 for _color in colors {
                     //var color = delegate.dotMarker(colorOnDayView: self)
                     let width: CGFloat = 13
                     let height = width
+                    
+                    
                     
                     
                     var yOffset: CGFloat? = 5
