@@ -74,7 +74,6 @@
 		1B72103F1B0AFAF700E0D729 /* ParticipantsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72103E1B0AFAF700E0D729 /* ParticipantsCell.swift */; };
 		1B7210411B0AFB0300E0D729 /* NotesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7210401B0AFB0300E0D729 /* NotesCell.swift */; };
 		1BA5FC6E1B1DA77100C19A34 /* TempTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA5FC6D1B1DA77100C19A34 /* TempTutorialViewController.swift */; };
-		1BA5FC701B1DB46B00C19A34 /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BA5FC6F1B1DB46B00C19A34 /* Back.png */; };
 		1BE2A4E41B0B12160091DCC3 /* PLUS.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BE2A4E31B0B12160091DCC3 /* PLUS.png */; };
 		95CF63911AFEE7E200F28153 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CF63901AFEE7E200F28153 /* AudioToolbox.framework */; };
 		95CF63931AFEE7E800F28153 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CF63921AFEE7E800F28153 /* CFNetwork.framework */; };
@@ -189,7 +188,6 @@
 		1B72103E1B0AFAF700E0D729 /* ParticipantsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantsCell.swift; sourceTree = "<group>"; };
 		1B7210401B0AFB0300E0D729 /* NotesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesCell.swift; sourceTree = "<group>"; };
 		1BA5FC6D1B1DA77100C19A34 /* TempTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempTutorialViewController.swift; sourceTree = "<group>"; };
-		1BA5FC6F1B1DB46B00C19A34 /* Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back.png; sourceTree = "<group>"; };
 		1BE2A4E31B0B12160091DCC3 /* PLUS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PLUS.png; sourceTree = "<group>"; };
 		957B729F1B0ACCF300C9A2EB /* SwiftHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftHeader.h; sourceTree = "<group>"; };
 		95CF63901AFEE7E200F28153 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -360,7 +358,6 @@
 		1B4F4C6F1AFEC79F00C61708 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				1BA5FC6F1B1DB46B00C19A34 /* Back.png */,
 				1B6FD4731B1D503D0035CD36 /* ical.png */,
 				1B6FD4751B1D50430035CD36 /* paper_picture.png */,
 				1B6FD4711B1D4E010035CD36 /* connect.png */,
@@ -543,7 +540,6 @@
 				1B2AEBCD1B13EFA200B67450 /* AY_icon.png in Resources */,
 				1B6FD4741B1D503D0035CD36 /* ical.png in Resources */,
 				1B6FD46E1B1D4DED0035CD36 /* Google.png in Resources */,
-				1BA5FC701B1DB46B00C19A34 /* Back.png in Resources */,
 				1B5D68281B0D62F400BBB904 /* X.png in Resources */,
 				1B6712A51B1BE25500D41279 /* education.png in Resources */,
 				1B6712A41B1BE25500D41279 /* activities.png in Resources */,
