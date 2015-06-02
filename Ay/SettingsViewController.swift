@@ -78,7 +78,7 @@ class SettingsViewController: UIViewController {
             
             
             
-            cell!.textLabel!.text = child.name
+            cell!.textLabel!.text = child.first_name + " " + child.last_name
             
         }
         
