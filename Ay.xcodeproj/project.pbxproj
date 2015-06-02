@@ -52,6 +52,13 @@
 		1B5D68281B0D62F400BBB904 /* X.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5D68271B0D62F400BBB904 /* X.png */; };
 		1B5D682A1B0D63C900BBB904 /* CHECK.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5D68291B0D63C900BBB904 /* CHECK.png */; };
 		1B5D682C1B0D717B00BBB904 /* GEAR.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5D682B1B0D717B00BBB904 /* GEAR.png */; };
+		1B6712931B1BCDBD00D41279 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6712921B1BCDBC00D41279 /* SettingsViewController.swift */; };
+		1B67129F1B1BE18A00D41279 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B67129E1B1BE18A00D41279 /* logo.png */; };
+		1B6712A41B1BE25500D41279 /* activities.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B6712A01B1BE25500D41279 /* activities.png */; };
+		1B6712A51B1BE25500D41279 /* education.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B6712A11B1BE25500D41279 /* education.png */; };
+		1B6712A61B1BE25500D41279 /* medical.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B6712A21B1BE25500D41279 /* medical.png */; };
+		1B6712A71B1BE25500D41279 /* shopping.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B6712A31B1BE25500D41279 /* shopping.png */; };
+		1B6712A91B1CD5C700D41279 /* TempTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6712A81B1CD5C700D41279 /* TempTutorialViewController.swift */; };
 		1B7210301B0AF48400E0D729 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72102F1B0AF48300E0D729 /* EventViewController.swift */; };
 		1B7210331B0AFA5900E0D729 /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7210321B0AFA5900E0D729 /* TitleCell.swift */; };
 		1B7210351B0AFA8A00E0D729 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7210341B0AFA8A00E0D729 /* LocationCell.swift */; };
@@ -155,6 +162,13 @@
 		1B5D68271B0D62F400BBB904 /* X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = X.png; sourceTree = "<group>"; };
 		1B5D68291B0D63C900BBB904 /* CHECK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CHECK.png; sourceTree = "<group>"; };
 		1B5D682B1B0D717B00BBB904 /* GEAR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GEAR.png; sourceTree = "<group>"; };
+		1B6712921B1BCDBC00D41279 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		1B67129E1B1BE18A00D41279 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		1B6712A01B1BE25500D41279 /* activities.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activities.png; sourceTree = "<group>"; };
+		1B6712A11B1BE25500D41279 /* education.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = education.png; sourceTree = "<group>"; };
+		1B6712A21B1BE25500D41279 /* medical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = medical.png; sourceTree = "<group>"; };
+		1B6712A31B1BE25500D41279 /* shopping.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shopping.png; sourceTree = "<group>"; };
+		1B6712A81B1CD5C700D41279 /* TempTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempTutorialViewController.swift; sourceTree = "<group>"; };
 		1B72102F1B0AF48300E0D729 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		1B7210321B0AFA5900E0D729 /* TitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		1B7210341B0AFA8A00E0D729 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
@@ -242,6 +256,7 @@
 				1B0271101B1146A1005AED86 /* AddChildrenViewController.swift */,
 				1B56220A1B124B07006426AD /* ChildInfoViewController.swift */,
 				1B02710E1B11196F005AED86 /* SyncCalendarViewController.swift */,
+				1B6712A81B1CD5C700D41279 /* TempTutorialViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -329,6 +344,7 @@
 				95DCA0A01B0F08580033D729 /* NotifyViewController.swift */,
 				95DCA0A41B0FF3790033D729 /* RepeatEndsViewController.swift */,
 				1B2AEBD61B144E8900B67450 /* PickParticipantTableViewController.swift */,
+				1B6712921B1BCDBC00D41279 /* SettingsViewController.swift */,
 			);
 			path = Ay;
 			sourceTree = "<group>";
@@ -336,6 +352,11 @@
 		1B4F4C6F1AFEC79F00C61708 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1B6712A01B1BE25500D41279 /* activities.png */,
+				1B6712A11B1BE25500D41279 /* education.png */,
+				1B6712A21B1BE25500D41279 /* medical.png */,
+				1B6712A31B1BE25500D41279 /* shopping.png */,
+				1B67129E1B1BE18A00D41279 /* logo.png */,
 				1B2AEBD01B13F54100B67450 /* Statusbar.png */,
 				1B2AEBCC1B13EFA200B67450 /* AY_icon.png */,
 				1B5D682B1B0D717B00BBB904 /* GEAR.png */,
@@ -493,12 +514,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B4F4C7A1AFEC7A000C61708 /* Main.storyboard in Resources */,
+				1B67129F1B1BE18A00D41279 /* logo.png in Resources */,
 				1B4F4C7F1AFEC7A000C61708 /* LaunchScreen.xib in Resources */,
 				1B5D682C1B0D717B00BBB904 /* GEAR.png in Resources */,
 				1B5D682A1B0D63C900BBB904 /* CHECK.png in Resources */,
+				1B6712A71B1BE25500D41279 /* shopping.png in Resources */,
+				1B6712A61B1BE25500D41279 /* medical.png in Resources */,
 				1BE2A4E41B0B12160091DCC3 /* PLUS.png in Resources */,
 				1B2AEBCD1B13EFA200B67450 /* AY_icon.png in Resources */,
 				1B5D68281B0D62F400BBB904 /* X.png in Resources */,
+				1B6712A51B1BE25500D41279 /* education.png in Resources */,
+				1B6712A41B1BE25500D41279 /* activities.png in Resources */,
 				1B2AEBD11B13F54100B67450 /* Statusbar.png in Resources */,
 				1B4F4C7C1AFEC7A000C61708 /* Images.xcassets in Resources */,
 			);
@@ -545,6 +571,7 @@
 				95DCA0AB1B1441CC0033D729 /* AllDayCell.swift in Sources */,
 				1B7210331B0AFA5900E0D729 /* TitleCell.swift in Sources */,
 				1B04F0061B0ABD1100DF30B3 /* CVCalendarMenuView.swift in Sources */,
+				1B6712931B1BCDBD00D41279 /* SettingsViewController.swift in Sources */,
 				1B04F00E1B0ABD1100DF30B3 /* CVCalendarViewAppearanceDelegate.swift in Sources */,
 				1B04F00F1B0ABD1100DF30B3 /* CVCalendarViewDelegate.swift in Sources */,
 				1B0271111B1146A3005AED86 /* AddChildrenViewController.swift in Sources */,
@@ -554,6 +581,7 @@
 				95DCA0B51B171CB00033D729 /* ChildAgeCell.swift in Sources */,
 				1B04F0131B0ABD1100DF30B3 /* CVCircleView.swift in Sources */,
 				1B04F0071B0ABD1100DF30B3 /* CVCalendarMonthContentView.swift in Sources */,
+				1B6712A91B1CD5C700D41279 /* TempTutorialViewController.swift in Sources */,
 				1B4F4C721AFEC79F00C61708 /* AppDelegate.swift in Sources */,
 				95DCA0A71B1139D70033D729 /* ListEventCell.swift in Sources */,
 				1B72103F1B0AFAF700E0D729 /* ParticipantsCell.swift in Sources */,
@@ -705,8 +733,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
@@ -714,7 +742,7 @@
 				INFOPLIST_FILE = Ay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "db7afcd9-61e5-49c7-bc21-468f8ec99a07";
+				PROVISIONING_PROFILE = "f6aa0277-70c4-4889-81ce-34e5d6298e99";
 				SWIFT_OBJC_BRIDGING_HEADER = Ay/SwiftHeader.h;
 			};
 			name = Debug;
@@ -723,8 +751,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
@@ -732,7 +760,7 @@
 				INFOPLIST_FILE = Ay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "db7afcd9-61e5-49c7-bc21-468f8ec99a07";
+				PROVISIONING_PROFILE = "f6aa0277-70c4-4889-81ce-34e5d6298e99";
 				SWIFT_OBJC_BRIDGING_HEADER = Ay/SwiftHeader.h;
 			};
 			name = Release;

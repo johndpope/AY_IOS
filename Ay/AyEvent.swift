@@ -21,8 +21,12 @@ class AyEvent {
     var recur_end : NSDate?
     var recur_freq : NSDictionary?
     var recur_occur : Int
+    
+    
+    // TODO: add to parsecoreservice
     var participants : NSMutableSet?
     var type : String?
+    var location : String?
     
     
     init () {

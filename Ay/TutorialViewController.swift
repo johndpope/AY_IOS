@@ -10,17 +10,24 @@ import UIKit
 
 class TutorialViewController: UIPageViewController, UIPageViewControllerDataSource  {
     
-    let pageTitles = ["Title 1", "Title 2", "Title 3", "Title 4"]
-    var images = ["long3.png","long4.png","long1.png","long2.png"]
+    let pageTitles = ["A smart family calendar", "Medical", "Education", "Shopping", "Activities & Events"]
+    let pageDescriptions = ["Get smart recommendations for your family.", "Stay up-to-date with immunization dates & neighborhood epidemics.", "Find out what your kid needs to be doing to exel in school", "Buy what you'll need and love.", "Maximize your child's extracurricular potential"]
+    
+    var images = ["logo.png","medical.png","education.png","shopping.png","activities.png"]
     var count = 0
     
-    var pageViewController : UIPageViewController!
-    
- 
+   
     
     /*func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         
             }*/
+    
+    private func setupPageControl() {
+        let appearance = UIPageControl.appearance()
+        appearance.pageIndicatorTintColor = UIColor.grayColor()
+        appearance.currentPageIndicatorTintColor = UIColor.darkGrayColor()
+        appearance.backgroundColor = UIColor.whiteColor()
+    }
     
     func reset() {
         /* Getting the page View controller */
@@ -67,6 +74,10 @@ class TutorialViewController: UIPageViewController, UIPageViewControllerDataSour
         super.viewDidLoad()
         
         self.dataSource = self
+        self.view.backgroundColor = UIColor.whiteColor()
+        
+        
+        setupPageControl()
         
         var swipeRight = UISwipeGestureRecognizer(target: self, action: "motionDetected:")
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
@@ -114,7 +125,9 @@ class TutorialViewController: UIPageViewController, UIPageViewControllerDataSour
         let pageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("TutorialContentViewController") as! TutorialContentViewController
         
         pageContentViewController.imageName = self.images[index]
+        pageContentViewController.descriptionText = self.pageDescriptions[index]
         pageContentViewController.titleText = self.pageTitles[index]
+        
         pageContentViewController.pageIndex = index
         return pageContentViewController
     }
