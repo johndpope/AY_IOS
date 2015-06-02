@@ -15,6 +15,7 @@ class RepeatSettingViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var tableView: UITableView!
     
     var onDataAvailable : ((data: NSDictionary) -> ())?
+    var select_dictionary: NSMutableDictionary?
     
     @IBAction func cancelPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -23,6 +24,8 @@ class RepeatSettingViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -55,11 +58,29 @@ class RepeatSettingViewController: UIViewController, UITableViewDelegate, UITabl
         case 0 :
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: repeat_none_option_cell)
             cell?.textLabel?.text = self.appDelegate.data_manager!.repeat_none_options[indexPath.row]
+            
+            let cell_width = cell!.frame.size.width
+            var check_image = UIImageView(frame: CGRectMake(cell_width, 15, 20, 15))
+            check_image.image = UIImage(named: "OptionCheck.png")
+            check_image.hidden = true
+            if select_dictionary == nil || (select_dictionary!["section"] as! Int) == indexPath.section && (select_dictionary!["row"] as! Int) == indexPath.row{
+                check_image.hidden = false
+            }
+            cell?.addSubview(check_image)
             break
             
         case 1 :
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: repeat_option_cell)
             cell?.textLabel?.text = self.appDelegate.data_manager!.repeat_options[indexPath.row]
+            
+            let cell_width = cell!.frame.size.width
+            var check_image = UIImageView(frame: CGRectMake(cell_width, 15, 20, 15))
+            check_image.image = UIImage(named: "OptionCheck.png")
+            check_image.hidden = true
+            if select_dictionary != nil && (select_dictionary!["section"] as! Int) == indexPath.section && (select_dictionary!["row"] as! Int) == indexPath.row{
+                check_image.hidden = false
+            }
+            cell?.addSubview(check_image)
             break
             
         default :
@@ -68,31 +89,40 @@ class RepeatSettingViewController: UIViewController, UITableViewDelegate, UITabl
             
         }
         
+        
         return cell!
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //let row = Row(indexPath: indexPath)
-        var return_val = NSMutableDictionary()
-        return_val.setObject(indexPath.section, forKey: "section")
-        return_val.setObject(indexPath.row, forKey: "row")
+        if select_dictionary == nil {
+            select_dictionary = NSMutableDictionary()
+        }
+        
+        select_dictionary!.setObject(indexPath.section, forKey: "section")
+        select_dictionary!.setObject(indexPath.row, forKey: "row")
+        self.tableView.reloadData()
         switch indexPath.section {
             
         case 0 :
-            self.onDataAvailable?(data: return_val)
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.onDataAvailable?(data: select_dictionary!)
+            var timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("dismissCurrentView"), userInfo: nil, repeats: false)
             break
         
         case 1 :
-            self.onDataAvailable?(data: return_val)
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.onDataAvailable?(data: select_dictionary!)
+            var timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("dismissCurrentView"), userInfo: nil, repeats: false)
             break
             
         default :
             // Should never get here...
-            self.dismissViewControllerAnimated(true, completion: nil)
+            var timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("dismissCurrentView"), userInfo: nil, repeats: false)
         }
         
+    }
+    
+    func dismissCurrentView(){
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     private enum Row: Int {

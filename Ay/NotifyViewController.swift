@@ -13,7 +13,9 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var onDataAvailable : ((data: NSDictionary) -> ())?
+    var select_dictionary: NSMutableDictionary?
     
+    @IBOutlet weak var notifyTableView: UITableView!
     @IBAction func cancelPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -22,6 +24,8 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        self.notifyTableView.delegate = self
+        self.notifyTableView.dataSource = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,11 +58,29 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         case 0 :
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: notify_none_option_cell)
             cell?.textLabel?.text = self.appDelegate.data_manager!.notify_none_options[indexPath.row]
+            
+            let cell_width = cell!.frame.size.width
+            var check_image = UIImageView(frame: CGRectMake(cell_width, 15, 20, 15))
+            check_image.image = UIImage(named: "OptionCheck.png")
+            check_image.hidden = true
+            if select_dictionary == nil || (select_dictionary!["section"] as! Int) == indexPath.section && (select_dictionary!["row"] as! Int) == indexPath.row{
+                    check_image.hidden = false
+            }
+            cell?.addSubview(check_image)
             break
         
         case 1 :
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: notify_option_cell)
             cell?.textLabel?.text = self.appDelegate.data_manager!.notify_options[indexPath.row]
+            
+            let cell_width = cell!.frame.size.width
+            var check_image = UIImageView(frame: CGRectMake(cell_width, 15, 20, 15))
+            check_image.image = UIImage(named: "OptionCheck.png")
+            check_image.hidden = true
+            if select_dictionary != nil && (select_dictionary!["section"] as! Int) == indexPath.section && (select_dictionary!["row"] as! Int) == indexPath.row{
+                check_image.hidden = false
+            }
+            cell?.addSubview(check_image)
             break
             
         default :
@@ -72,26 +94,36 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let row = Row(indexPath: indexPath)
-        var return_val = NSMutableDictionary()
-        return_val.setObject(indexPath.section, forKey: "section")
-        return_val.setObject(indexPath.row, forKey: "row")
+        if select_dictionary == nil {
+            select_dictionary = NSMutableDictionary()
+        }
+        
+        select_dictionary!.setObject(indexPath.section, forKey: "section")
+        select_dictionary!.setObject(indexPath.row, forKey: "row")
+        self.notifyTableView.reloadData()
+        
         switch indexPath.section {
             
         case 0 :
-            self.onDataAvailable?(data: return_val)
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.onDataAvailable?(data: select_dictionary!)
+            var timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("dismissCurrentView"), userInfo: nil, repeats: false)
+            
             break
             
         case 1 :
-            self.onDataAvailable?(data: return_val)
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.onDataAvailable?(data: select_dictionary!)
+            var timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("dismissCurrentView"), userInfo: nil, repeats: false)
             break
             
         default :
             // Should never get here...
-            self.dismissViewControllerAnimated(true, completion: nil)
+            var timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("dismissCurrentView"), userInfo: nil, repeats: false)
             
         }
+    }
+    
+    func dismissCurrentView(){
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     private enum Row: Int {
@@ -117,22 +149,24 @@ class NotifyViewController: UIViewController, UITableViewDelegate, UITableViewDa
             case (0, 0):
                 row = Row.None
             case (1, 0):
-                row = Row.FiveMin
+                row = Row.EventTime
             case (1, 1):
-                row = Row.TenMin
+                row = Row.FiveMin
             case (1, 2):
-                row = Row.FifteenMin
+                row = Row.TenMin
             case (1, 3):
-                row = Row.ThirtyMin
+                row = Row.FifteenMin
             case (1, 4):
-                row = Row.OneHr
+                row = Row.ThirtyMin
             case (1, 5):
-                row = Row.TwoHr
+                row = Row.OneHr
             case (1, 6):
-                row = Row.OneDay
+                row = Row.TwoHr
             case (1, 7):
-                row = Row.TwoDay
+                row = Row.OneDay
             case (1, 8):
+                row = Row.TwoDay
+            case (1, 9):
                 row = Row.OneWeek
             default:
                 ()

@@ -50,7 +50,6 @@
 		1B56220D1B126503006426AD /* ChildInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B56220C1B126502006426AD /* ChildInfoTableViewCell.swift */; };
 		1B5D68241B0D171900BBB904 /* StartTimePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D68231B0D171900BBB904 /* StartTimePickerCell.swift */; };
 		1B5D68281B0D62F400BBB904 /* X.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5D68271B0D62F400BBB904 /* X.png */; };
-		1B5D682A1B0D63C900BBB904 /* CHECK.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5D68291B0D63C900BBB904 /* CHECK.png */; };
 		1B5D682C1B0D717B00BBB904 /* GEAR.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B5D682B1B0D717B00BBB904 /* GEAR.png */; };
 		1B6712931B1BCDBD00D41279 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6712921B1BCDBC00D41279 /* SettingsViewController.swift */; };
 		1B67129F1B1BE18A00D41279 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B67129E1B1BE18A00D41279 /* logo.png */; };
@@ -75,6 +74,8 @@
 		1B7210411B0AFB0300E0D729 /* NotesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7210401B0AFB0300E0D729 /* NotesCell.swift */; };
 		1BA5FC6E1B1DA77100C19A34 /* TempTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA5FC6D1B1DA77100C19A34 /* TempTutorialViewController.swift */; };
 		1BE2A4E41B0B12160091DCC3 /* PLUS.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BE2A4E31B0B12160091DCC3 /* PLUS.png */; };
+		959388BA1B1D4AC900AFCD8F /* OptionCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 959388B91B1D4AC900AFCD8F /* OptionCheck.png */; };
+		959388BC1B1D5FBB00AFCD8F /* ParticipantCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 959388BB1B1D5FBB00AFCD8F /* ParticipantCheck.png */; };
 		95CF63911AFEE7E200F28153 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CF63901AFEE7E200F28153 /* AudioToolbox.framework */; };
 		95CF63931AFEE7E800F28153 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CF63921AFEE7E800F28153 /* CFNetwork.framework */; };
 		95CF63951AFEE7EF00F28153 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CF63941AFEE7EF00F28153 /* CoreGraphics.framework */; };
@@ -93,6 +94,9 @@
 		95CF63BC1AFEE87F00F28153 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CF63B61AFEE87F00F28153 /* ParseFacebookUtilsV4.framework */; };
 		95CF63BD1AFEE87F00F28153 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CF63B71AFEE87F00F28153 /* ParseUI.framework */; };
 		95CF63C11AFEF32300F28153 /* ParseCoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CF63C01AFEF32300F28153 /* ParseCoreService.swift */; };
+		95D78A671B1D3A0100B30AFA /* Newevent.png in Resources */ = {isa = PBXBuildFile; fileRef = 95D78A661B1D3A0100B30AFA /* Newevent.png */; };
+		95D78A691B1D3A0900B30AFA /* CloseWindow.png in Resources */ = {isa = PBXBuildFile; fileRef = 95D78A681B1D3A0900B30AFA /* CloseWindow.png */; };
+		95D78A6B1B1D3A1600B30AFA /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 95D78A6A1B1D3A1600B30AFA /* Back.png */; };
 		95DCA09D1B0E9FF90033D729 /* EndTimePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA09C1B0E9FF90033D729 /* EndTimePickerCell.swift */; };
 		95DCA09F1B0EFAF40033D729 /* RepeatSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA09E1B0EFAF40033D729 /* RepeatSettingViewController.swift */; };
 		95DCA0A11B0F08580033D729 /* NotifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0A01B0F08580033D729 /* NotifyViewController.swift */; };
@@ -164,7 +168,6 @@
 		1B56220C1B126502006426AD /* ChildInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildInfoTableViewCell.swift; sourceTree = "<group>"; };
 		1B5D68231B0D171900BBB904 /* StartTimePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartTimePickerCell.swift; sourceTree = "<group>"; };
 		1B5D68271B0D62F400BBB904 /* X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = X.png; sourceTree = "<group>"; };
-		1B5D68291B0D63C900BBB904 /* CHECK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CHECK.png; sourceTree = "<group>"; };
 		1B5D682B1B0D717B00BBB904 /* GEAR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GEAR.png; sourceTree = "<group>"; };
 		1B6712921B1BCDBC00D41279 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1B67129E1B1BE18A00D41279 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
@@ -190,6 +193,8 @@
 		1BA5FC6D1B1DA77100C19A34 /* TempTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempTutorialViewController.swift; sourceTree = "<group>"; };
 		1BE2A4E31B0B12160091DCC3 /* PLUS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PLUS.png; sourceTree = "<group>"; };
 		957B729F1B0ACCF300C9A2EB /* SwiftHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftHeader.h; sourceTree = "<group>"; };
+		959388B91B1D4AC900AFCD8F /* OptionCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OptionCheck.png; sourceTree = "<group>"; };
+		959388BB1B1D5FBB00AFCD8F /* ParticipantCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ParticipantCheck.png; sourceTree = "<group>"; };
 		95CF63901AFEE7E200F28153 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		95CF63921AFEE7E800F28153 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		95CF63941AFEE7EF00F28153 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -208,6 +213,9 @@
 		95CF63B61AFEE87F00F28153 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = frameworks/ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		95CF63B71AFEE87F00F28153 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = frameworks/ParseUI.framework; sourceTree = "<group>"; };
 		95CF63C01AFEF32300F28153 /* ParseCoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseCoreService.swift; sourceTree = "<group>"; };
+		95D78A661B1D3A0100B30AFA /* Newevent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Newevent.png; sourceTree = "<group>"; };
+		95D78A681B1D3A0900B30AFA /* CloseWindow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseWindow.png; sourceTree = "<group>"; };
+		95D78A6A1B1D3A1600B30AFA /* Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back.png; sourceTree = "<group>"; };
 		95DCA09C1B0E9FF90033D729 /* EndTimePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndTimePickerCell.swift; sourceTree = "<group>"; };
 		95DCA09E1B0EFAF40033D729 /* RepeatSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatSettingViewController.swift; sourceTree = "<group>"; };
 		95DCA0A01B0F08580033D729 /* NotifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotifyViewController.swift; sourceTree = "<group>"; };
@@ -372,7 +380,6 @@
 				1B2AEBD01B13F54100B67450 /* Statusbar.png */,
 				1B2AEBCC1B13EFA200B67450 /* AY_icon.png */,
 				1B5D682B1B0D717B00BBB904 /* GEAR.png */,
-				1B5D68291B0D63C900BBB904 /* CHECK.png */,
 				1B5D68271B0D62F400BBB904 /* X.png */,
 				1BE2A4E31B0B12160091DCC3 /* PLUS.png */,
 				1B4F4C701AFEC79F00C61708 /* Info.plist */,
@@ -526,11 +533,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B4F4C7A1AFEC7A000C61708 /* Main.storyboard in Resources */,
+				959388BA1B1D4AC900AFCD8F /* OptionCheck.png in Resources */,
+				95D78A691B1D3A0900B30AFA /* CloseWindow.png in Resources */,
 				1B67129F1B1BE18A00D41279 /* logo.png in Resources */,
 				1B4F4C7F1AFEC7A000C61708 /* LaunchScreen.xib in Resources */,
 				1B6FD4761B1D50430035CD36 /* paper_picture.png in Resources */,
 				1B5D682C1B0D717B00BBB904 /* GEAR.png in Resources */,
-				1B5D682A1B0D63C900BBB904 /* CHECK.png in Resources */,
+				959388BC1B1D5FBB00AFCD8F /* ParticipantCheck.png in Resources */,
 				1B6712A71B1BE25500D41279 /* shopping.png in Resources */,
 				1B6FD4701B1D4DF80035CD36 /* apple.png in Resources */,
 				1B6712A61B1BE25500D41279 /* medical.png in Resources */,
@@ -749,8 +758,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
@@ -758,7 +767,7 @@
 				INFOPLIST_FILE = Ay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f6aa0277-70c4-4889-81ce-34e5d6298e99";
+				PROVISIONING_PROFILE = "db7afcd9-61e5-49c7-bc21-468f8ec99a07";
 				SWIFT_OBJC_BRIDGING_HEADER = Ay/SwiftHeader.h;
 			};
 			name = Debug;
@@ -767,8 +776,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
@@ -776,7 +785,7 @@
 				INFOPLIST_FILE = Ay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f6aa0277-70c4-4889-81ce-34e5d6298e99";
+				PROVISIONING_PROFILE = "db7afcd9-61e5-49c7-bc21-468f8ec99a07";
 				SWIFT_OBJC_BRIDGING_HEADER = Ay/SwiftHeader.h;
 			};
 			name = Release;

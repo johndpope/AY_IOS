@@ -26,8 +26,8 @@ class FamilyMember: NSManagedObject {
         self.init(entity: entityDescription, insertIntoManagedObjectContext: appDelegate.managedObjectContext!)
     }
     
-    let color_strs = ["blue", "green", "yellow", "gray", "orange", "purple"]
-    let colors = [UIColor(red:0.11, green:0.61,blue:0.89,alpha:1.0), UIColor(red:0.31, green:0.68,blue:0.33,alpha:1.0), UIColor(red:0.99, green:0.84,blue:0.28,alpha:1.0), UIColor.grayColor(), UIColor(red:0.99, green:0.59,blue:0.15,alpha:1.0), UIColor(red:0.61, green:0.18,blue:0.68,alpha:1.0)]
+    let color_strs = ["blue", "green", "yellow", "red", "orange", "purple"]
+    let colors = [UIColor(red:0.11, green:0.61,blue:0.89,alpha:1.0), UIColor(red:0.31, green:0.68,blue:0.33,alpha:1.0), UIColor(red:0.99, green:0.84,blue:0.28,alpha:1.0), UIColor(red:0.95, green:0.06,blue:0.35,alpha:1.0), UIColor(red:0.99, green:0.59,blue:0.15,alpha:1.0), UIColor(red:0.61, green:0.18,blue:0.68,alpha:1.0)]
     
     func assigned_color() -> UIColor {
         switch self.color {
