@@ -22,7 +22,7 @@ class ParseCoreService {
         }
         params.setObject(family_json_array, forKey: "Fam_Members" )
         let installation = PFInstallation.currentInstallation()
-        params.setObject(installation.installationId, forKey: "Device_Token")
+        params.setObject(installation.installationId, forKey: "Installation_Id")
         PFCloud.callFunctionInBackground("createUser", withParameters: params as [NSObject : AnyObject], block: {
             (result: AnyObject?, error: NSError?) -> Void in
             if ( error == nil) {
@@ -111,10 +111,38 @@ class ParseCoreService {
         PFCloud.callFunctionInBackground("createEvent", withParameters: params as [NSObject : AnyObject], block: {
             (result: AnyObject?, error: NSError?) -> Void in
             if ( error == nil) {
-                let new_id = result as! String
+                let data = result as! NSDictionary
+                
+                // Update channels
+                let cur_install = PFInstallation.currentInstallation()
+                let channel_dict = data["channels"] as? NSDictionary
+                var channels: [String]?
+                if channel_dict != nil {
+                    channels = channel_dict!.allKeys as! [String]
+                }
+                if channels != nil {
+                    for channel in channels!{
+                        cur_install.addUniqueObject(channel, forKey: "channels")
+                    }
+                    cur_install.saveInBackground()
+                }
+                
+                // Create new event locally
+                let new_id = data["event_id"] as! String
                 var new_event = AyEvent(id: new_id, participants: participants, start: start, end: end, title: title, alarm: alarm, recur_end: recur_end, recur_freq: recur_freq, recur_occur: recur_occur, location: location, type: type)
                 self.appDelegate.data_manager!.events.append(new_event)
                 NSNotificationCenter.defaultCenter().postNotificationName(notification_event_created, object: self)
+                
+                if channels != nil {
+                    let params = NSMutableDictionary()
+                    params.setObject(channels!, forKey: "Channels" )
+                    PFCloud.callFunctionInBackground("getPush", withParameters: params as [NSObject : AnyObject], block: {
+                        (result: AnyObject?, error: NSError?) -> Void in
+                        if ( error == nil) {
+                        
+                        }
+                    })
+                }
             }
             else if (error != nil) {
                 NSLog("error: \(error!.userInfo)")

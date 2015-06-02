@@ -187,7 +187,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         } else {
             viewTitleView.text = "Update Event"
-            completeLabelView.text = "Update"
+            completeLabelView.text = "Done"
             if first_load{
                 populateTableView()
                 first_load = false
