@@ -97,7 +97,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let alertController = UIAlertController(title: "Incomplete", message: "You need to fill in all the required fields.", preferredStyle: .Alert)
             
             let okAction = UIAlertAction(title: "Ok", style: .Default) { (action) in
-                self.dismissViewControllerAnimated(true, completion:nil)
+                //self.dismissViewControllerAnimated(true, completion:nil)
             }
             alertController.addAction(okAction)
             self.presentViewController(alertController, animated: true) {
@@ -108,7 +108,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let alertController = UIAlertController(title: "Time Error", message: "Starting time must occur prior to Ending time.", preferredStyle: .Alert)
             
             let okAction = UIAlertAction(title: "Ok", style: .Default) { (action) in
-                self.dismissViewControllerAnimated(true, completion:nil)
+                //self.dismissViewControllerAnimated(true, completion:nil)
             }
             alertController.addAction(okAction)
             self.presentViewController(alertController, animated: true) {

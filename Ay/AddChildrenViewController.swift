@@ -25,6 +25,8 @@ class AddChildrenViewController: UIViewController, UITableViewDelegate, UITableV
     let header_height = 35
     
     override func viewDidAppear(animated: Bool){
+        index_path = nil
+        member = nil
         self.tableView.reloadData()
     }
     override func viewDidLoad() {
