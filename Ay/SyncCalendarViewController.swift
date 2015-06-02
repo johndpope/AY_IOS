@@ -53,7 +53,7 @@ class SyncCalendarViewController: UIViewController, UITableViewDelegate, UITable
             NSOperationQueue.mainQueue().addOperationWithBlock() {
                 // when done, update your UI and/or model on the main queue
                 println ("finished with everything")
-                sleep(2)
+                sleep(4)
                 self.dark_view!.removeFromSuperview()
                 
                 let alertController = UIAlertController(title: "Success!", message: "We imported your schedule from ical.", preferredStyle: .Alert)
@@ -143,7 +143,24 @@ class SyncCalendarViewController: UIViewController, UITableViewDelegate, UITable
                                 new_event.end_time = event.endDate
                             }
                             
-                            ParseCoreService().createEvent(new_event.participants, title: new_event.title, start: new_event.start_time!, end: new_event.end_time!, alarm: nil, recur_end: nil, recur_freq: nil, recur_occur: 0, latitude: new_event.latitude, longitude: new_event.longitude)
+                            
+                            
+                            
+                            /*id : String = ""
+                            var target_name : String = ""
+                            var start_time : NSDate?
+                            var end_time : NSDate?
+                            var title : String = ""
+                            var alarm_time : NSDate?
+                            var recur_end : NSDate?
+                            var recur_freq : NSDictionary?
+                            var recur_occur : Int
+                            var participants : NSMutableSet?
+                            var type : String?*/
+                            
+                            ParseCoreService().createEvent(new_event.participants, title: new_event.title, start: new_event.start_time!, end: new_event.end_time!, alarm: nil, recur_end: nil, recur_freq: nil, recur_occur: 0, location: new_event.location, type: new_event.type)
+                            
+                            
                     }
                 })// end block
             } else {
@@ -218,14 +235,12 @@ class SyncCalendarViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.importTableView.delegate = self
         self.importTableView.dataSource = self
         
-        self.view.backgroundColor = UIColor.grayColor()
+        self.view.backgroundColor = UIColor.lightGrayColor()
         // Add to db using parsecoreservice
         ParseCoreService().createUser("", last_name : "", family_members: NSMutableSet())
     }

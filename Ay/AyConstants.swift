@@ -69,3 +69,5 @@ let notification_event_deleted = "notification_event_deleted"
 let notification_events_fetched = "notification_events_fetched"
 
 let pick_participant_cell_reuse_identifier = "pick_participant_cell_reuse_identifier"
+let general_cell_identifier = "general_cell_identifier"
+let family_name_cell_identifier = "family_name_cell_identifier"

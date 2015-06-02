@@ -73,6 +73,7 @@
 		1B72103F1B0AFAF700E0D729 /* ParticipantsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B72103E1B0AFAF700E0D729 /* ParticipantsCell.swift */; };
 		1B7210411B0AFB0300E0D729 /* NotesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7210401B0AFB0300E0D729 /* NotesCell.swift */; };
 		1BA5FC6E1B1DA77100C19A34 /* TempTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA5FC6D1B1DA77100C19A34 /* TempTutorialViewController.swift */; };
+		1BAA1B451B1DC66800D88A46 /* Close Window.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BAA1B441B1DC66800D88A46 /* Close Window.png */; };
 		1BE2A4E41B0B12160091DCC3 /* PLUS.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BE2A4E31B0B12160091DCC3 /* PLUS.png */; };
 		959388BA1B1D4AC900AFCD8F /* OptionCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 959388B91B1D4AC900AFCD8F /* OptionCheck.png */; };
 		959388BC1B1D5FBB00AFCD8F /* ParticipantCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 959388BB1B1D5FBB00AFCD8F /* ParticipantCheck.png */; };
@@ -191,6 +192,7 @@
 		1B72103E1B0AFAF700E0D729 /* ParticipantsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantsCell.swift; sourceTree = "<group>"; };
 		1B7210401B0AFB0300E0D729 /* NotesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesCell.swift; sourceTree = "<group>"; };
 		1BA5FC6D1B1DA77100C19A34 /* TempTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempTutorialViewController.swift; sourceTree = "<group>"; };
+		1BAA1B441B1DC66800D88A46 /* Close Window.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Close Window.png"; sourceTree = "<group>"; };
 		1BE2A4E31B0B12160091DCC3 /* PLUS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PLUS.png; sourceTree = "<group>"; };
 		957B729F1B0ACCF300C9A2EB /* SwiftHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftHeader.h; sourceTree = "<group>"; };
 		959388B91B1D4AC900AFCD8F /* OptionCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OptionCheck.png; sourceTree = "<group>"; };
@@ -366,6 +368,11 @@
 		1B4F4C6F1AFEC79F00C61708 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				959388B91B1D4AC900AFCD8F /* OptionCheck.png */,
+				95D78A661B1D3A0100B30AFA /* Newevent.png */,
+				959388BB1B1D5FBB00AFCD8F /* ParticipantCheck.png */,
+				95D78A6A1B1D3A1600B30AFA /* Back.png */,
+				95D78A681B1D3A0900B30AFA /* CloseWindow.png */,
 				1B6FD4731B1D503D0035CD36 /* ical.png */,
 				1B6FD4751B1D50430035CD36 /* paper_picture.png */,
 				1B6FD4711B1D4E010035CD36 /* connect.png */,
@@ -382,6 +389,7 @@
 				1B5D682B1B0D717B00BBB904 /* GEAR.png */,
 				1B5D68271B0D62F400BBB904 /* X.png */,
 				1BE2A4E31B0B12160091DCC3 /* PLUS.png */,
+				1BAA1B441B1DC66800D88A46 /* Close Window.png */,
 				1B4F4C701AFEC79F00C61708 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -541,12 +549,15 @@
 				1B5D682C1B0D717B00BBB904 /* GEAR.png in Resources */,
 				959388BC1B1D5FBB00AFCD8F /* ParticipantCheck.png in Resources */,
 				1B6712A71B1BE25500D41279 /* shopping.png in Resources */,
+				95D78A6B1B1D3A1600B30AFA /* Back.png in Resources */,
 				1B6FD4701B1D4DF80035CD36 /* apple.png in Resources */,
 				1B6712A61B1BE25500D41279 /* medical.png in Resources */,
 				1B6FD46D1B1D4DED0035CD36 /* connected.png in Resources */,
 				1BE2A4E41B0B12160091DCC3 /* PLUS.png in Resources */,
 				1B6FD4721B1D4E010035CD36 /* connect.png in Resources */,
 				1B2AEBCD1B13EFA200B67450 /* AY_icon.png in Resources */,
+				95D78A671B1D3A0100B30AFA /* Newevent.png in Resources */,
+				1BAA1B451B1DC66800D88A46 /* Close Window.png in Resources */,
 				1B6FD4741B1D503D0035CD36 /* ical.png in Resources */,
 				1B6FD46E1B1D4DED0035CD36 /* Google.png in Resources */,
 				1B5D68281B0D62F400BBB904 /* X.png in Resources */,
@@ -758,8 +769,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
@@ -767,7 +778,7 @@
 				INFOPLIST_FILE = Ay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "db7afcd9-61e5-49c7-bc21-468f8ec99a07";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = Ay/SwiftHeader.h;
 			};
 			name = Debug;
@@ -776,8 +787,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
@@ -785,7 +796,7 @@
 				INFOPLIST_FILE = Ay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "db7afcd9-61e5-49c7-bc21-468f8ec99a07";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = Ay/SwiftHeader.h;
 			};
 			name = Release;
