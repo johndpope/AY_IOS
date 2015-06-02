@@ -17,6 +17,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var viewTitleView: UILabel!
+    @IBOutlet weak var completeLabelView: UILabel!
     
     var cur_date : CVDate?
     
@@ -177,6 +178,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if event_id == nil {
             viewTitleView.text = "New Event"
+            completeLabelView.text = "Add "
             var date_picker = UIDatePicker()
             if first_load {
                 start_date_cell.dateView.text = NSDateFormatter.localizedStringFromDate(date_picker.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
@@ -185,6 +187,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         } else {
             viewTitleView.text = "Update Event"
+            completeLabelView.text = "Update"
             if first_load{
                 populateTableView()
                 first_load = false

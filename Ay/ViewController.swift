@@ -450,32 +450,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let date_key = dayView.date!.date_key()
         
         let event_list = schedules.objectForKey(date_key) as? Array<AyEvent>
-        var family_member_list = self.appDelegate.data_manager!.cur_user?.familyMembers.allObjects
+        var family_member = self.appDelegate.data_manager!.cur_user?.familyMembers
         
-        let union = NSMutableSet()
-        var colors : [UIColor] = []
+        var colors = NSMutableSet()
         
         if event_list != nil {
             for event in event_list! {
                 if event.participants != nil {
                     for member in event.participants!.allObjects {
                         var color = (member as! FamilyMember).assigned_color() as UIColor
-                        colors.append (color)
+                        colors.addObject(color)
+                        break
                     }
                 } else {
-                    colors.append(UIColor.grayColor())
+                    colors.addObject(UIColor.grayColor())
                 }
-                
-                /*if event.participants != nil {
-                    union.unionSet(event.participants! as Set<NSObject>)
-                }*/
             }
-            
-            /*for person in union {
-                colors.append (person.assigned_color())
-            }*/
         }
-        return colors
+        return colors.allObjects as! [UIColor]
     }
     
      /* Determines a color for dot marker for a specific day view. */
