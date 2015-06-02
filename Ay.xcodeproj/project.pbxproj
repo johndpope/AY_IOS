@@ -77,6 +77,10 @@
 		1BE2A4E41B0B12160091DCC3 /* PLUS.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BE2A4E31B0B12160091DCC3 /* PLUS.png */; };
 		959388BA1B1D4AC900AFCD8F /* OptionCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 959388B91B1D4AC900AFCD8F /* OptionCheck.png */; };
 		959388BC1B1D5FBB00AFCD8F /* ParticipantCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 959388BB1B1D5FBB00AFCD8F /* ParticipantCheck.png */; };
+		959388BE1B1DC34600AFCD8F /* AddFamilyMember.png in Resources */ = {isa = PBXBuildFile; fileRef = 959388BD1B1DC34600AFCD8F /* AddFamilyMember.png */; };
+		959388C01B1DC79A00AFCD8F /* ChildLastNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959388BF1B1DC79A00AFCD8F /* ChildLastNameCell.swift */; };
+		959388C21B1DD0C100AFCD8F /* AddAdultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959388C11B1DD0C100AFCD8F /* AddAdultCell.swift */; };
+		959388C41B1DD0CA00AFCD8F /* AddChildCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959388C31B1DD0CA00AFCD8F /* AddChildCell.swift */; };
 		95CF63911AFEE7E200F28153 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CF63901AFEE7E200F28153 /* AudioToolbox.framework */; };
 		95CF63931AFEE7E800F28153 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CF63921AFEE7E800F28153 /* CFNetwork.framework */; };
 		95CF63951AFEE7EF00F28153 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95CF63941AFEE7EF00F28153 /* CoreGraphics.framework */; };
@@ -105,7 +109,7 @@
 		95DCA0A51B0FF3790033D729 /* RepeatEndsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0A41B0FF3790033D729 /* RepeatEndsViewController.swift */; };
 		95DCA0A71B1139D70033D729 /* ListEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0A61B1139D70033D729 /* ListEventCell.swift */; };
 		95DCA0AB1B1441CC0033D729 /* AllDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0AA1B1441CC0033D729 /* AllDayCell.swift */; };
-		95DCA0B31B171C9C0033D729 /* ChildNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0B21B171C9C0033D729 /* ChildNameCell.swift */; };
+		95DCA0B31B171C9C0033D729 /* ChildFirstNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0B21B171C9C0033D729 /* ChildFirstNameCell.swift */; };
 		95DCA0B51B171CB00033D729 /* ChildAgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0B41B171CB00033D729 /* ChildAgeCell.swift */; };
 		95DCA0B71B171CC00033D729 /* ChildGenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0B61B171CC00033D729 /* ChildGenderCell.swift */; };
 		95DCA0B91B171CCC0033D729 /* ChildInterestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DCA0B81B171CCC0033D729 /* ChildInterestCell.swift */; };
@@ -197,6 +201,10 @@
 		957B729F1B0ACCF300C9A2EB /* SwiftHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftHeader.h; sourceTree = "<group>"; };
 		959388B91B1D4AC900AFCD8F /* OptionCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OptionCheck.png; sourceTree = "<group>"; };
 		959388BB1B1D5FBB00AFCD8F /* ParticipantCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ParticipantCheck.png; sourceTree = "<group>"; };
+		959388BD1B1DC34600AFCD8F /* AddFamilyMember.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddFamilyMember.png; sourceTree = "<group>"; };
+		959388BF1B1DC79A00AFCD8F /* ChildLastNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildLastNameCell.swift; sourceTree = "<group>"; };
+		959388C11B1DD0C100AFCD8F /* AddAdultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAdultCell.swift; sourceTree = "<group>"; };
+		959388C31B1DD0CA00AFCD8F /* AddChildCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddChildCell.swift; sourceTree = "<group>"; };
 		95CF63901AFEE7E200F28153 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		95CF63921AFEE7E800F28153 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		95CF63941AFEE7EF00F28153 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -225,7 +233,7 @@
 		95DCA0A41B0FF3790033D729 /* RepeatEndsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatEndsViewController.swift; sourceTree = "<group>"; };
 		95DCA0A61B1139D70033D729 /* ListEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListEventCell.swift; sourceTree = "<group>"; };
 		95DCA0AA1B1441CC0033D729 /* AllDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllDayCell.swift; sourceTree = "<group>"; };
-		95DCA0B21B171C9C0033D729 /* ChildNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildNameCell.swift; sourceTree = "<group>"; };
+		95DCA0B21B171C9C0033D729 /* ChildFirstNameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildFirstNameCell.swift; sourceTree = "<group>"; };
 		95DCA0B41B171CB00033D729 /* ChildAgeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildAgeCell.swift; sourceTree = "<group>"; };
 		95DCA0B61B171CC00033D729 /* ChildGenderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildGenderCell.swift; sourceTree = "<group>"; };
 		95DCA0B81B171CCC0033D729 /* ChildInterestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildInterestCell.swift; sourceTree = "<group>"; };
@@ -369,6 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				959388B91B1D4AC900AFCD8F /* OptionCheck.png */,
+				959388BD1B1DC34600AFCD8F /* AddFamilyMember.png */,
 				95D78A661B1D3A0100B30AFA /* Newevent.png */,
 				959388BB1B1D5FBB00AFCD8F /* ParticipantCheck.png */,
 				95D78A6A1B1D3A1600B30AFA /* Back.png */,
@@ -430,10 +439,13 @@
 				95DCA0A61B1139D70033D729 /* ListEventCell.swift */,
 				1B56220C1B126502006426AD /* ChildInfoTableViewCell.swift */,
 				95DCA0AA1B1441CC0033D729 /* AllDayCell.swift */,
-				95DCA0B21B171C9C0033D729 /* ChildNameCell.swift */,
+				95DCA0B21B171C9C0033D729 /* ChildFirstNameCell.swift */,
 				95DCA0B41B171CB00033D729 /* ChildAgeCell.swift */,
 				95DCA0B61B171CC00033D729 /* ChildGenderCell.swift */,
 				95DCA0B81B171CCC0033D729 /* ChildInterestCell.swift */,
+				959388BF1B1DC79A00AFCD8F /* ChildLastNameCell.swift */,
+				959388C11B1DD0C100AFCD8F /* AddAdultCell.swift */,
+				959388C31B1DD0CA00AFCD8F /* AddChildCell.swift */,
 			);
 			name = CustomTableCells;
 			sourceTree = "<group>";
@@ -563,6 +575,7 @@
 				1B5D68281B0D62F400BBB904 /* X.png in Resources */,
 				1B6712A51B1BE25500D41279 /* education.png in Resources */,
 				1B6712A41B1BE25500D41279 /* activities.png in Resources */,
+				959388BE1B1DC34600AFCD8F /* AddFamilyMember.png in Resources */,
 				1B2AEBD11B13F54100B67450 /* Statusbar.png in Resources */,
 				1B4F4C7C1AFEC7A000C61708 /* Images.xcassets in Resources */,
 			);
@@ -608,7 +621,10 @@
 				1B7210391B0AFAB300E0D729 /* NotifyCell.swift in Sources */,
 				95DCA0AB1B1441CC0033D729 /* AllDayCell.swift in Sources */,
 				1B7210331B0AFA5900E0D729 /* TitleCell.swift in Sources */,
+				959388C41B1DD0CA00AFCD8F /* AddChildCell.swift in Sources */,
+				959388C21B1DD0C100AFCD8F /* AddAdultCell.swift in Sources */,
 				1B04F0061B0ABD1100DF30B3 /* CVCalendarMenuView.swift in Sources */,
+				959388C01B1DC79A00AFCD8F /* ChildLastNameCell.swift in Sources */,
 				1B6712931B1BCDBD00D41279 /* SettingsViewController.swift in Sources */,
 				1B04F00E1B0ABD1100DF30B3 /* CVCalendarViewAppearanceDelegate.swift in Sources */,
 				1B04F00F1B0ABD1100DF30B3 /* CVCalendarViewDelegate.swift in Sources */,
@@ -636,7 +652,7 @@
 				1B04F0041B0ABD1100DF30B3 /* CVCalendarDayViewControlCoordinator.swift in Sources */,
 				1B02710F1B11196F005AED86 /* SyncCalendarViewController.swift in Sources */,
 				1B04F00C1B0ABD1100DF30B3 /* CVCalendarViewAnimatorDelegate.swift in Sources */,
-				95DCA0B31B171C9C0033D729 /* ChildNameCell.swift in Sources */,
+				95DCA0B31B171C9C0033D729 /* ChildFirstNameCell.swift in Sources */,
 				1B5D68241B0D171900BBB904 /* StartTimePickerCell.swift in Sources */,
 				95CF63C11AFEF32300F28153 /* ParseCoreService.swift in Sources */,
 				1B4F4C751AFEC79F00C61708 /* Ay.xcdatamodeld in Sources */,
@@ -769,8 +785,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
@@ -778,7 +794,7 @@
 				INFOPLIST_FILE = Ay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "db7afcd9-61e5-49c7-bc21-468f8ec99a07";
 				SWIFT_OBJC_BRIDGING_HEADER = Ay/SwiftHeader.h;
 			};
 			name = Debug;
@@ -787,8 +803,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Do Hyeong Kwon (8RBSXTYP5A)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
@@ -796,7 +812,7 @@
 				INFOPLIST_FILE = Ay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "db7afcd9-61e5-49c7-bc21-468f8ec99a07";
 				SWIFT_OBJC_BRIDGING_HEADER = Ay/SwiftHeader.h;
 			};
 			name = Release;

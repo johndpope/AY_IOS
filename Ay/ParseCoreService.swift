@@ -267,7 +267,8 @@ class ParseCoreService {
                             participant.color = dict_obj["color"] as! String
                             participant.gender = dict_obj["gender"] as! NSNumber
                             participant.interests = dict_obj["interests"] as! String
-                            participant.name = dict_obj["name"] as! String
+                            participant.first_name = dict_obj["first_name"] as! String
+                            participant.last_name = dict_obj["last_name"] as! String
                             participants?.addObject(participant)
                         }
                     }

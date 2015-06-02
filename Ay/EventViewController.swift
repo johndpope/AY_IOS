@@ -423,13 +423,13 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 if participants != nil{
                     for object in participants!.allObjects{
                         var cur_member = object as! FamilyMember
-                        if cur_member.age == member.age && cur_member.name == member.name{
+                        if cur_member.age == member.age && cur_member.first_name == member.first_name && cur_member.last_name == member.last_name{
                             member_image.addSubview(check_image)
                         }
                     }
                 }
                 
-                (cell as! ParticipantsCell).nameView.text = member.name
+                (cell as! ParticipantsCell).nameView.text = member.first_name + " " + member.last_name
                 cell?.addSubview(member_image)
             
             
@@ -482,7 +482,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         for object in participants!.allObjects{
             var cur_member = object as! FamilyMember
-            if cur_member.age == member.age && cur_member.name == member.name{
+            if cur_member.age == member.age && cur_member.first_name == member.first_name && cur_member.last_name == member.last_name{
                 participants!.removeObject(object)
                 self.tableView.reloadData()
                 return

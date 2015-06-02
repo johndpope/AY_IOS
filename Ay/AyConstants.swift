@@ -14,10 +14,12 @@ let import_paper_cell_identifier = "import_paper_cell_identifier"
 let import_facebook_cell_identifier = "import_facebook_cell_identifier"
 let integration_cell_identifier = "integration_cell_identifier"
 
-let add_child_name_cell_identifier = "add_child_name_cell_identifier"
+let add_child_first_name_cell_identifier = "add_child_first_name_cell_identifier"
+let add_child_last_name_cell_identifier = "add_child_last_name_cell_identifier"
 let add_child_age_cell_identifier = "add_child_age_cell_identifier"
 let add_child_gender_cell_identifier = "add_child_gender_cell_identifier"
 let add_child_interest_cell_identifier = "add_child_interest_cell_identifier"
+let add_child_color_cell_identifier = "add_child_color_cell_identifier"
 
 let list_event_cell_identifier = "list_event_cell_identifier"
 let list_date_cell_identifier = "list_date_cell_identifier"
@@ -56,6 +58,8 @@ let account_sync_complete_segue_identifier = "account_sync_complete_segue_identi
 
 
 // Add children cell
+let add_family_person_cell_identifier = "add_family_person_cell_identifier"
+let add_adult_cell_identifier = "add_adult_cell_identifier"
 let add_child_cell_identifier = "add_child_cell_identifier"
 
 let repeat_ends_never_cell_identifier = "repeat_ends_never_cell_identifier"

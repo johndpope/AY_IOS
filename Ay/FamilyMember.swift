@@ -16,7 +16,9 @@ class FamilyMember: NSManagedObject {
     @NSManaged var color: String
     @NSManaged var gender: NSNumber
     @NSManaged var interests: String
-    @NSManaged var name: String
+    @NSManaged var first_name: String
+    @NSManaged var last_name: String
+    @NSManaged var type: String
     @NSManaged var parent: AyUser
     
     
@@ -55,7 +57,9 @@ class FamilyMember: NSManagedObject {
         dict.setObject(color, forKey: "color")
         dict.setObject(gender, forKey: "gender")
         dict.setObject(interests, forKey: "interests")
-        dict.setObject(name, forKey: "name")
+        dict.setObject(type, forKey: "type")
+        dict.setObject(first_name, forKey: "first_name")
+        dict.setObject(last_name, forKey: "last_name")
         
         return dict
     }

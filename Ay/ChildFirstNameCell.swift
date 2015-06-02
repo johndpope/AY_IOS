@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChildNameCell: UITableViewCell {
+class ChildFirstNameCell: UITableViewCell {
     
     @IBOutlet weak var nameView: UITextField!
     override func awakeFromNib() {
