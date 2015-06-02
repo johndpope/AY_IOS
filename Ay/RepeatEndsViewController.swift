@@ -39,6 +39,14 @@ class RepeatEndsViewController: UIViewController, UITableViewDelegate, UITableVi
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if onDate != nil {
+            end_date_picker_cell.datePicker.date = onDate
+            toggleEndDatePicker()
+        }
+    }
+    
     func initializeDatePickers(){
         toggleEndDatePicker()
     }
@@ -68,13 +76,40 @@ class RepeatEndsViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell : UITableViewCell?
+        
         switch indexPath.section {
             
         case 0 :
             if indexPath.row == 0 {
                 cell = tableView.dequeueReusableCellWithIdentifier(repeat_ends_never_cell_identifier) as? UITableViewCell
+                for view in cell!.subviews{
+                    if view is UIImageView {
+                        view.removeFromSuperview()
+                    }
+                }
+                let cell_width = cell!.frame.size.width
+                var check_image = UIImageView(frame: CGRectMake(cell_width - 50, 15, 20, 15))
+                check_image.image = UIImage(named: "OptionCheck.png")
+                check_image.hidden = true
+                if onDate == nil {
+                    check_image.hidden = false
+                }
+                cell?.addSubview(check_image)
             } else if indexPath.row == 1{
                 cell = tableView.dequeueReusableCellWithIdentifier(repeat_ends_end_date_cell_identifier) as? EndDateCell
+                for view in cell!.subviews{
+                    if view is UIImageView {
+                        view.removeFromSuperview()
+                    }
+                }
+                let cell_width = cell!.frame.size.width
+                var check_image = UIImageView(frame: CGRectMake(cell_width - 50, 15, 20, 15))
+                check_image.image = UIImage(named: "OptionCheck.png")
+                check_image.hidden = true
+                if onDate != nil{
+                    check_image.hidden = false
+                }
+                cell?.addSubview(check_image)
                 end_date_cell = cell as! EndDateCell
             } else {
                 cell = tableView.dequeueReusableCellWithIdentifier(repeat_ends_end_date_picker_cell_identifier) as? EndTimePickerCell
@@ -114,23 +149,24 @@ class RepeatEndsViewController: UIViewController, UITableViewDelegate, UITableVi
         
         // open date picker
         if row == Row.EndDate{
+            didChangeEndDate()
             toggleEndDatePicker()
         } else if row == Row.Never {
             onDate = nil
         }
+        self.tableView.reloadData()
     }
     
     @IBAction
     func didChangeEndDate() {
         onDate = end_date_picker_cell.datePicker.date
+        self.tableView.reloadData()
     }
     
     private func toggleEndDatePicker() {
         endDatePickerHidden = !endDatePickerHidden
         
-        // Force table to update its contents
-        tableView.beginUpdates()
-        tableView.endUpdates()
+        self.tableView.reloadData()
     }
     
     private enum Row: Int {

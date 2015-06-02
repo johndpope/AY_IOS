@@ -35,7 +35,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     private var repeat_option : NSMutableDictionary!
     private var repeat_end_time: NSDate!
-    private var notify_time: NSDate!
+    private var notify_time_data: NSMutableDictionary!
     private var participants: NSMutableSet?
     private var cur_loc: String?
     
@@ -51,7 +51,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error)->Void in
             
-            println("update")
             if (error != nil) {
                 println("Reverse geocoder failed with error" + error.localizedDescription)
                 return
@@ -139,13 +138,19 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func completeEvent(){
-        println(cur_loc)
         var recur_freq = getRecurStructure()
         
+        var notify_time: NSDate?
+        if notify_time_data != nil{
+            if (notify_time_data["section"] as! Int) != 0{
+                notify_time = getAlarmTime(start_date_picker_cell.datePicker.date, index: (notify_time_data["row"] as! Int))
+            }
+        }
+        
         if event_id == nil {
-            ParseCoreService().createEvent(participants, title: title_cell.titleTextField.text, start: start_date_picker_cell.datePicker.date, end: end_date_picker_cell.datePicker.date, alarm: notify_time, recur_end: repeat_end_time, recur_freq: recur_freq, recur_occur: 0, location: cur_loc)
+            ParseCoreService().createEvent(participants, title: title_cell.titleTextField.text, start: start_date_picker_cell.datePicker.date, end: end_date_picker_cell.datePicker.date, alarm: notify_time, recur_end: repeat_end_time, recur_freq: recur_freq, recur_occur: 0, location: cur_loc, type: "default")
         } else {
-            ParseCoreService().updateEvent(event_id!, participants: participants, title: title_cell.titleTextField.text, start: start_date_picker_cell.datePicker.date, end: end_date_picker_cell.datePicker.date, alarm: notify_time, recur_end: repeat_end_time, recur_freq: recur_freq, recur_occur: 0, location: cur_loc)
+            ParseCoreService().updateEvent(event_id!, participants: participants, title: title_cell.titleTextField.text, start: start_date_picker_cell.datePicker.date, end: end_date_picker_cell.datePicker.date, alarm: notify_time, recur_end: repeat_end_time, recur_freq: recur_freq, recur_occur: 0, location: cur_loc, type: "default")
         }
     }
     
@@ -190,7 +195,6 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func populateTableView(){
         // Force table to update its contents
-        tableView.beginUpdates()
         
         var cur_event = self.appDelegate.data_manager!.getEvent(event_id!)
         title_cell.titleTextField.text = cur_event.title
@@ -234,14 +238,19 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
-        notify_time = cur_event.alarm_time
+        notify_time_data = NSMutableDictionary()
+        var notify_time = cur_event.alarm_time
         if notify_time == nil {
+            notify_time_data.setObject(0, forKey: "section")
+            notify_time_data.setObject(0, forKey: "row")
             notify_cell.notifyView.text = self.appDelegate.data_manager!.notify_none_options[0]
         } else {
+            notify_time_data.setObject(1, forKey: "section")
             for var i = 0; i < self.appDelegate.data_manager!.notify_options.count; ++i {
                 var alarm_time = getAlarmTime(cur_event.start_time!, index: i)
-                if notify_time.timeIntervalSinceDate(alarm_time!) == 0 {
+                if notify_time!.timeIntervalSinceDate(alarm_time!) == 0 {
                     notify_cell.notifyView.text = self.appDelegate.data_manager!.notify_options[i]
+                    notify_time_data.setObject(i, forKey: "row")
                     break
                 }
             }
@@ -252,7 +261,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cur_loc = cur_event.location
         loc_cell.locationTextField.text = cur_loc
         
-        tableView.endUpdates()
+        tableView.reloadData()
     }
     
     func initializeDatePickers(){
@@ -303,11 +312,10 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func setNotify(data: NSDictionary){
+        notify_time_data = data as! NSMutableDictionary
         if (data["section"] as! Int) == 0{
-            notify_time = nil
             notify_cell.notifyView.text = self.appDelegate.data_manager!.notify_none_options[(data["row"] as! Int)]
         } else {
-            notify_time = getAlarmTime(start_date_picker_cell.datePicker.date, index: (data["row"] as! Int))
             notify_cell.notifyView.text = self.appDelegate.data_manager!.notify_options[(data["row"] as! Int)]
         }
     }
@@ -316,6 +324,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // When preparing for the segue, have viewController1 provide a closure for
         // onDataAvailable
         if let viewController = segue.destinationViewController as? RepeatSettingViewController {
+            viewController.select_dictionary = repeat_option
             viewController.onDataAvailable = {[weak self]
                 (data) in
                 if let weakSelf = self {
@@ -331,6 +340,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
             }
         } else if let viewController = segue.destinationViewController as? NotifyViewController {
+            viewController.select_dictionary = notify_time_data
             viewController.onDataAvailable = {[weak self]
                 (data) in
                 if let weakSelf = self {
@@ -389,14 +399,32 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             case 1 :
         
                 cell = tableView.dequeueReusableCellWithIdentifier(add_event_participants_cell_identifier) as? ParticipantsCell
+                
+                for view in cell!.subviews{
+                    if view is UIImageView {
+                        view.removeFromSuperview()
+                    }
+                }
+                
                 var family_member_list = self.appDelegate.data_manager!.cur_user?.familyMembers.allObjects as! [FamilyMember]?
                 var member = family_member_list![indexPath.row]
-                var member_image = UIImageView(frame: CGRectMake(15, 7, 30, 30))
+                var member_image = UIImageView(frame: CGRectMake(19, 11, 22, 22))
                 member_image.layer.borderWidth = 1
                 member_image.layer.borderColor = member.assigned_color().CGColor
                 member_image.layer.cornerRadius = member_image.frame.height / 2
                 member_image.clipsToBounds = true
                 member_image.backgroundColor = member.assigned_color() as UIColor
+                
+                var check_image = UIImageView(frame: CGRectMake(4, 5, 15, 11))
+                check_image.image = UIImage(named: "ParticipantCheck.png")
+                if participants != nil{
+                    for object in participants!.allObjects{
+                        var cur_member = object as! FamilyMember
+                        if cur_member.age == member.age && cur_member.name == member.name{
+                            member_image.addSubview(check_image)
+                        }
+                    }
+                }
                 
                 (cell as! ParticipantsCell).nameView.text = member.name
                 cell?.addSubview(member_image)
@@ -451,12 +479,14 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         for object in participants!.allObjects{
             var cur_member = object as! FamilyMember
-            if cur_member.age == member.age && cur_member.name == member.age{
+            if cur_member.age == member.age && cur_member.name == member.name{
                 participants!.removeObject(object)
+                self.tableView.reloadData()
                 return
             }
         }
         participants!.addObject(member)
+        self.tableView.reloadData()
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

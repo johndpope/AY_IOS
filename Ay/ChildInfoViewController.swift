@@ -61,7 +61,7 @@ class ChildInfoViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func assign_color(){
         
-        let color_strs = ["blue", "green", "yellow", "gray", "orange", "purple"]
+        let color_strs = ["blue", "green", "yellow", "red", "orange", "purple"]
         
         let i : Int = Int(arc4random_uniform(6))
         child.color = color_strs[i]

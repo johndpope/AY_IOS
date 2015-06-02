@@ -149,7 +149,7 @@ class DataManager {
                             
                             // next event belongs to this month
                             if isInThisMonth(next_start_components, end_components: next_end_components, month: month, year: year) {
-                                var schedule = AyEvent(id: event.id, participants: event.participants, start: next_start_date, end: next_end_date, title: event.title, alarm: event.alarm_time, recur_end: event.recur_end, recur_freq: event.recur_freq, recur_occur: event.recur_occur, location: event.location)
+                                var schedule = AyEvent(id: event.id, participants: event.participants, start: next_start_date, end: next_end_date, title: event.title, alarm: event.alarm_time, recur_end: event.recur_end, recur_freq: event.recur_freq, recur_occur: event.recur_occur, location: event.location, type: event.type)
                                     monthly_schedule = addEvent(monthly_schedule, new_event: schedule)
                             
                             // next event pass this month
@@ -185,7 +185,7 @@ class DataManager {
                                 
                                 // next event belongs to this month
                                 if isInThisMonth(next_start_components, end_components: next_end_components, month: month, year: year){
-                                    var schedule = AyEvent(id: event.id, participants: event.participants, start: next_start_date, end: next_end_date, title: event.title, alarm: event.alarm_time, recur_end: event.recur_end, recur_freq: event.recur_freq, recur_occur: event.recur_occur, location: event.location)
+                                    var schedule = AyEvent(id: event.id, participants: event.participants, start: next_start_date, end: next_end_date, title: event.title, alarm: event.alarm_time, recur_end: event.recur_end, recur_freq: event.recur_freq, recur_occur: event.recur_occur, location: event.location, type : event.type)
                                     monthly_schedule = addEvent(monthly_schedule, new_event: schedule)
                                     
                                 // next event pass this month

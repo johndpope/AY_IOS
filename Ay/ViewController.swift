@@ -239,6 +239,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         if color != nil {
             cell!.colorImageView.backgroundColor = color
+        } else {
+            cell!.colorImageView.backgroundColor = UIColor.grayColor()
         }
         return cell!
     }
@@ -461,7 +463,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         colors.append (color)
                     }
                 } else {
-                    colors.append(UIColor.blueColor())
+                    colors.append(UIColor.grayColor())
                 }
                 
                 /*if event.participants != nil {
