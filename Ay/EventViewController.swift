@@ -8,10 +8,12 @@
 //
 
 import UIKit
+import CoreLocation
 
-class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, CLLocationManagerDelegate {
 
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    let locationManager = CLLocationManager()
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var viewTitleView: UILabel!
@@ -35,6 +37,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     private var repeat_end_time: NSDate!
     private var notify_time: NSDate!
     private var participants: NSMutableSet?
+    private var cur_loc: String?
     
     private var first_load = true
     
@@ -44,6 +47,40 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var event_id: String?
     
     let header_height = 24
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error)->Void in
+            
+            println("update")
+            if (error != nil) {
+                println("Reverse geocoder failed with error" + error.localizedDescription)
+                return
+            }
+            
+            if placemarks.count > 0 {
+                let pm = placemarks[0] as! CLPlacemark
+                self.setLocationInfo(pm)
+            } else {
+                println("Problem with the data received from geocoder")
+            }
+        })
+    }
+    
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        println("Error while updating location " + error.localizedDescription)
+    }
+    
+    func setLocationInfo(placemark: CLPlacemark?) {
+        if placemark != nil {
+            //stop updating location to save battery life
+            locationManager.stopUpdatingLocation()
+            let name = (placemark!.name != nil) ? placemark!.name : ""
+            let locality = (placemark!.locality != nil) ? placemark!.locality : ""
+            let adminArea = (placemark!.administrativeArea != nil) ? placemark!.administrativeArea : ""
+            let country = (placemark!.country != nil) ? placemark!.country : ""
+            cur_loc = name + ", " + locality + ", " + adminArea + ", " + country
+        }
+    }
     
     @IBAction func cancelPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -83,12 +120,32 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             if participants != nil && participants?.allObjects.count == 0{
                 participants = nil
             }
-            var recur_freq = getRecurStructure()
-            if event_id == nil {
-                ParseCoreService().createEvent(participants, title: title_cell.titleTextField.text, start: start_date_picker_cell.datePicker.date, end: end_date_picker_cell.datePicker.date, alarm: notify_time, recur_end: repeat_end_time, recur_freq: recur_freq, recur_occur: 0, latitude: 3.0001, longitude: nil)
+            
+            if loc_cell.locationTextField.text != nil && loc_cell.locationTextField.text != "" {
+                var geocoder = CLGeocoder()
+                geocoder.geocodeAddressString(loc_cell.locationTextField.text, completionHandler: {(placemarks, error) -> Void in
+                    if error == nil {
+                        var placemark = placemarks[0] as! CLPlacemark
+                        self.setLocationInfo(placemark)
+                        self.completeEvent()
+                    }
+                    
+                
+                })
             } else {
-                ParseCoreService().updateEvent(event_id!, participants: participants, title: title_cell.titleTextField.text, start: start_date_picker_cell.datePicker.date, end: end_date_picker_cell.datePicker.date, alarm: notify_time, recur_end: repeat_end_time, recur_freq: recur_freq, recur_occur: 0)
+                completeEvent()
             }
+        }
+    }
+    
+    func completeEvent(){
+        println(cur_loc)
+        var recur_freq = getRecurStructure()
+        
+        if event_id == nil {
+            ParseCoreService().createEvent(participants, title: title_cell.titleTextField.text, start: start_date_picker_cell.datePicker.date, end: end_date_picker_cell.datePicker.date, alarm: notify_time, recur_end: repeat_end_time, recur_freq: recur_freq, recur_occur: 0, location: cur_loc)
+        } else {
+            ParseCoreService().updateEvent(event_id!, participants: participants, title: title_cell.titleTextField.text, start: start_date_picker_cell.datePicker.date, end: end_date_picker_cell.datePicker.date, alarm: notify_time, recur_end: repeat_end_time, recur_freq: recur_freq, recur_occur: 0, location: cur_loc)
         }
     }
     
@@ -96,6 +153,11 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
         
         initializeDatePickers()
         
@@ -186,6 +248,9 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         participants = cur_event.participants
+        
+        cur_loc = cur_event.location
+        loc_cell.locationTextField.text = cur_loc
         
         tableView.endUpdates()
     }

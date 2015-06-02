@@ -202,6 +202,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell!.event_id = event.id
         
         cell!.subtitle_label.text = "location"
+        if event.location != nil {
+            cell!.subtitle_label.text = event.location
+        }
         
         cell!.start_time_label.text = NSDateFormatter.localizedStringFromDate(event.start_time!, dateStyle: .NoStyle, timeStyle: .ShortStyle)
         
