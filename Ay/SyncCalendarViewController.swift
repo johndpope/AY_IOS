@@ -14,15 +14,72 @@ class SyncCalendarViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var importTableView: UITableView!
     var events_access_granted : Bool = false
     
-    @IBAction func facebook_sync_pressed(sender: AnyObject) {
-    }
-    @IBAction func sync_paper_cal_pressed(sender: AnyObject) {
-    }
-    @IBAction func sync_gcal_pressed(sender: AnyObject) {
-    }
-    func sync_ical_pressed() {
-        // Ask for user permission first
+    
+    @IBOutlet weak var tableView: UITableView!
+    func display_beta_unavailability() {
+        let alertController = UIAlertController(title: "Not ready yet!", message: "Adding this integration is not yet available in beta mode. Look for ical maybe?", preferredStyle: .Alert)
         
+        let okAction = UIAlertAction(title: "Ok", style: .Default) { (action) in
+            
+        }
+        alertController.addAction(okAction)
+        self.presentViewController(alertController, animated: true) {
+            // ...
+        }
+
+    }
+    
+    
+    @IBAction func integration_sync_pressed(sender: UIButton) {
+         display_beta_unavailability()
+    }
+    
+    @IBAction func sync_paper_cal_pressed(sender: UIButton) {
+         display_beta_unavailability()
+    }
+    @IBAction func sync_gcal_pressed(sender: UIButton) {
+         display_beta_unavailability()
+    }
+    
+    @IBAction func sync_ical_pressed(sender: UIButton) {
+        importing_calendar = true
+        
+        let queue = NSOperationQueue()
+        dark_view = UIView(frame: self.view.frame )
+        
+        queue.addOperationWithBlock() {
+            // do something in the background
+            self.download_ical()
+            NSOperationQueue.mainQueue().addOperationWithBlock() {
+                // when done, update your UI and/or model on the main queue
+                println ("finished with everything")
+                sleep(2)
+                self.dark_view!.removeFromSuperview()
+                
+                let alertController = UIAlertController(title: "Success!", message: "We imported your schedule from ical.", preferredStyle: .Alert)
+                
+                let okAction = UIAlertAction(title: "Ok", style: .Default) { (action) in
+                    
+                    let selected_img = UIImage(named:"connected.png")
+                    
+                    sender.setImage(selected_img, forState: UIControlState.Normal)
+                    sender.frame = CGRectMake(sender.frame.origin.x - (81 - 66), sender.frame.origin.y,  81 , 25)
+                   sender.center = sender.superview!.center
+                    sender.userInteractionEnabled = false
+                }
+                alertController.addAction(okAction)
+                self.presentViewController(alertController, animated: true) {
+                    // ...
+                }
+            }
+        }
+        
+        disableUserInteraction()
+        
+    }
+    func download_ical() {
+        // Ask for user permission first
+        println ("goes in here")
         let event_defaults_key = "eventkit_events_access_granted"
         
         let event_store = EKEventStore()
@@ -30,16 +87,11 @@ class SyncCalendarViewController: UIViewController, UITableViewDelegate, UITable
         let user_defaults = NSUserDefaults.standardUserDefaults()
         
         if user_defaults.valueForKey( event_defaults_key) != nil {
-            
-            println("Debug!!")
             self.events_access_granted = user_defaults.valueForKey(event_defaults_key) as! Bool
         }
         
         var schedules = NSMutableDictionary()
         
-        
-        
-
         
         // Ask for permission again for some other crap
         event_store.requestAccessToEntityType(EKEntityTypeEvent, completion:{
@@ -76,18 +128,13 @@ class SyncCalendarViewController: UIViewController, UITableViewDelegate, UITable
                         && event.calendar.calendarIdentifier != nil
                         && event.lastModifiedDate != nil
                         ){
-                            println (event)
+                            //println (event)
                             var new_event = AyEvent()
-                            
-                            
                             new_event.title = event.title
                             
                             if event.alarms != nil {
                                 
                             }
-                            /*if event.location != nil {
-                                new_event.location = event.location
-                            }*/
                             
                             if event.startDate != nil {
                                 new_event.start_time = event.startDate
@@ -96,95 +143,81 @@ class SyncCalendarViewController: UIViewController, UITableViewDelegate, UITable
                                 new_event.end_time = event.endDate
                             }
                             
-                            
-                            
-                            
-                            /*id : String = ""
-                            var target_name : String = ""
-                            var start_time : NSDate?
-                            var end_time : NSDate?
-                            var title : String = ""
-                            var alarm_time : NSDate?
-                            var recur_end : NSDate?
-                            var recur_freq : NSDictionary?
-                            var recur_occur : Int
-                            var participants : NSMutableSet?
-                            var type : String?*/
-                            
                             ParseCoreService().createEvent(new_event.participants, title: new_event.title, start: new_event.start_time!, end: new_event.end_time!, alarm: nil, recur_end: nil, recur_freq: nil, recur_occur: 0, latitude: new_event.latitude, longitude: new_event.longitude)
-                            
-                            
                     }
-                    
-                    //......
                 })// end block
-                /*
-                // Start date of schedules to be imported ; for now, we just do a year prior.
-                let start_date = NSCalendar.currentCalendar().dateByAddingUnit(
-                    NSCalendarUnit.CalendarUnitYear,
-                    value: -1,
-                    toDate: NSDate(),
-                    options: NSCalendarOptions.WrapComponents)
-                let end_date = NSCalendar.currentCalendar().dateByAddingUnit(
-                    NSCalendarUnit.CalendarUnitYear,
-                    value: +1,
-                    toDate: NSDate(),
-                    options: NSCalendarOptions.WrapComponents)
-                
-                
-                
-                
-                
-                //println (all_calendars)
-                let current = NSDate(timeInterval: 0, sinceDate: start_date!)
-                
-                // enumerate events by one year segment because ios does not support predicate longer than 4 years
-                while (current.compare(end_date!) == NSComparisonResult.OrderedAscending) {
-                    
-                    let num_days_in_year = NSCalendar.currentCalendar().rangeOfUnit(.CalendarUnitDay, inUnit: .CalendarUnitYear, forDate: current)
-                    let seconds_in_year = 60 * 60 * Int(num_days_in_year)
-                    
-                    
-                    let predicate = event_store.predicateForEventsWithStartDate(current, endDate: end_date, calendars: all_calendars)
-                    
-                    event_store.enumerateEventsMatchingPredicate(predicate, usingBlock:{
-                        (event:EKEvent!, stop:UnsafeMutablePointer<ObjCBool>) in
-                        if event != nil {
-                            schedules.addObject(event, forKey: event.eventIdentifier)
-                        }
-                        println(event)
-                    
-                    })
-                    
-                    current = NSDate(timeInterval: seconds_in_year + 1, sinceDate: start_date!)
-                }
-                
-                
-             */
-
-                
             } else {
                 println (error.localizedDescription)
             }
+            println ("Finished importing ical data")
         })
-        
-        
-        
-        
-        
         
         /*let event_store = EKEventStore()
         
         switch EKEventStore.authorizationStatusForEntityType(EKEntityTypeEvent) {
         case .Authorized :
-            insertEvent(event_store)
+        insertEvent(event_store)
         case .Denied:
-            
+        
         case .Notdetermined:
-            
+        
         }*/
         
+        self.importing_calendar = false
     }
+    
+  
+   
+    
+    var importing_calendar = false
+    var dark_view : UIView?
+
+    func disableUserInteraction () {
+        
+        dark_view!.backgroundColor = UIColor.whiteColor()
+        dark_view!.alpha = 0.1
+        self.view.addSubview (dark_view!)
+        
+        let logo = UIImage(named : "logo.png")
+        let imageView = UIImageView(image: logo)
+        imageView.frame = CGRect(x :110, y: 122, width: 155, height: 186)
+        imageView.alpha = 0.1
+        dark_view!.addSubview (imageView)
+        
+        
+        let loading_label = UILabel (frame : CGRectMake (100 ,400, 300, 50))
+        loading_label.text = "Importing data from ical... "
+        dark_view!.addSubview (loading_label)
+        
+        
+        UIView.animateWithDuration(1.0, animations: { () -> Void in
+            self.dark_view!.alpha = 1
+            imageView.alpha = 1
+        })
+        
+        let main_queue = NSOperationQueue.mainQueue()
+        while self.importing_calendar {
+            println ("looping!!")
+            
+            
+            main_queue.addOperationWithBlock() {
+                // when done, update your UI and/or model on the main queue
+                UIView.animateWithDuration(1.0, animations: { () -> Void in
+                    imageView.alpha = 1
+                })
+                main_queue.addOperationWithBlock() {
+                    // when done, update your UI and/or model on the main queue
+                    UIView.animateWithDuration(1.0, animations: { () -> Void in
+                        imageView.alpha = 0.1
+                    })
+                }
+                
+            }
+            sleep(1)
+        }
+        
+    }
+    
     
     
     override func viewDidLoad() {
@@ -192,6 +225,7 @@ class SyncCalendarViewController: UIViewController, UITableViewDelegate, UITable
         self.importTableView.delegate = self
         self.importTableView.dataSource = self
         
+        self.view.backgroundColor = UIColor.grayColor()
         // Add to db using parsecoreservice
         ParseCoreService().createUser("", last_name : "", family_members: NSMutableSet())
     }
@@ -203,51 +237,53 @@ class SyncCalendarViewController: UIViewController, UITableViewDelegate, UITable
     
     // Table view Datasource / delegate methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
+    
+    let integration_titles = ["Tripit", "Asana", "Wunderlist", "Todolist", "Google Tasks", "Trello", "Evernote", "Basecamp"]
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        if section == 0 {
+            return 3
+        }
+        return integration_titles.count
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
+        if section == 0{
+            return "Calendars"
+        }
+        return "Other Integrations"
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell : UITableViewCell?
-        if indexPath.row == 0 {
-            cell = tableView.dequeueReusableCellWithIdentifier(import_ical_cell_identifier) as? UITableViewCell
-        } else if indexPath.row == 1 {
-            cell = tableView.dequeueReusableCellWithIdentifier(import_google_cal_cell_identifier) as? UITableViewCell
-        } else if indexPath.row == 2{
-            cell = tableView.dequeueReusableCellWithIdentifier(import_paper_cell_identifier) as? UITableViewCell
-        } else if indexPath.row == 3 {
-            cell = tableView.dequeueReusableCellWithIdentifier(import_facebook_cell_identifier) as? UITableViewCell
+        if indexPath.section == 1 {
+            cell = tableView.dequeueReusableCellWithIdentifier(integration_cell_identifier) as? UITableViewCell
+            cell!.textLabel!.text = integration_titles [indexPath.row]
         } else {
-            cell = tableView.dequeueReusableCellWithIdentifier(import_none_cell_identifier) as? UITableViewCell
+            if indexPath.row == 0 {
+                cell = tableView.dequeueReusableCellWithIdentifier(import_ical_cell_identifier) as? UITableViewCell
+            } else if indexPath.row == 1 {
+                cell = tableView.dequeueReusableCellWithIdentifier(import_google_cal_cell_identifier) as? UITableViewCell
+            } else if indexPath.row == 2{
+                cell = tableView.dequeueReusableCellWithIdentifier(import_paper_cell_identifier) as? UITableViewCell
+            }
         }
-        
         return cell!
     }
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 0 {
-            // ICAL
-            sync_ical_pressed()
-            
-        } else if indexPath.row == 1 {
-            // GCAL
-        } else if indexPath.row == 2{
-            // PAPER
-        } else if indexPath.row == 3 {
-            // FACEBOOK
-            
+        
+        if indexPath.section == 0 && indexPath.row == 0 {
+            //sync_ical_pressed(sync_ical_btn)
         } else {
-            // DO NOTHING
+            display_beta_unavailability()
         }
-
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    
-
+   
     /*
     // MARK: - Navigation
 

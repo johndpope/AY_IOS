@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //self.window!.rootViewController!.performSegueWithIdentifier(login_segue_identifier, sender: self)
             if let window = window {
                 
-                window.rootViewController = self.window!.rootViewController!.storyboard?.instantiateViewControllerWithIdentifier("TutorialViewController") as? UIViewController
+                window.rootViewController = self.window!.rootViewController!.storyboard?.instantiateViewControllerWithIdentifier("temp_tutorial") as? UIViewController
                 
             }
         } else {
