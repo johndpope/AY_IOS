@@ -9,13 +9,15 @@
     <entity name="FamilyMember" representedClassName="Ay.FamilyMember" syncable="YES">
         <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="first_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="interests" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="last_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AyUser" inverseName="familyMembers" inverseEntity="AyUser" syncable="YES"/>
     </entity>
     <elements>
         <element name="AyUser" positionX="-63" positionY="-18" width="128" height="103"/>
-        <element name="FamilyMember" positionX="162" positionY="9" width="128" height="133"/>
+        <element name="FamilyMember" positionX="162" positionY="9" width="128" height="165"/>
     </elements>
 </model>

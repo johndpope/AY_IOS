@@ -957,11 +957,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
                                 <color key="backgroundColor" red="0.47117660979999998" green="0.47117660979999998" blue="0.47117660979999998" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Tcb-ws-1n7">
-                                <rect key="frame" x="0.0" y="69" width="375" height="598"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Tcb-ws-1n7">
+                                <rect key="frame" x="0.0" y="65" width="375" height="602"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="add_child_cell_identifier" id="oRk-6I-hcp" customClass="ChildInfoTableViewCell" customModule="Ay" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="add_family_person_cell_identifier" id="oRk-6I-hcp" customClass="ChildInfoTableViewCell" customModule="Ay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oRk-6I-hcp" id="7dx-1p-kAz">
@@ -973,17 +973,53 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Age" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JjC-F7-KNI">
-                                                    <rect key="frame" x="270" y="11" width="82" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="age_label" destination="JjC-F7-KNI" id="ljW-Gu-5Zf"/>
                                             <outlet property="name_label" destination="jH8-eq-PRt" id="fF9-mi-GlX"/>
+                                            <segue destination="tFa-pX-W9K" kind="presentation" id="OrO-h2-st2"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="add_adult_cell_identifier" id="K0y-Lm-tRS" customClass="AddAdultCell" customModule="Ay" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="K0y-Lm-tRS" id="Xzy-UP-3V5">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Adult" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKm-6g-5ZC">
+                                                    <rect key="frame" x="55" y="11" width="77" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AddFamilyMember.png" translatesAutoresizingMaskIntoConstraints="NO" id="SMI-M0-fCP">
+                                                    <rect key="frame" x="20" y="13" width="15" height="16"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="tFa-pX-W9K" kind="presentation" identifier="temp_segue_identifier" id="w5I-HZ-95i"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="add_child_cell_identifier" id="GHk-l4-1Zb" customClass="AddChildCell" customModule="Ay" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GHk-l4-1Zb" id="9fV-Rd-Asu">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Child" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snL-bv-Y76">
+                                                    <rect key="frame" x="55" y="11" width="76" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AddFamilyMember.png" translatesAutoresizingMaskIntoConstraints="NO" id="ENZ-gY-f4s">
+                                                    <rect key="frame" x="20" y="13" width="15" height="16"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="tFa-pX-W9K" kind="presentation" id="Jgo-x0-Kmh"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -992,30 +1028,29 @@
                                     <outlet property="delegate" destination="Zw5-uV-gH5" id="2Hb-r6-doH"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Children" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUm-jC-1zH">
-                                <rect key="frame" x="113" y="32" width="149" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Family" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUm-jC-1zH">
+                                <rect key="frame" x="113" y="32" width="149" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQw-DU-Mwr">
-                                <rect key="frame" x="16" y="28" width="30" height="30"/>
-                                <state key="normal" title="Add">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="tFa-pX-W9K" kind="presentation" id="lej-pW-QKw"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R9y-O4-ANk">
-                                <rect key="frame" x="327" y="28" width="32" height="30"/>
-                                <state key="normal" title="Next">
+                                <rect key="frame" x="311" y="20" width="64" height="45"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="presentation" id="RFH-hx-rsq"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Next" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bE2-rH-mcr">
+                                <rect key="frame" x="323" y="32" width="36" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1048,15 +1083,15 @@
                                 <color key="backgroundColor" red="0.47117660979999998" green="0.47117660979999998" blue="0.47117660979999998" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dR-yY-U00">
-                                <rect key="frame" x="16" y="34" width="18" height="18"/>
-                                <state key="normal" image="X.png">
+                                <rect key="frame" x="14" y="33" width="13" height="21"/>
+                                <state key="normal" image="Back.png">
                                     <color key="titleShadowColor" red="1" green="0.3338283964" blue="0.33180032640000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="cancel_pressed:" destination="tFa-pX-W9K" eventType="touchUpInside" id="z2J-WX-kEz"/>
+                                    <action selector="cancel_pressed:" destination="tFa-pX-W9K" eventType="touchUpInside" id="Agb-3t-juP"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tell me more about your kid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfU-Ps-wRR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfU-Ps-wRR">
                                 <rect key="frame" x="43" y="24" width="289" height="37"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1066,34 +1101,54 @@
                                 <rect key="frame" x="0.0" y="63" width="375" height="604"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="add_child_name_cell_identifier" id="cJI-FD-Mos" customClass="ChildNameCell" customModule="Ay" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="add_child_first_name_cell_identifier" id="cJI-FD-Mos" customClass="ChildFirstNameCell" customModule="Ay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cJI-FD-Mos" id="x5X-8o-ns7">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ax-g5-QTH">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ax-g5-QTH">
                                                     <rect key="frame" x="17" y="3" width="350" height="37"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
-                                                        <action selector="name_entered:" destination="tFa-pX-W9K" eventType="editingDidEnd" id="pjT-me-u7a"/>
+                                                        <action selector="first_name_entered:" destination="tFa-pX-W9K" eventType="editingDidEnd" id="x8V-sw-IuH"/>
                                                         <outlet property="delegate" destination="tFa-pX-W9K" id="QPQ-XP-9Aa"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="nameView" destination="1ax-g5-QTH" id="FRQ-6m-f3O"/>
+                                            <outlet property="nameView" destination="1ax-g5-QTH" id="knz-nO-xtV"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="add_child_age_cell_identifier" id="p5V-NB-H76" customClass="ChildAgeCell" customModule="Ay" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="add_child_last_name_cell_identifier" id="Crv-tw-xQg" customClass="ChildLastNameCell" customModule="Ay" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Crv-tw-xQg" id="yzG-fO-cUX">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tPc-me-0vw">
+                                                    <rect key="frame" x="16" y="0.0" width="351" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                                                    <connections>
+                                                        <action selector="last_name_entered:" destination="tFa-pX-W9K" eventType="editingDidEnd" id="OvO-j2-bVG"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameView" destination="tPc-me-0vw" id="clc-Nd-hEq"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="add_child_age_cell_identifier" id="p5V-NB-H76" customClass="ChildAgeCell" customModule="Ay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p5V-NB-H76" id="Ru8-go-Txu">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="chD-6o-56f">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Age" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="chD-6o-56f">
                                                     <rect key="frame" x="17" y="0.0" width="350" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -1108,7 +1163,7 @@
                                             <outlet property="ageView" destination="chD-6o-56f" id="TwY-bu-bYu"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="add_child_gender_cell_identifier" id="8Bb-Od-HBe" customClass="ChildGenderCell" customModule="Ay" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="add_child_gender_cell_identifier" id="8Bb-Od-HBe" customClass="ChildGenderCell" customModule="Ay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Bb-Od-HBe" id="qwj-3m-Vhw">
@@ -1124,13 +1179,26 @@
                                                         <action selector="gender_entered:" destination="tFa-pX-W9K" eventType="valueChanged" id="nAd-Xq-5co"/>
                                                     </connections>
                                                 </segmentedControl>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gender" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6G-w1-o7p">
+                                                    <rect key="frame" x="16" y="11" width="70" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.81334832700000004" green="0.81334832700000004" blue="0.81334832700000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="genderSwitch" destination="bML-W2-eJN" id="Gaz-aA-HKe"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="add_child_interest_cell_identifier" id="Drv-qy-9dz" customClass="ChildInterestCell" customModule="Ay" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="add_child_color_cell_identifier" selectionStyle="none" indentationWidth="10" reuseIdentifier="add_child_color_cell_identifier" rowHeight="60" id="wzL-Ig-nYE">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wzL-Ig-nYE" id="3tI-ih-kVH">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="add_child_interest_cell_identifier" id="Drv-qy-9dz" customClass="ChildInterestCell" customModule="Ay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Drv-qy-9dz" id="Tzt-M2-vx2">
@@ -1155,7 +1223,7 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hGp-Cg-dy2">
                                 <rect key="frame" x="322" y="28" width="37" height="30"/>
-                                <state key="normal" title="Add">
+                                <state key="normal" title="Done">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1167,6 +1235,7 @@
                     </view>
                     <connections>
                         <outlet property="childInfoTableView" destination="92k-Oo-zYz" id="xIm-vq-a0o"/>
+                        <outlet property="viewTitleView" destination="CfU-Ps-wRR" id="fzS-lN-hmN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G0G-fa-W7H" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1233,6 +1302,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AddFamilyMember.png" width="45" height="45"/>
         <image name="Back.png" width="39" height="63"/>
         <image name="GEAR.png" width="95" height="95"/>
         <image name="Newevent.png" width="48" height="48"/>
@@ -1241,6 +1311,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="nfr-yx-KE1"/>
+        <segue reference="w5I-HZ-95i"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.011764705882352941" green="0.60784313725490191" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

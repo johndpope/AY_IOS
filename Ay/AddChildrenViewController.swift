@@ -12,7 +12,17 @@ class AddChildrenViewController: UIViewController, UITableViewDelegate, UITableV
 
     let app_delegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
+    private var adult_list = NSMutableSet()
+    private var child_list = NSMutableSet()
+    
+    private var type : String!
+    private var member: FamilyMember!
+    private var index_path: NSIndexPath!
+    
     @IBOutlet weak var tableView: UITableView!
+    
+    
+    let header_height = 35
     
     override func viewDidAppear(animated: Bool){
         self.tableView.reloadData()
@@ -32,7 +42,57 @@ class AddChildrenViewController: UIViewController, UITableViewDelegate, UITableV
         // When preparing for the segue, have viewController1 provide a closure for
         // onDataAvailable
         if let viewController = segue.destinationViewController as? ViewController {
+            var new_list = adult_list
+            new_list.unionSet(child_list as Set<NSObject>)
+            app_delegate.data_manager!.cur_user?.familyMembers = new_list
             ParseCoreService().updateUser(app_delegate.data_manager!.cur_user!.first_name, last_name: app_delegate.data_manager!.cur_user!.last_name, family_members: app_delegate.data_manager!.cur_user!.familyMembers)
+        } else if let viewController = segue.destinationViewController as? ChildInfoViewController {
+            if sender is AddAdultCell {
+                type = "adult"
+            } else if sender is AddChildCell{
+                type = "child"
+            } else if sender is ChildInfoTableViewCell{
+                index_path = self.tableView.indexPathForCell(sender as! ChildInfoTableViewCell)! as NSIndexPath
+                if index_path.section == 0 {
+                    type = "adult"
+                    member = adult_list.allObjects[index_path.row] as! FamilyMember
+                } else {
+                    type = "child"
+                    member = child_list.allObjects[index_path.row] as! FamilyMember
+                }
+            }
+            viewController.type = type
+            viewController.member = member
+            viewController.index_path = index_path
+            viewController.onDataAvailable = {[weak self]
+                (data) in
+                if let weakSelf = self {
+                    weakSelf.updateFamilyList(data)
+                }
+            }
+        }
+    }
+    
+    func updateFamilyList(data: NSMutableDictionary){
+        index_path = nil
+        member = nil
+        var path = data["index_path"] as! NSIndexPath
+        if path.section == 0 {
+            (data["member"] as! FamilyMember).type = "adult"
+            if path.row >= 0 {
+                var array = adult_list.allObjects as! [FamilyMember]
+                array.removeAtIndex(path.row)
+                adult_list = NSMutableSet(array: array)
+            }
+            adult_list.addObject(data["member"] as! FamilyMember)
+        } else {
+            (data["member"] as! FamilyMember).type = "child"
+            if path.row >= 0 {
+                var array = child_list.allObjects as! [FamilyMember]
+                array.removeAtIndex(path.row)
+                child_list = NSMutableSet(array: array)
+            }
+            child_list.addObject(data["member"] as! FamilyMember)
         }
     }
 
@@ -40,36 +100,64 @@ class AddChildrenViewController: UIViewController, UITableViewDelegate, UITableV
     
     // Table view Datasource / delegate methods
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let app_delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let user = app_delegate.data_manager!.cur_user
-        if user != nil && user!.familyMembers.count != 0 {
-            return user!.familyMembers.count
+        if section == 0 {
+            return adult_list.count + 1
+        } else {
+            return child_list.count + 1
         }
-        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let user = app_delegate.data_manager!.cur_user
 
-        
-        var cell = tableView.dequeueReusableCellWithIdentifier(add_child_cell_identifier)as? ChildInfoTableViewCell
-        let row = indexPath.row
-        let child = user!.familyMembers.allObjects[row] as! FamilyMember
-        cell!.name_label.text = child.name as String
-        cell!.age_label.text = "Age: " + "\(child.age)"
-        
-        var member_image = UIImageView(frame: CGRectMake(15, 7, 30, 30))
-        member_image.layer.borderWidth = 1
-        member_image.layer.borderColor = child.assigned_color().CGColor
-        member_image.layer.cornerRadius = member_image.frame.height / 2
-        member_image.clipsToBounds = true
-        member_image.backgroundColor = child.assigned_color() as UIColor
-        
-        cell?.addSubview(member_image)
+        var cell : UITableViewCell?
+        switch indexPath.section {
+            
+        case 0 :
+            if indexPath.row < adult_list.count {
+                cell = tableView.dequeueReusableCellWithIdentifier(add_family_person_cell_identifier) as? ChildInfoTableViewCell
+                let adult = adult_list.allObjects[indexPath.row] as! FamilyMember
+                (cell as! ChildInfoTableViewCell).name_label.text = (adult.first_name as String) + " " + (adult.last_name as String)
+                
+                var member_image = UIImageView(frame: CGRectMake(20, 14, 15, 15))
+                member_image.layer.borderWidth = 1
+                member_image.layer.borderColor = adult.assigned_color().CGColor
+                member_image.layer.cornerRadius = member_image.frame.height / 2
+                member_image.clipsToBounds = true
+                member_image.backgroundColor = adult.assigned_color() as UIColor
+                
+                cell?.addSubview(member_image)
+            } else {
+                cell = tableView.dequeueReusableCellWithIdentifier(add_adult_cell_identifier)as? AddAdultCell
+            }
+            break
+        case 1:
+            if indexPath.row < child_list.count {
+                cell = tableView.dequeueReusableCellWithIdentifier(add_family_person_cell_identifier)as? ChildInfoTableViewCell
+                let child = child_list.allObjects[indexPath.row] as! FamilyMember
+                (cell as! ChildInfoTableViewCell).name_label.text = (child.first_name as String) + " " + (child.last_name as String)
+                
+                var member_image = UIImageView(frame: CGRectMake(20, 14, 15, 15))
+                member_image.layer.borderWidth = 1
+                member_image.layer.borderColor = child.assigned_color().CGColor
+                member_image.layer.cornerRadius = member_image.frame.height / 2
+                member_image.clipsToBounds = true
+                member_image.backgroundColor = child.assigned_color() as UIColor
+                
+                cell?.addSubview(member_image)
+            } else {
+                cell = tableView.dequeueReusableCellWithIdentifier(add_child_cell_identifier)as? AddChildCell
+            }
+            break
+        default :
+            // Should never get here...
+            cell = UITableViewCell()
+            
+        }
         
         return cell!
     }
@@ -77,12 +165,27 @@ class AddChildrenViewController: UIViewController, UITableViewDelegate, UITableV
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        /*println ("NOT IMPLEMENTED YET")
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        self.performSegueWithIdentifier(deal_detail_segue_identifer, sender: tableView)
-        let row = indexPath.row*/
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat(header_height)
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var labelView = UILabel(frame: CGRect(x: 15, y: 7, width: 200, height: header_height))
+        if section == 0 {
+            labelView.text = "ADULT"
+        } else {
+            labelView.text = "CHILDREN"
+        }
+        labelView.textAlignment = NSTextAlignment.Left
+        labelView.font = UIFont(name: labelView.font.fontName, size: 17)
+        labelView.textColor = UIColor.blackColor()
         
-        // TODO, but I think we will disable user interaction
+        var headerView = UIView()
+        headerView.addSubview(labelView)
+        
+        return headerView
     }
     /*
     // MARK: - Navigation
